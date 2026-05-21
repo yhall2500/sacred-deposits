@@ -1,0 +1,2755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+
+<style>
+/* ════════════════════════════════════════════════════════════════
+   THE SHOP — Sacred Deposits™ Collection
+   Same DNA as index.html and podcast.html. Elevated commerce.
+════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ivory:    #FBF4E6;
+  --ivory-2:  #F5EFE0;
+  --ivory-3:  #EFE6CF;
+  --chalk:    #F9F7F2;
+  --ink:      #071432;
+  --navy:     #071432;
+  --navy-2:   #0b1e40;
+  --navy-3:   #040c22;
+  --navy-4:   #02060f;
+  --gold:     #B89045;
+  --gold-s:   #D1AD66;
+  --gold-d:   #8A6A28;
+  --muted:    #6F6250;
+  --muted-2:  #8A7E68;
+  --rule:     rgba(184,144,69,.22);
+  --rule-d:   rgba(184,144,69,.12);
+
+  --serif:  "Cormorant Garamond", Georgia, serif;
+  --caps:   "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --script: "Allura", "Pinyon Script", cursive;
+  --sans:   "Manrope", -apple-system, Helvetica, sans-serif;
+
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--gold); color: var(--ivory); }
+
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999; opacity: .14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   HEADER — exact homepage production system
+════════════════════════════════════════════════════════════════ */
+.header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 200;
+  background: transparent;
+  border-bottom: none;
+  height: 92px;
+  display: flex; align-items: center;
+  padding: 0 72px;
+}
+.brand { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.brand__ring {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border: none; border-radius: 0; background: none;
+}
+.brand__ring img { width: 52px; height: 52px; }
+.brand__name {
+  font-family: var(--serif);
+  font-size: 1.42rem;
+  font-weight: 500;
+  letter-spacing: .30em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
+.brand__name sup { font-size: .45em; vertical-align: super; }
+
+.nav { display: flex; align-items: center; justify-content: flex-end; flex: 1; gap: 48px; padding: 0; margin-right: 24px; }
+.nav a {
+  font-family: var(--sans); font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--navy); opacity: 1;
+  transition: opacity .2s;
+  position: relative; padding-bottom:3px;
+  text-shadow: 0 1px 3px rgba(251,244,230,0.8);
+}
+.nav a::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: var(--navy);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .3s;
+}
+.nav a:hover { opacity: 0.7; }
+.nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav a.is-active::after { transform: scaleX(1); }
+
+.nav__cta {
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: #ffffff; padding: 12px 24px;
+  background: var(--gold);
+  border: none;
+  white-space: nowrap;
+  transition: background .3s;
+}
+.nav__cta:hover { background: var(--gold-s); }
+
+/* ════════════════════════════════════════════════════════════════
+   MASTHEAD — ivory hero, big serif title
+════════════════════════════════════════════════════════════════ */
+.masthead {
+  position: relative;
+  padding:140px 60px 68px;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 30%, rgba(184,144,69,.06) 0%, transparent 70%),
+    var(--ivory);
+  text-align: center;
+  overflow: hidden;
+}
+.masthead__bg-mark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px; height: 720px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  opacity: .35;
+  z-index: 1;
+  pointer-events: none;
+}
+.masthead__bg-mark::before {
+  content: "";
+  position: absolute; inset: 60px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+}
+.masthead__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.masthead__eyebrow {
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:32px;
+  display: inline-flex; align-items: center; gap: 18px;
+  opacity: 0;
+  animation: rise 1.4s var(--ease) 0.2s forwards;
+}
+.masthead__eyebrow::before,
+.masthead__eyebrow::after {
+  content: "";
+  width: 36px; height: 1px;
+  background: var(--gold);
+  opacity: .6;
+}
+.masthead__script {
+  font-family: var(--script);
+  font-size: 2.4rem;
+  color: var(--gold);
+  margin-bottom:22px;
+  display: block;
+  letter-spacing: .01em;
+  opacity: 0;
+  animation: rise 1.6s var(--ease) 0.4s forwards;
+}
+.masthead__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 7vw, 7.4rem);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  margin-bottom:36px;
+  opacity: 0;
+  animation: rise 1.8s var(--ease) 0.55s forwards;
+}
+.masthead__title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.masthead__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.55;
+  color: #3a3525;
+  max-width: 56ch;
+  margin: 0 auto 56px;
+  opacity: 0;
+  animation: rise 1.8s var(--ease) 0.75s forwards;
+}
+.masthead__ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  opacity: 0;
+  animation: rise 1.6s var(--ease) 0.9s forwards;
+}
+.masthead__ornament .o-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: .55; }
+.masthead__ornament .o-line { width: 72px; height: 1px; background: var(--gold); opacity: .35; }
+.masthead__ornament .o-dia { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); opacity: .8; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FLAGSHIP — Sacred Union Set™ as cinematic hero product
+════════════════════════════════════════════════════════════════ */
+.flagship {
+  background: var(--ivory);
+  padding:58px 60px 88px;
+}
+.flagship__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 90px;
+  align-items: center;
+}
+
+.flagship__visual {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 35%, #14264d 0%, var(--navy) 50%, var(--navy-4) 100%);
+  overflow: hidden;
+  box-shadow:
+    0 80px 140px -60px rgba(7,20,50,.5),
+    0 30px 60px -30px rgba(7,20,50,.25);
+}
+.flagship__visual::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .5; pointer-events: none;
+}
+.flagship__visual::after {
+  content: "";
+  position: absolute;
+  top: 18%; left: 22%;
+  width: 70%; height: 60%;
+  background: radial-gradient(ellipse, rgba(209,173,102,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.flagship__badge {
+  position: absolute;
+  top: 32px; left: 32px;
+  z-index: 4;
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold-s);
+  display: flex; align-items: center; gap: 12px;
+}
+.flagship__badge::before {
+  content: ""; width: 24px; height: 1px; background: var(--gold-s); opacity: .7;
+}
+.flagship__corner {
+  position: absolute;
+  width: 28px; height: 28px;
+  border: 1px solid rgba(209,173,102,.4);
+  z-index: 3;
+}
+.flagship__corner--tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
+.flagship__corner--tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
+.flagship__corner--bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
+.flagship__corner--br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+
+.flagship__visual--image { background: var(--ivory); }
+.flagship__visual--image::before,
+.flagship__visual--image::after { display: none; }
+.flagship__visual-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.flagship__visual-content {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  width: 86%;
+}
+.flagship__visual-eyebrow {
+  font-family: var(--caps);
+  font-size: .78rem; font-weight: 400;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: rgba(251,244,230,.92);
+  margin-bottom:24px;
+  display: block;
+}
+.flagship__visual-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 4.2vw, 4rem);
+  line-height: 1.04;
+  color: var(--gold-s);
+  letter-spacing: -.018em;
+  margin-bottom:28px;
+}
+.flagship__visual-flourish {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+}
+.flagship__visual-flourish .ff-line { width: 32px; height: 1px; background: var(--gold-s); opacity: .55; }
+.flagship__visual-flourish .ff-dia { width: 5px; height: 5px; background: var(--gold-s); transform: rotate(45deg); opacity: .75; }
+
+.flagship__visual-foot {
+  position: absolute;
+  bottom: 32px; left: 32px; right: 32px;
+  z-index: 2;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--sans);
+  font-size: .52rem; font-weight: 600;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(209,173,102,.55);
+}
+
+/* Content side */
+.flagship__copy { padding: 24px 0; }
+.flagship__eyebrow {
+  font-family: var(--sans);
+  font-size: .58rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:22px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.flagship__eyebrow::before {
+  content: ""; width: 28px; height: 1px; background: var(--gold);
+}
+.flagship__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom:28px;
+}
+.flagship__title em { font-style: italic; color: var(--gold); }
+.flagship__lede {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #3a3525;
+  margin-bottom:36px;
+  max-width: 52ch;
+}
+.flagship__lede em { font-style: italic; color: var(--gold); }
+
+.flagship__includes {
+  margin-bottom:36px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.flagship__includes-label {
+  font-family: var(--sans);
+  font-size: .56rem; font-weight: 600;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom:14px;
+  display: block;
+}
+.flagship__includes-list {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.flagship__includes-list li {
+  position: relative;
+  padding-left: 32px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.flagship__includes-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .42em;
+  width: 18px; height: 18px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.4 L8 12.4 L13 6.6' fill='none' stroke='%23B89045' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+}
+
+/* Tagline below the flagship */
+.flagship__tagline {
+  max-width: 1400px;
+  margin: 56px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  font-family: var(--caps);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.flagship__tagline::before,
+.flagship__tagline::after {
+  content: "";
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: .55;
+  flex-shrink: 0;
+}
+
+.flagship__price-row {
+  display: flex; align-items: baseline; gap: 28px;
+  margin-bottom:32px;
+}
+.flagship__price {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+  color: var(--ink);
+  line-height: 1;
+}
+.flagship__price-note {
+  font-family: var(--sans);
+  font-size: .56rem; font-weight: 600;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.flagship__ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* ════════════════════════════════════════════════════════════════
+   BUTTONS — refined editorial CTAs (same DNA as index.html)
+════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans); font-size: .68rem; font-weight: 700;
+  letter-spacing: .24em; text-transform: uppercase;
+  padding: 17px 28px;
+  justify-content: center;
+  transition: background .35s, color .35s, border-color .35s, transform .25s;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary   { background: var(--navy); color: var(--gold-s); border: 1.5px solid var(--navy); }
+.btn--primary:hover { background: #0F2050; }
+.btn--secondary { background: transparent; color: var(--ink); border: 1.5px solid rgba(7,20,50,.30); }
+.btn--secondary:hover { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+
+.btn__arrow{display:inline-block;width:8px;height:8px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);margin-left:2px;background:transparent;transition:margin-left .35s var(--ease),transform .35s var(--ease)}
+.btn__arrow::after{display:none}
+.btn:hover .btn__arrow{margin-left:8px;transform:rotate(45deg)}
+
+/* ════════════════════════════════════════════════════════════════
+   THE COLLECTION — filters + product grid
+════════════════════════════════════════════════════════════════ */
+.collection {
+  background: var(--chalk);
+  padding:88px 60px 82px;
+  position: relative;
+}
+.collection__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.collection__header {
+  text-align: center;
+  margin-bottom:60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.collection__eyebrow {
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:24px;
+  display: inline-flex; align-items: center; gap: 18px;
+}
+.collection__eyebrow::before,
+.collection__eyebrow::after {
+  content: ""; width: 36px; height: 1px;
+  background: var(--gold); opacity: .6;
+}
+.collection__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 5.6vw, 5.4rem);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom:28px;
+}
+.collection__title em { font-style: italic; color: var(--gold); }
+.collection__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.collection__ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  margin: 56px auto 56px;
+}
+.collection__ornament .o-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: .55; }
+.collection__ornament .o-line { width: 96px; height: 1px; background: var(--gold); opacity: .3; }
+.collection__ornament .o-dia { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); opacity: .85; }
+
+/* Filter pills */
+.collection__filters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center;
+  margin-bottom:80px;
+}
+.filter-pill {
+  font-family: var(--sans);
+  font-size: .58rem; font-weight: 600;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: #3a3225;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  transition: all .35s var(--ease);
+}
+.filter-pill:hover {
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.filter-pill.is-active {
+  background: var(--ink); color: var(--ivory);
+  border-color: var(--ink);
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 40px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform .55s var(--ease);
+  position: relative;
+}
+.product:hover { transform: translateY(-6px); }
+
+.product__thumb {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 28%, #14264d 0%, var(--navy) 55%, var(--navy-3) 100%);
+  overflow: hidden;
+  margin-bottom:24px;
+  transition: box-shadow .55s var(--ease);
+}
+.product:hover .product__thumb {
+  box-shadow: 0 30px 60px -28px rgba(12,28,61,.4);
+}
+
+.product__thumb::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .5; pointer-events: none;
+}
+.product__thumb::after {
+  content: "";
+  position: absolute;
+  top: 8%; left: 10%;
+  width: 56%; height: 50%;
+  background: radial-gradient(ellipse, rgba(209,173,102,.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.product__corner {
+  position: absolute;
+  width: 16px; height: 16px;
+  border: 1px solid rgba(209,173,102,.35);
+  z-index: 2;
+  transition: border-color .35s;
+}
+.product__corner--tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.product__corner--tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.product__corner--bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.product__corner--br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+.product:hover .product__corner { border-color: rgba(209,173,102,.7); }
+
+.product__thumb-content {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84%;
+  text-align: center;
+  z-index: 2;
+}
+.product__thumb-label {
+  font-family: var(--caps);
+  font-size: .56rem; font-weight: 400;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: rgba(209,173,102,.7);
+  margin-bottom:14px;
+  display: block;
+}
+.product__thumb-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.45rem;
+  line-height: 1.18;
+  color: var(--ivory);
+  letter-spacing: -.012em;
+}
+.product__thumb-mark {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px;
+  margin-top:18px;
+}
+.product__thumb-mark .pm-line { width: 24px; height: 1px; background: var(--gold-s); opacity: .55; transition: width .55s var(--ease); }
+.product__thumb-mark .pm-dia { width: 4px; height: 4px; background: var(--gold-s); transform: rotate(45deg); opacity: .75; }
+.product:hover .product__thumb-mark .pm-line { width: 36px; }
+
+/* Image-bearing thumb variant — replaces the styled placeholder with a real cover photo.
+   Same 4:5 footprint, same corner brackets, same hover lift. */
+.product__thumb--image {
+  background: var(--ivory);
+}
+.product__thumb--image::before,
+.product__thumb--image::after { display: none; }
+.product__thumb-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.2s var(--ease);
+  display: block;
+}
+.product:hover .product__thumb--image .product__thumb-image {
+  transform: scale(1.04);
+}
+
+/* Badges (new, order, etc) */
+.product__badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 3;
+  font-family: var(--sans);
+  font-size: .48rem; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold-s);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+.product__badge--new { background: var(--gold-s); }
+.product__badge--pre { background: var(--ivory); border: 1px solid var(--ink); color: var(--ink); }
+.product__badge--limited { background: var(--ink); color: var(--gold-s); }
+
+/* Product body */
+.product__meta {
+  font-family: var(--sans);
+  font-size: .55rem; font-weight: 600;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom:12px;
+}
+.product__meta a {
+  color: var(--gold);
+  transition: color .3s;
+}
+.product__meta a:hover { color: var(--gold-s); }
+
+.product__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.55rem;
+  line-height: 1.16;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  margin-bottom:12px;
+  min-height: 2.32em;
+  transition: color .35s var(--ease);
+}
+.product__name sup { font-size: .35em; vertical-align: super; }
+.product:hover .product__name { color: var(--gold); }
+
+.product__desc {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: .92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom:22px;
+  min-height: 4.8em;
+}
+
+.product__foot {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top:16px;
+  border-top: 1px solid var(--rule);
+}
+.product__price {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--ink);
+  line-height: 1;
+}
+.product__cta {
+  font-family: var(--sans);
+  font-size: .58rem; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: color .35s, gap .35s var(--ease);
+}
+.product__cta::after {
+  content: "→";
+  font-family: var(--serif);
+  font-size: .95rem; letter-spacing: 0; font-weight: 400;
+}
+.product:hover .product__cta { color: var(--gold-s); gap: 16px; }
+
+/* ════════════════════════════════════════════════════════════════
+   FOUNDERS CIRCLE — Sacred 100 callout (dark, premium)
+════════════════════════════════════════════════════════════════ */
+.founders {
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 30%, rgba(184,144,69,.10) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 75% 80%, rgba(184,144,69,.05) 0%, transparent 60%),
+    linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 50%, var(--navy-4) 100%);
+  color: var(--ivory);
+  padding:62px 60px 75px;
+  position: relative;
+  overflow: hidden;
+}
+.founders::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .4;
+  pointer-events: none;
+}
+.founders__inner {
+  position: relative; z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.founders__copy { padding: 24px 0; }
+.founders__eyebrow {
+  font-family: var(--sans);
+  font-size: .62rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold-s);
+  margin-bottom:26px;
+  display: inline-flex; align-items: center; gap: 16px;
+}
+.founders__eyebrow::before {
+  content: ""; width: 36px; height: 1px; background: var(--gold-s); opacity: .7;
+}
+.founders__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ivory);
+  margin-bottom:28px;
+}
+.founders__title em { font-style: italic; color: var(--gold-s); }
+.founders__lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(251,244,230,.78);
+  margin-bottom:36px;
+  max-width: 50ch;
+}
+.founders__includes {
+  margin-bottom:36px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(209,173,102,.18);
+  border-bottom: 1px solid rgba(209,173,102,.18);
+}
+.founders__includes-label {
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(209,173,102,.7);
+  margin-bottom:14px;
+  display: block;
+}
+.founders__includes li {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(251,244,230,.88);
+  position: relative;
+  padding-left: 22px;
+}
+.founders__includes li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .7em;
+  width: 12px; height: 1px;
+  background: var(--gold-s); opacity: .7;
+}
+.founders__price-row {
+  display: flex; align-items: baseline; gap: 28px;
+  margin-bottom:32px;
+}
+.founders__price {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+  color: var(--gold-s);
+  line-height: 1;
+}
+.founders__price-note {
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(251,244,230,.6);
+}
+.founders__btn-light {
+  background: var(--gold);
+  color: var(--ivory);
+  border: 1.5px solid var(--gold);
+}
+.founders__btn-light:hover {
+  background: var(--gold-s); border-color: var(--gold-s);
+}
+.founders__btn-ghost {
+  background: transparent;
+  color: var(--ivory);
+  border: 1.5px solid rgba(251,244,230,.3);
+}
+.founders__btn-ghost:hover {
+  background: var(--ivory); color: var(--ink); border-color: var(--ivory);
+}
+
+/* Right: numbered display */
+.founders__visual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-height: 460px;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 50%, rgba(209,173,102,.10) 0%, transparent 70%);
+}
+.founders__numeral {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(12rem, 22vw, 22rem);
+  line-height: .85;
+  color: var(--gold-s);
+  letter-spacing: 0;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+}
+.founders__numeral-sub {
+  position: absolute;
+  bottom: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--sans);
+  font-size: .62rem; font-weight: 600;
+  letter-spacing: .56em; text-transform: uppercase;
+  color: rgba(209,173,102,.65);
+  z-index: 2;
+  white-space: nowrap;
+}
+.founders__numeral-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%; aspect-ratio: 1;
+  border: 1px solid rgba(209,173,102,.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.founders__numeral-ring::before {
+  content: "";
+  position: absolute; inset: 24px;
+  border: 1px solid rgba(209,173,102,.12);
+  border-radius: 50%;
+}
+.founders__counter {
+  position: absolute;
+  top: 8%; right: 8%;
+  z-index: 3;
+  text-align: right;
+}
+.founders__counter-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gold-s);
+  line-height: 1;
+  display: block;
+}
+.founders__counter-label {
+  font-family: var(--sans);
+  font-size: .5rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: rgba(209,173,102,.6);
+  margin-top:6px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   GIFTING — refined banner
+════════════════════════════════════════════════════════════════ */
+.gifting {
+  background: var(--ivory);
+  padding:55px 60px 62px;
+  text-align: center;
+  position: relative;
+}
+.gifting::before,
+.gifting::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 120px; height: 1px;
+  background: var(--rule);
+}
+.gifting::before { left: 60px; }
+.gifting::after { right: 60px; }
+
+.gifting__inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.gifting__script {
+  font-family: var(--script);
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom:18px;
+  display: block;
+}
+.gifting__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom:22px;
+}
+.gifting__title em { font-style: italic; color: var(--gold); }
+.gifting__body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.22rem;
+  line-height: 1.6;
+  color: #3a3225;
+  margin-bottom:42px;
+  max-width: 52ch;
+  margin-left: auto; margin-right: auto;
+}
+.gifting__cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 700;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom:8px;
+  transition: color .35s, border-color .35s, gap .35s var(--ease);
+}
+.gifting__cta::after {
+  content: "→"; font-family: var(--serif);
+  font-size: 1.05rem; letter-spacing: 0; font-weight: 400;
+}
+.gifting__cta:hover { color: var(--gold); border-color: var(--gold); gap: 22px; }
+
+/* ════════════════════════════════════════════════════════════════
+   SUBSCRIBE — same DNA as podcast.html
+════════════════════════════════════════════════════════════════ */
+.subscribe {
+  background: var(--ivory-3);
+  padding: 60px 60px 70px;
+  position: relative;
+  text-align: center;
+}
+.subscribe__inner {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #FFFCF5;
+  border: 1px solid rgba(184,144,69,.32);
+  padding: 64px 56px 56px;
+  box-shadow: 0 40px 80px -36px rgba(7,20,50,.28);
+  position: relative;
+}
+/* Ornamental section divider — gold line · diamond · line */
+.stay-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 52px;
+}
+.stay-divider__line {
+  width: 90px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .55;
+}
+.stay-divider__dia {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: .9;
+}
+
+.subscribe__inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.subscribe__script {
+  font-family: var(--script);
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom:18px;
+  display: block;
+}
+.subscribe__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom:22px;
+}
+.subscribe__title em { font-style: italic; color: var(--gold); }
+.subscribe__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.18rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom:52px;
+}
+.subscribe__form {
+  display: flex;
+  max-width: 520px; margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color .35s;
+}
+.subscribe__form:focus-within { border-color: var(--gold); }
+.subscribe__input {
+  flex: 1;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.18rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  padding: 16px 4px;
+  outline: none;
+}
+.subscribe__input::placeholder { color: rgba(111,98,80,.5); }
+.subscribe__submit {
+  font-family: var(--sans);
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--gold);
+  background: transparent; border: none;
+  padding: 0 18px;
+  cursor: pointer;
+  transition: color .35s;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.subscribe__submit::after {
+  content: "→";
+  font-family: var(--serif);
+  font-size: 1rem; letter-spacing: 0;
+  transition: transform .35s var(--ease);
+}
+.subscribe__submit:hover { color: var(--ink); }
+.subscribe__submit:hover::after { transform: translateX(6px); }
+.subscribe__fine {
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--muted-2);
+  margin-top:24px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER — homepage system
+════════════════════════════════════════════════════════════════ */
+.site-footer {
+  background:
+    radial-gradient(ellipse at 75% 5%, rgba(184,144,69,.03) 0%, transparent 50%),
+    linear-gradient(170deg, #0b1e40 0%, #071432 65%, #040c22 100%);
+  color: var(--ivory); padding:88px 80px 80px; position: relative;
+}
+.site-footer::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .35;
+}
+.site-footer__inner { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; }
+.site-footer__main {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 72px; padding-bottom:72px;
+}
+.site-footer__brand { display: flex; flex-direction: column; gap: 14px; }
+.site-footer__logo-row { display: flex; align-items: center; gap: 12px; }
+.site-footer__logo { width: 34px; height: 34px; flex-shrink: 0; }
+.site-footer__name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 1rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(209,173,102,.80);
+}
+.site-footer__name sup { font-size: .38em; vertical-align: super; }
+.site-footer__tagline {
+  font-family: var(--serif); font-style: italic;
+  font-size: .88rem; color: rgba(251,244,230,.38); max-width: 240px; line-height: 1.6;
+}
+.site-footer__col { display: flex; flex-direction: column; }
+.site-footer__heading {
+  font-family: var(--sans); font-size: .54rem; font-weight: 600;
+  letter-spacing: .30em; text-transform: uppercase;
+  color: rgba(209,173,102,.62); margin-bottom:26px;
+}
+.site-footer__col a {
+  font-family: var(--serif); font-size: .95rem; line-height: 1.4;
+  color: rgba(251,244,230,.62); padding: 7px 0;
+  transition: color .3s;
+}
+.site-footer__col a:hover { color: var(--gold-s); }
+.site-footer__email { font-family: var(--sans) !important; font-size: .80rem !important; color: rgba(209,173,102,.52) !important; margin-top:6px; }
+.site-footer__email:hover { color: var(--gold-s) !important; }
+.site-footer__legal {
+  border-top: 1px solid rgba(209,173,102,.08);
+  padding: 36px 0 22px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 16px;
+}
+.site-footer__legal-left { display: flex; flex-direction: column; gap: 5px; }
+.site-footer__copy { font-family: var(--sans); font-size: .75rem; color: rgba(251,244,230,.32); margin-bottom: 4px; }
+.site-footer__copy-tm { font-family: var(--sans); font-size: .7rem; color: rgba(251,244,230,.28); line-height: 1.6; max-width: 580px; }
+.site-footer__terms { font-family: var(--sans); font-size: .75rem; color: rgba(251,244,230,.32); display: flex; align-items: center; gap: 8px; }
+.site-footer__terms a { color: rgba(251,244,230,.32); transition: color .3s; }
+.site-footer__terms a:hover { color: var(--gold-s); }
+.site-footer__dot { color: rgba(251,244,230,.20); }
+.site-footer__contact {
+  font-family: var(--sans); font-size: .75rem;
+  color: var(--gold-s); opacity: .60;
+  border-bottom: 1px solid rgba(209,173,102,.20);
+  padding-bottom:2px; transition: opacity .3s;
+}
+.site-footer__contact:hover { opacity: 1; }
+.site-footer__trademarks {
+  font-family: var(--sans); font-size: .70rem; line-height: 1.8;
+  color: rgba(251,244,230,.22); max-width: 980px; margin-top:24px;
+}
+.site-footer__trademarks sup { font-size: .50em; vertical-align: super; }
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .header { padding: 0 36px; }
+  .nav { gap: 36px; }
+  .masthead { padding:118px 40px 90px }
+  .flagship { padding:80px 40px 58px; }
+  .flagship__inner { gap: 60px; }
+  .collection { padding:68px 40px 62px; }
+  .product-grid { gap: 56px 32px; }
+  .founders { padding:88px 40px 62px; }
+  .founders__inner { gap: 60px; }
+  .gifting { padding:78px 40px 88px; }
+  .subscribe { padding:88px 40px 62px; }
+  .site-footer { padding:68px 40px 70px; }
+}
+@media (max-width: 980px) {
+  .flagship__inner { grid-template-columns: 1fr; gap: 56px; }
+  .flagship__visual { max-width: 500px; margin: 0 auto; aspect-ratio: 4/5; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 48px 28px; }
+  .founders__inner { grid-template-columns: 1fr; gap: 48px; }
+  .founders__visual { max-width: 460px; margin: 0 auto; }
+  .site-footer__main { grid-template-columns: 1fr 1fr; gap: 44px 28px; }
+  .masthead__bg-mark { width: 540px; height: 540px; }
+}
+@media (max-width: 720px) {
+  .header { padding: 0 20px; height: 78px; }
+  .nav { display: none; }
+  .nav__cta { padding: 13px 22px; font-size: .66rem; }
+  .masthead { padding:118px 24px 70px }
+  .masthead__title { font-size: 2.8rem; }
+  .masthead__sub { font-size: 1.05rem; }
+  .masthead__bg-mark { display: none; }
+  .flagship { padding:60px 24px 80px; }
+  .flagship__title { font-size: 2.2rem; }
+  .flagship__lede { font-size: 1.12rem; }
+  .flagship__ctas { flex-direction: column; align-items: stretch; }
+  .btn { padding: 16px 24px; }
+  .collection { padding:80px 24px 68px; }
+  .collection__title { font-size: 2.4rem; }
+  .collection__filters { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom:8px; margin: 0 -24px 56px; padding-left: 24px; padding-right: 24px; }
+  .filter-pill { white-space: nowrap; flex-shrink: 0; }
+  .product-grid { grid-template-columns: 1fr; gap: 48px; max-width: 420px; margin: 0 auto; }
+  .product__desc { min-height: 0; }
+  .founders { padding:90px 24px 68px; }
+  .founders__title { font-size: 2.1rem; }
+  .gifting { padding:80px 24px 90px; }
+  .gifting::before, .gifting::after { display: none; }
+  .gifting__title { font-size: 2rem; }
+  .subscribe { padding:90px 24px 58px; }
+  .subscribe__title { font-size: 2rem; }
+  .subscribe__form { flex-direction: column; gap: 14px; border-bottom: none; }
+  .subscribe__input { border-bottom: 1px solid var(--rule); text-align: center; }
+  .subscribe__submit { justify-content: center; padding: 14px 0; }
+  .site-footer { padding:80px 24px 50px; }
+  .site-footer__main { grid-template-columns: 1fr; gap: 36px; padding-bottom:40px; }
+  .site-footer__legal { flex-direction: column; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANIMATION SYSTEM — same as index.html / podcast.html
+════════════════════════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.2s var(--anim-ease), transform 1.2s var(--anim-ease);
+  will-change: opacity, transform;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+.reveal--slow { transition-duration: 1.6s; }
+
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(20px);
+  transition: opacity 1.4s var(--anim-ease), transform 1.4s var(--anim-ease);
+}
+.reveal--scale.in-view { opacity: 1; transform: scale(1) translateY(0); }
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--anim-ease), transform 1s var(--anim-ease);
+}
+.stagger.in-view > *:nth-child(1)  { transition-delay: 0s; }
+.stagger.in-view > *:nth-child(2)  { transition-delay: 0.08s; }
+.stagger.in-view > *:nth-child(3)  { transition-delay: 0.16s; }
+.stagger.in-view > *:nth-child(4)  { transition-delay: 0.24s; }
+.stagger.in-view > *:nth-child(5)  { transition-delay: 0.32s; }
+.stagger.in-view > *:nth-child(6)  { transition-delay: 0.40s; }
+.stagger.in-view > *:nth-child(7)  { transition-delay: 0.48s; }
+.stagger.in-view > *:nth-child(8)  { transition-delay: 0.56s; }
+.stagger.in-view > *:nth-child(9)  { transition-delay: 0.64s; }
+.stagger.in-view > *:nth-child(10) { transition-delay: 0.72s; }
+.stagger.in-view > *:nth-child(11) { transition-delay: 0.80s; }
+.stagger.in-view > *:nth-child(12) { transition-delay: 0.88s; }
+.stagger.in-view > * { opacity: 1; transform: translateY(0); }
+
+.draw-rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s var(--anim-ease);
+}
+.draw-rule.in-view { transform: scaleX(1); }
+
+.fade-in { opacity: 0; transition: opacity 1.4s var(--anim-ease); }
+.fade-in.in-view { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal--scale, .stagger > *, .draw-rule, .fade-in,
+  .masthead__eyebrow, .masthead__script, .masthead__title, .masthead__sub, .masthead__ornament {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══ MOBILE EDITORIAL REFINEMENTS ═══ */
+
+/* 820px and below — primary mobile threshold */
+@media (max-width: 820px) {
+  /* Hero refinements — keep cinematic, give breathing room */
+  .hero {
+    padding:130px 28px 68px !important;
+  }
+  .hero__inner { max-width: 580px; }
+  .hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -.022em !important;
+    margin-bottom:28px;
+  }
+  .hero__sub {
+    font-size: 1.18rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+    margin-bottom:40px;
+  }
+  .hero__cap {
+    font-size: .54rem !important;
+    letter-spacing: .42em !important;
+    margin-bottom:24px;
+  }
+  .hero__cap::before, .hero__cap::after { width: 32px; }
+  .hero__script { font-size: 2rem !important; }
+  .hero__ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 14px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .hero__ctas .btn { width: 100%; }
+}
+
+/* 640px and below — phone */
+@media (max-width: 640px) {
+  .hero {
+    padding:115px 24px 58px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.4rem, 10vw, 3.6rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.12rem !important;
+    line-height: 1.62 !important;
+    max-width: 38ch !important;
+  }
+}
+
+/* 480px and below — mid phone */
+@media (max-width: 480px) {
+  .hero {
+    padding:110px 22px 90px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem) !important;
+    line-height: 1.02 !important;
+  }
+  .hero__sub {
+    font-size: 1.08rem !important;
+  }
+  .hero__script { font-size: 1.8rem !important; }
+}
+
+/* 390px and below — smallest phones */
+@media (max-width: 390px) {
+  .hero {
+    padding:100px 20px 80px !important;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.02rem !important;
+    line-height: 1.65 !important;
+  }
+}
+
+/* Cross-cutting hero variants — apply to specific page hero classes */
+@media (max-width: 820px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub, .legal-hero__date {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.3rem, 10vw, 3.4rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.1rem, 10.5vw, 3rem) !important;
+    letter-spacing: -.018em !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub {
+    font-size: 1.06rem !important;
+  }
+}
+
+/* Improve readability on long-form body text across all pages */
+@media (max-width: 640px) {
+  p {
+    line-height: 1.7;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV DROPDOWNS — Sacred Deposits header navigation
+   ═══════════════════════════════════════════════════════════════ */
+.nav-group { position: relative; }
+.nav-group .nav-link {
+  font-family: var(--sans);
+  font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: none; text-decoration: none;
+  padding: 8px 0; margin: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .3s var(--ease);
+  position: relative;
+  white-space: nowrap;
+}
+.nav-group .nav-link:hover { color: var(--gold); }
+.nav-group .nav-link.is-active { color: var(--gold); }
+.nav-group .nav-link.is-active::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1.5px; background: var(--gold); opacity: 1;
+}
+.nav-caret {
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .75;
+  transition: transform .3s var(--ease), opacity .3s;
+}
+.nav-group:hover .nav-caret { transform: rotate(225deg) translateY(0); opacity: 1; }
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  margin-top: 4px;
+  background: var(--ivory);
+  border: 1px solid rgba(184,144,69,.22);
+  box-shadow: 0 22px 60px -28px rgba(7,20,50,.18), 0 4px 14px -8px rgba(7,20,50,.06);
+  padding: 12px 0;
+  min-width: 240px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s var(--ease), visibility .25s var(--ease), transform .25s var(--ease);
+  z-index: 100;
+  pointer-events: none;
+}
+.nav-group.has-dropdown:hover .nav-dropdown,
+.nav-group.has-dropdown:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.nav-dropdown::before {
+  /* Bridge gap so hover doesn't break between link and dropdown */
+  content: ""; position: absolute;
+  top: -10px; left: 0; right: 0; height: 10px;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 11px 28px;
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color .2s, background .2s, padding-left .25s var(--ease);
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  color: var(--gold);
+  background: rgba(184,144,69,.04);
+  padding-left: 32px;
+}
+
+/* Mobile menu sub-item styling */
+.mobile-menu__sub {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--muted);
+  padding: 8px 0 8px 22px;
+  text-decoration: none;
+  border-left: 1px solid rgba(184,144,69,.22);
+  margin-left: 6px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  transition: color .2s, border-color .25s;
+}
+.mobile-menu__sub:hover { color: var(--gold); border-left-color: var(--gold); }
+
+/* Hide dropdowns on small screens — mobile menu shows everything inline */
+@media (max-width: 980px) {
+  .nav-dropdown { display: none; }
+  .nav-caret { display: none; }
+}
+
+
+/* FORCE: dropdown text must always be dark — overrides any dark-header inheritance */
+.nav-dropdown a,
+body.dark-header .nav .nav-dropdown a,
+body.dark-header .nav-group .nav-dropdown a {
+  color: #071432 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+.nav-dropdown a:hover,
+body.dark-header .nav-dropdown a:hover {
+  color: var(--gold) !important;
+}
+
+.flagship__value {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--gold-s);
+  letter-spacing: .01em;
+}
+
+
+/* Coming Soon product label */
+.product__price--soon {
+  font-family: var(--caps) !important;
+  font-size: .56rem !important;
+  font-weight: 500 !important;
+  letter-spacing: .42em !important;
+  text-transform: uppercase !important;
+  color: var(--gold) !important;
+  position: relative;
+  padding: 8px 16px;
+  border: 1px solid rgba(184,144,69,.45);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+
+/* Mobile header responsive — added for viewport overflow fix */
+@media (max-width: 640px){
+  .header{padding:0 20px !important}
+  .brand{gap:10px !important}
+  .brand__ring,.brand__ring img{width:42px !important;height:42px !important}
+  .brand__name{font-size:1.05rem !important;letter-spacing:.22em !important}
+}
+@media (max-width: 480px){
+  .header{padding:0 16px !important}
+  .brand{gap:8px !important}
+  .brand__ring,.brand__ring img{width:38px !important;height:38px !important}
+  .brand__name{font-size:.85rem !important;letter-spacing:.18em !important}
+  .brand__name sup{font-size:.4em !important}
+}
+@media (max-width: 380px){
+  .brand__name{font-size:.78rem !important;letter-spacing:.14em !important}
+}
+</style>
+<title>Shop — Christian Marriage Books, Journals & Couples Workbooks</title>
+<meta name="description" content="The Sacred Deposits™ collection: marriage books, couples journals, premarital workbooks, prayer journals, and the limited Sacred 100 founders edition."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<meta name="author" content="Yvonne G. Hall"/>
+<link rel="canonical" href="https://sacreddeposits.com/shop.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" href="assets/images/logo.webp"/>
+<link rel="apple-touch-icon" href="assets/images/logo.webp"/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Sacred Deposits"/>
+<meta property="og:title" content="Shop — Christian Marriage Books, Journals & Couples Workbooks"/>
+<meta property="og:description" content="The Sacred Deposits™ collection: marriage books, couples journals, premarital workbooks, prayer journals, and the limited Sacred 100 founders edition."/>
+<meta property="og:url" content="https://sacreddeposits.com/shop.html"/>
+<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Shop — Christian Marriage Books, Journals & Couples Workbooks"/>
+<meta name="twitter:description" content="The Sacred Deposits™ collection: marriage books, couples journals, premarital workbooks, prayer journals, and the limited Sacred 100 founders edition."/>
+<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sacreddeposits.com/#organization",
+      "name": "EQGenix Inc.",
+      "url": "https://sacreddeposits.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "founder": {
+        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+      },
+      "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
+      "knowsLanguage": [
+        "English",
+        "Spanish"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "name": "Yvonne G. Hall",
+      "givenName": "Yvonne",
+      "familyName": "Hall",
+      "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
+      "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
+      "url": "https://sacreddeposits.com/about.html",
+      "sameAs": [],
+      "knowsAbout": [
+        "Christian marriage",
+        "Covenant marriage",
+        "Marriage communication",
+        "Emotional intimacy",
+        "Relationship repair",
+        "Applied behavioral science",
+        "Marriage ministry"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EQGenix Inc."
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://sacreddeposits.com/shop.html#collection",
+      "url": "https://sacreddeposits.com/shop.html",
+      "name": "Sacred Deposits\u2122 Collection",
+      "description": "Christian marriage books, couples journals, premarital workbooks, and prayer resources from the Sacred Deposits\u2122 ecosystem.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 12,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Product",
+              "name": "Sacred Deposits \u2014 Hardcover",
+              "category": "Books",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "36.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Product",
+              "name": "Sacred Deposits \u2014 Paperback",
+              "category": "Books",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "24.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Product",
+              "name": "Her Covenant Journal",
+              "category": "Journals",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "26.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Product",
+              "name": "His Covenant Journal",
+              "category": "Journals",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "29.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Product",
+              "name": "The Covenant Playbook",
+              "category": "Workbooks",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "26.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Product",
+              "name": "Sacred Deposits Couples Workbook",
+              "category": "Workbooks",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "18.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "Product",
+              "name": "The Sacred War Room",
+              "category": "Prayer",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "49.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "Product",
+              "name": "Her Sacred Chronicle",
+              "category": "Prayer",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "32.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "Product",
+              "name": "The Covenant Card",
+              "category": "Cards",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "24.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "Product",
+              "name": "Sacred Deposits Audiobook",
+              "category": "Digital",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "19.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "Product",
+              "name": "Sacred Deposits eBook",
+              "category": "Digital",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "9.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "item": {
+              "@type": "Product",
+              "name": "Dep\u00f3sitos Sagrados",
+              "category": "Spanish Edition",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "22.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "item": {
+              "@type": "Product",
+              "name": "The Sacred 100 Founders Edition",
+              "category": "Limited",
+              "brand": {
+                "@type": "Brand",
+                "name": "Sacred Deposits"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "249.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/LimitedAvailability"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+
+<style id="launch-strip-style">
+.launch-strip { background: linear-gradient(90deg, #02060f 0%, #071432 50%, #02060f 100%); color: var(--ivory, #FBF4E6); border-bottom: 1px solid rgba(184,144,69,.28); position: fixed; top: 0; left: 0; right: 0; z-index: 999; padding: 9px 24px; font-family: var(--serif, "Cormorant Garamond", serif); font-size: .92rem; }
+.launch-strip__inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; line-height: 1.4; }
+.launch-strip__inner > * { line-height: 1.4; }
+.launch-strip__date { line-height: 1.4; transform: translateY(1px); }
+.launch-strip__msg, .launch-strip__sep, .launch-strip__cta { line-height: 1.4; }
+.launch-strip__pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #D1AD66; box-shadow: 0 0 0 0 rgba(209,173,102,.7); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(209,173,102,.7); } 70% { box-shadow: 0 0 0 8px rgba(209,173,102,0); } 100% { box-shadow: 0 0 0 0 rgba(209,173,102,0); } }
+.launch-strip__date { font-family: var(--caps, "Cinzel", serif); font-size: .58rem; font-weight: 600; letter-spacing: .42em; text-transform: uppercase; color: #D1AD66; }
+.launch-strip__sep { color: rgba(251,244,230,.4); }
+.launch-strip__msg { font-style: italic; color: rgba(251,244,230,.92); }
+.launch-strip__msg em { color: #D1AD66; font-style: italic; }
+.launch-strip__cta { color: #D1AD66; text-decoration: underline; text-decoration-color: rgba(209,173,102,.35); text-underline-offset: 3px; font-style: italic; transition: text-decoration-color .3s ease; }
+.launch-strip__cta:hover { text-decoration-color: #D1AD66; }
+.header { top: 38px !important; }
+body { padding-top: 38px; }
+@media (max-width: 720px) {
+  .launch-strip { padding: 8px 14px; font-size: .82rem; }
+  .launch-strip__inner { gap: 6px; }
+  .launch-strip__date { font-size: .52rem; letter-spacing: .36em; }
+  .launch-strip__sep, .launch-strip__pulse { display: none; }
+  .header { top: 46px !important; }
+  body { padding-top: 46px; }
+}
+</style>
+
+</head>
+<body>
+<script src="snipcart-config.js"></script>
+<div class="launch-strip" role="banner" aria-label="Order announcement">
+  <div class="launch-strip__inner">
+    <span class="launch-strip__pulse" aria-hidden="true"></span>
+    <span class="launch-strip__date">Now Available</span>
+    <span class="launch-strip__sep">·</span>
+    <span class="launch-strip__msg"><em>Sacred Deposits</em><sup>&trade;</sup> —</span>
+    <a href="sacred-deposits-hardcover.html" class="launch-strip__cta">order now &rarr;</a>
+  </div>
+</div>
+<header class="header">
+  <a href="index.html" class="brand">
+    <div class="brand__ring"><img decoding="async" src="assets/images/logo.webp" alt="Sacred Deposits — covenant marriage framework"></div>
+    <span class="brand__name">Sacred Deposits<sup>&trade;</sup></span>
+  </a>
+  <nav class="nav">
+    <div class="nav-group has-dropdown">
+      <a href="book.html" class="nav-link">Book<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="book.html" role="menuitem">About the Book</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="book.html#editions" role="menuitem">Order Editions</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="frameworks.html" class="nav-link">Frameworks<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="frameworks.html" role="menuitem">All Frameworks</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="reset.html" role="menuitem">The Phases</a>
+        <a href="audit.html" role="menuitem">The Audit</a>
+        <a href="assessment.html" role="menuitem">EWD-1 Assessment</a>
+        <a href="reset.html" role="menuitem">30-Day Reset</a>
+        <a href="legacy-ledger.html" role="menuitem">The Legacy Ledger</a>
+        <a href="manifesto.html" role="menuitem">The Manifesto</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="vault.html" class="nav-link">Vault<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="vault.html" role="menuitem">Inside the Vault</a>
+        <a href="vault.html#reserve" role="menuitem">Reserve Your Place</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group has-dropdown">
+      <a href="podcast.html" class="nav-link">Podcast<span class="nav-caret"></span></a>
+      <div class="nav-dropdown">
+        <a href="podcast.html#featured" role="menuitem">Latest Episode</a>
+        <a href="podcast.html#library" role="menuitem">All Episodes</a>
+        <a href="podcast.html#subscribe" role="menuitem">Subscribe</a>
+      </div>
+    </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="shop.html" class="nav-link is-active">Shop<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="shop.html" role="menuitem">All Products</a>
+        <a href="book.html" role="menuitem">The Book</a>
+        <a href="sacred-union-set.html" role="menuitem">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" role="menuitem">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" role="menuitem">Her Covenant Journal</a>
+        <a href="his-journal.html" role="menuitem">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" role="menuitem">Couples Workbook</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="about.html" class="nav-link">About<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="about.html" role="menuitem">About Yvonne</a>
+        <a href="life-in-darkness.html" role="menuitem">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" role="menuitem">YGH Technology Consultants</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="contact.html" class="nav-link">Contact<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="contact.html" role="menuitem">Contact</a>
+        <a href="churches.html" role="menuitem">Churches & Groups</a>
+        <a href="licensing.html" role="menuitem">Licensing</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle__label">MENU</span>
+    <span class="nav-toggle__lines" aria-hidden="true"><span></span><span></span></span>
+  </button>
+  <button class="snipcart-checkout cart-icon" aria-label="Open cart" title="Cart">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-icon__count snipcart-items-count" style="display:none;">0</span>
+</button>
+      <a href="vault.html" class="nav__cta">Enter the Vault</a>
+</header>
+
+<!-- Mobile full-screen menu overlay -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Site navigation">
+  <div class="mobile-menu__topbar">
+    <button class="mobile-menu__close" type="button" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-menu__brand">
+      <img decoding="async" src="assets/images/logo.webp" alt="" class="mobile-menu__logo" width="28" height="28">
+      <span class="mobile-menu__brand-name">Sacred Deposits</span>
+    </a>
+    <div class="mobile-menu__actions">
+      <a href="#cart" class="mobile-menu__action mobile-menu__cart snipcart-checkout" aria-label="Cart">
+        <span class="mobile-menu__cart-count snipcart-items-count">0</span>
+      </a>
+    </div>
+  </div>
+  <div class="mobile-menu__panels">
+    <div class="mobile-menu__panel mobile-menu__panel--root is-active" data-panel="root">
+      <nav class="mobile-menu__nav" aria-label="Mobile primary">
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="book">
+          <span>Book</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="frameworks">
+          <span>Frameworks</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="vault">
+          <span>Vault</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="podcast">
+          <span>Podcast</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="shop">
+          <span>Shop</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="about">
+          <span>About</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch mobile-menu__item--last" type="button" data-target="contact">
+          <span>Contact</span>
+        </button>
+      </nav>
+      <div class="mobile-menu__footer">
+        <a href="vault.html" class="mobile-menu__cta">Enter the Vault</a>
+        <p class="mobile-menu__signature">A Covenant Framework by EQGenix Inc.</p>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="book" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Book</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Book navigation">
+        <a href="book.html" class="mobile-menu__sublink">About the Book</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="book.html#editions" class="mobile-menu__sublink">Order Editions</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="frameworks" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Frameworks</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Frameworks navigation">
+        <a href="frameworks.html" class="mobile-menu__sublink">All Frameworks</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="audit.html" class="mobile-menu__sublink">The Audit</a>
+        <a href="reset.html" class="mobile-menu__sublink">30-Day Reset</a>
+        <a href="legacy-ledger.html" class="mobile-menu__sublink">The Legacy Ledger</a>
+        <a href="manifesto.html" class="mobile-menu__sublink">The Manifesto</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="vault" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Vault</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Vault navigation">
+        <a href="vault.html" class="mobile-menu__sublink">Inside the Vault</a>
+        <a href="vault.html#reserve" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="podcast" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Podcast</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Podcast navigation">
+        <a href="podcast.html#featured" class="mobile-menu__sublink">Latest Episode</a>
+        <a href="podcast.html#library" class="mobile-menu__sublink">All Episodes</a>
+        <a href="podcast.html#subscribe" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="shop" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Shop</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Shop navigation">
+        <a href="shop.html" class="mobile-menu__sublink">All Products</a>
+        <a href="sacred-deposits-hardcover.html" class="mobile-menu__sublink">S.D Book</a>
+        <a href="sacred-union-set.html" class="mobile-menu__sublink">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" class="mobile-menu__sublink">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" class="mobile-menu__sublink">Her Covenant Journal</a>
+        <a href="his-journal.html" class="mobile-menu__sublink">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" class="mobile-menu__sublink">Couples Workbook</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="about" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">About</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="About navigation">
+        <a href="about.html" class="mobile-menu__sublink">About Yvonne</a>
+        <a href="life-in-darkness.html" class="mobile-menu__sublink">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" class="mobile-menu__sublink">YGH Technology Consultants</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="contact" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Contact</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Contact navigation">
+        <a href="contact.html" class="mobile-menu__sublink">Contact</a>
+        <a href="churches.html" class="mobile-menu__sublink">Churches &amp; Groups</a>
+        <a href="press.html" class="mobile-menu__sublink">Press &amp; Media</a>
+        <a href="licensing.html" class="mobile-menu__sublink">Licensing</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<section class="masthead">
+  <div class="masthead__bg-mark"></div>
+  <div class="masthead__inner">
+    <span class="masthead__eyebrow">The Collection</span>
+    <span class="masthead__script">Heirlooms, not products.</span>
+    <h1 class="masthead__title">
+      Tools for Covenant. <em>Objects for a Lifetime.</em>
+    </h1>
+    <p class="masthead__sub">
+      Books, journals, prayer companions, cards, and sets — designed to protect what is sacred, guide what is growing, and preserve what God called yours.
+    </p>
+    <div class="masthead__ornament">
+      <span class="o-dot"></span>
+      <span class="o-line"></span>
+      <span class="o-dia"></span>
+      <span class="o-line"></span>
+      <span class="o-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- FLAGSHIP — Sacred Union Set™ -->
+<section class="flagship">
+  <div class="flagship__inner">
+
+    <!-- Visual -->
+    <div class="flagship__visual flagship__visual--image">
+      <span class="flagship__corner flagship__corner--tl"></span>
+      <span class="flagship__corner flagship__corner--tr"></span>
+      <span class="flagship__corner flagship__corner--bl"></span>
+      <span class="flagship__corner flagship__corner--br"></span>
+      <img decoding="async" src="assets/images/sacred-union-set-open.jpg" alt="The Sacred Union Set — heirloom box opened, showing His Journal, the Sacred Deposits hardcover with 5:1 mark, Her Journal, and two gold-accented Covenant Chronicles pens" class="flagship__visual-image" width="1402" height="1122">
+    </div>
+
+    <!-- Copy -->
+    <div class="flagship__copy">
+      <span class="flagship__eyebrow">The Centerpiece</span>
+      <h2 class="flagship__title">
+        The <em>Sacred Union Set</em><sup style="font-size:.4em;vertical-align:super;color:var(--gold);">™</sup>
+      </h2>
+      <p class="flagship__lede">
+        The complete covenant framework, gifted as one heirloom presentation. Built for the marriage you'd be willing to <em>protect a generation forward.</em>
+      </p>
+
+      <div class="flagship__includes">
+        <span class="flagship__includes-label">The Core Box Includes</span>
+        <ul class="flagship__includes-list">
+          <li>Sacred Deposits<sup>&trade;</sup> hardcover book</li>
+          <li>His Journal</li>
+          <li>Her Journal</li>
+          <li>Two gold-accented pens</li>
+          <li>Keepsake presentation box</li>
+        </ul>
+      </div>
+
+      <div class="flagship__price-row">
+        <span class="flagship__price">$150</span>
+        <span class="flagship__value"><em>Founding Edition · locks in $192.90 ecosystem</em></span>
+        <span class="flagship__price-note">Free shipping · Gift-ready</span>
+      </div>
+
+      <div class="flagship__ctas">
+        <a href="sacred-union-set.html" class="btn btn--primary">
+          Buy Now<span class="btn__arrow"></span>
+        </a>
+        <a href="sacred-union-set.html" class="btn btn--secondary">
+          See What's Inside<span class="btn__arrow"></span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="flagship__tagline">Because your covenant deserves a legacy.</p>
+</section>
+
+<!-- THE COLLECTION -->
+<section class="collection" id="collection">
+  <div class="collection__inner">
+
+    <header class="collection__header">
+      <span class="collection__eyebrow">The Library</span>
+      <h2 class="collection__title">Every piece, with <em>purpose.</em></h2>
+      <p class="collection__sub">
+        <em>Books, journals, prayer companions, decks, and digital tools — built for the long work of covenant.</em>
+      </p>
+    </header>
+
+    <div class="collection__ornament">
+      <span class="o-dot"></span>
+      <span class="o-line"></span>
+      <span class="o-dia"></span>
+      <span class="o-line"></span>
+      <span class="o-dot"></span>
+    </div>
+
+    <div class="collection__filters">
+      <button class="filter-pill is-active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="books">Books</button>
+      <button class="filter-pill" data-filter="journals">Journals</button>
+      <button class="filter-pill" data-filter="workbooks">Workbooks</button>
+      <button class="filter-pill" data-filter="digital">Digital</button>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- 1. Sacred Deposits — Hardcover -->
+      <article class="product" data-category="books">
+        <a href="sacred-deposits-hardcover.html" class="product__thumb product__thumb--image" aria-label="Sacred Deposits Hardcover">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/sacred-deposits-hardcover.jpg" alt="Sacred Deposits, hardcover edition — navy linen-bound book with 5:1 mark and gold foil" class="product__thumb-image" loading="lazy" width="1086" height="1448">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Books</a> · Hardcover</p>
+        <h3 class="product__name">Sacred Deposits<sup>&trade;</sup> — Hardcover</h3>
+        <p class="product__desc">The foundational framework. Five deposits, the silent withdrawal index, and the language covenant marriages are built and re-built with.</p>
+        <div class="product__foot">
+          <span class="product__price">$36.99</span>
+          <a href="sacred-deposits-hardcover.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 2. Sacred Deposits — Paperback -->
+      <article class="product" data-category="books">
+        <a href="sacred-deposits-paperback.html" class="product__thumb product__thumb--image" aria-label="Sacred Deposits Paperback">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/sacred-deposits-paperback.jpg" alt="Sacred Deposits, paperback edition — navy softcover with 5:1 mark and gold foil typography" class="product__thumb-image" loading="lazy" width="1086" height="1448">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Books</a> · Paperback</p>
+        <h3 class="product__name">Sacred Deposits<sup>&trade;</sup> — Paperback</h3>
+        <p class="product__desc">The same framework, ready to travel. For the marriage you carry to the coffee shop, the small group, the airplane seat.</p>
+        <div class="product__foot">
+          <span class="product__price">$24.99</span>
+          <a href="sacred-deposits-paperback.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 3. Sacred Deposits Couples Workbook -->
+      <article class="product" data-category="workbooks">
+        <a href="sacred-deposits-couples-workbook.html" class="product__thumb product__thumb--image" aria-label="Couples Workbook">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/sacred-deposits-couples-workbook.jpg" alt="The Sacred Deposits Couples Workbook — navy paperback, 8-session implementation guide" class="product__thumb-image" loading="lazy" width="1122" height="1402">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Workbooks</a> · 8 Sessions</p>
+        <h3 class="product__name">Sacred Deposits Couples Workbook</h3>
+        <p class="product__desc">The framework as practice. Eight guided sessions for couples, small groups, and pre-marriage cohorts.</p>
+        <div class="product__foot">
+          <span class="product__price">$16.99</span>
+          <a href="sacred-deposits-couples-workbook.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 4. Her Covenant Journal -->
+      <article class="product" data-category="journals">
+        <a href="her-covenant-journal.html" class="product__thumb product__thumb--image" aria-label="Her Covenant Journal">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/her-journal.jpg" alt="Her Covenant Journal — cream linen-bound hardcover with gold foil script, Covenant Chronicles imprint" class="product__thumb-image" loading="lazy" width="1086" height="1448">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Journals</a> · 256 Pages</p>
+        <h3 class="product__name">Her Covenant Journal<sup>&trade;</sup></h3>
+        <p class="product__desc">A reflective companion. Guided prompts, weekly reset pages, and quiet space to record what gets protected.</p>
+        <div class="product__foot">
+          <span class="product__price">$29.99</span>
+          <a href="her-covenant-journal.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 5. His Covenant Journal — Covenant Chronicles -->
+      <article class="product" data-category="journals">
+        <a href="his-journal.html" class="product__thumb product__thumb--image" aria-label="His Covenant Journal — Covenant Chronicles">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/his-journal.webp" alt="His Covenant Journal — black linen-bound hardcover with gold foil script, Covenant Chronicles imprint" class="product__thumb-image" loading="lazy" width="1086" height="1448">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Journals</a> · 256 Pages</p>
+        <h3 class="product__name">His Covenant Journal<sup>&trade;</sup></h3>
+        <p class="product__desc">The husband's daily count. Guided prompts, weekly ledger pages, and the quiet repairs that build the account.</p>
+        <div class="product__foot">
+          <span class="product__price">$29.99</span>
+          <a href="his-journal.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 6. The Sacred Union Set -->
+      <article class="product" data-category="bundles">
+        <a href="sacred-union-set.html" class="product__thumb product__thumb--image" aria-label="The Sacred Union Set">
+          <span class="product__badge product__badge--new">Heirloom</span>
+          <img decoding="async" src="assets/images/sacred-union-set-card.jpg" alt="The Sacred Union Set — heirloom black gift box on navy silk with gold foil branding, Covenant Chronicles" class="product__thumb-image" loading="lazy" width="841" height="1122">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Bundles</a> · Heirloom Edition</p>
+        <h3 class="product__name">The Sacred Union Set<sup>&trade;</sup></h3>
+        <p class="product__desc">The complete covenant framework, gift-boxed. Sacred Deposits hardcover, His Journal, Her Journal, two gold-accented pens, and a keepsake presentation box.</p>
+        <div class="product__foot">
+          <span class="product__price">$150</span>
+          <a href="sacred-union-set.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 7. eBook -->
+      <article class="product" data-category="digital">
+        <a href="sacred-deposits-ebook.html" class="product__thumb product__thumb--image" aria-label="Sacred Deposits eBook">
+          <span class="product__badge product__badge--new">New</span>
+          <img decoding="async" src="assets/images/sacred-deposits-ebook.jpg" alt="Sacred Deposits eBook — digital cover with 5:1 mark on textured navy background" class="product__thumb-image" loading="lazy" width="1023" height="1537">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#">Digital</a> · ePub · PDF</p>
+        <h3 class="product__name">Sacred Deposits<sup>&trade;</sup> eBook</h3>
+        <p class="product__desc">Instant delivery. The full text and frameworks — readable on Kindle, iPad, or the laptop you're already at.</p>
+        <div class="product__foot">
+          <span class="product__price">$9.99</span>
+          <a href="sacred-deposits-ebook.html" class="product__cta">View</a>
+        </div>
+      </article>
+
+      <!-- 8. Sacred 100 Founders Edition -->
+      <article class="product" data-category="books">
+        <a href="sacred-100-founders-edition.html" class="product__thumb product__thumb--image" aria-label="Sacred 100 Founders Edition">
+          <span class="product__badge product__badge--limited">100 made</span>
+          <img decoding="async" src="assets/images/sacred-100-founders.jpg" alt="The Sacred 100 Founders Edition — numbered slipcased hardcover with signed bookplate, gold 5:1 pen, and 5:1 mug on a dark surface" class="product__thumb-image" loading="lazy" width="1402" height="1752">
+          <span class="product__corner product__corner--tl"></span>
+          <span class="product__corner product__corner--tr"></span>
+          <span class="product__corner product__corner--bl"></span>
+          <span class="product__corner product__corner--br"></span>
+        </a>
+        <p class="product__meta"><a href="#founders">Founders Circle</a> · 1 of 100</p>
+        <h3 class="product__name">The Sacred 100 Founders Edition</h3>
+        <p class="product__desc">Numbered mug, signed bookplate, private group, closed Q&amp;A with Yvonne, and first access to <em>His Deposits™</em> &amp; <em>Her Deposits™</em>. One hundred only.</p>
+        <div class="product__foot">
+          <span class="product__price">$249</span>
+          <a href="sacred-100-founders-edition.html" class="product__cta">Reserve</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS CIRCLE -->
+<section class="founders" id="founders">
+  <div class="founders__inner">
+
+    <div class="founders__copy">
+      <span class="founders__eyebrow">Limited · 100 Only</span>
+      <h2 class="founders__title">
+        The <em>Sacred 100</em> Founders Circle.
+      </h2>
+      <p class="founders__lede">
+        One hundred numbered editions for the readers who decided to be early. Built to be opened on May 25, 2026, and to be passed down from there.
+      </p>
+
+      <div class="founders__includes">
+        <span class="founders__includes-label">Each Founders Edition Includes</span>
+        <ul>
+          <li>Numbered mug, 001 through 100</li>
+          <li>Signed bookplate — hand-numbered, hand-signed</li>
+          <li>Private group access — closed Q&amp;A with Yvonne</li>
+          <li>First access to <em>His Deposits</em><sup>&trade;</sup> &amp; <em>Her Deposits</em><sup>&trade;</sup></li>
+          <li>Launch-day delivery — opened with the book</li>
+        </ul>
+      </div>
+
+      <div class="founders__price-row">
+        <span class="founders__price">$249</span>
+        <span class="founders__price-note">Sold in order of reservation</span>
+      </div>
+
+      <div class="flagship__ctas" style="display:flex;flex-wrap:wrap;gap:16px;">
+        <a href="#" class="btn founders__btn-light">
+          Reserve Yours<span class="btn__arrow"></span>
+        </a>
+        <a href="manifesto.html" class="btn founders__btn-ghost">
+          See the Manifesto<span class="btn__arrow"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: numbered display -->
+    <div class="founders__visual">
+      <span class="founders__numeral-ring"></span>
+      <div class="founders__counter">
+        <span class="founders__counter-num">37</span>
+        <span class="founders__counter-label">of 100 remaining</span>
+      </div>
+      <p class="founders__numeral">100</p>
+      <span class="founders__numeral-sub">The Sacred Hundred</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- GIFTING -->
+<section class="gifting">
+  <div class="gifting__inner">
+    <span class="gifting__script">Made to be gifted.</span>
+    <h2 class="gifting__title">
+      Heirlooms. Not just <em>products.</em>
+    </h2>
+    <p class="gifting__body">
+      Every piece in the Collection is crafted with intention and timeless design — built to honor a marriage, anchor a daughter's future, or carry a legacy forward. We ship gift-ready, with the linen wrap and hand-written card included.
+    </p>
+    <a href="#" class="gifting__cta">Shop the Gifting Edit</a>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe">
+  <div class="subscribe__inner">
+        <div class="stay-divider" aria-hidden="true">
+      <span class="stay-divider__line"></span>
+      <span class="stay-divider__dia"></span>
+      <span class="stay-divider__line"></span>
+    </div>
+    <span class="subscribe__script">Stay close.</span>
+    <h2 class="subscribe__title">First in. <em>First sent.</em></h2>
+    <p class="subscribe__sub">
+      New releases, limited drops, orders, and the Founders Circle waitlist — quietly, in your inbox. Never more than once a fortnight.
+    </p>
+    <form method="POST" class="subscribe__form" name="subscribe-shop" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sdNetlifySubmit(this, function(form){ this.querySelector('.subscribe__input').value=''; var b=this.querySelector('button'); if(b){b.textContent='Subscribed.';b.disabled=true;} })">
+    <input type="hidden" name="form-name" value="subscribe-shop"/>
+    <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
+      <input type="email" class="subscribe__input" placeholder="your email address" required>
+      <button type="submit" class="subscribe__submit">Subscribe</button>
+    </form>
+    <p class="subscribe__fine">No noise. Only what protects covenant.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__main">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo-row">
+          <svg class="site-footer__logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="24" cy="24" r="1.2" fill="#D1AD66"/>
+          </svg>
+          <span class="site-footer__name">SACRED DEPOSITS<sup>&trade;</sup></span>
+        </div>
+        <p class="site-footer__tagline"><em>A covenant framework by EQGenix Inc.</em></p>
+      </div>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">THE BOOK</p>
+        <a href="book.html">About the Book</a>
+        <a href="book.html#editions">Order</a>
+        <a href="five-deposits.html">The Five Deposits</a>
+        <a href="frameworks.html">Frameworks</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">PRACTICE</p>
+        <a href="legacy-ledger.html">The Legacy Ledger</a>
+        <a href="vault.html">The Vault</a>
+        <a href="reset.html">30-Day Reset</a>
+        <a href="audit.html">The Audit</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">CONNECT</p>
+          <a href="podcast.html">Podcast</a>
+        <a href="about.html">About Yvonne</a>
+        <a href="contact.html">Contact</a>
+        <a href="licensing.html">Licensing</a>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <div class="site-footer__legal-left">
+        <p class="site-footer__copy">&copy; 2026 EQGenix Inc. All rights reserved.</p>
+        <p class="site-footer__copy-tm">Sacred Deposits<sup>&trade;</sup>, Build Emotional Wealth<sup>&trade;</sup>, Emotional Portfolio<sup>&trade;</sup>, The Covenant Card<sup>&trade;</sup>, The Covenant Ledger<sup>&trade;</sup>, Her Sacred Chronicle<sup>&trade;</sup>, The Covenant Playbook<sup>&trade;</sup>, The Sacred Union Set<sup>&trade;</sup>, The Legacy Ledger<sup>&trade;</sup>, Sovereign Foundations<sup>&trade;</sup>, Built, Not Downloaded<sup>&trade;</sup>, The Covenant Economy<sup>&trade;</sup>, and related frameworks are trademarks of EQGenix Inc.</p>
+      </div>
+      <p class="site-footer__terms">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="site-footer__dot">·</span>
+        <a href="terms.html">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ANIMATION + FILTER SCRIPTS -->
+<script>
+(function() {
+  // ── Auto-decorate the page with reveal/stagger classes ──
+  const reveal = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal'));
+  const revealSlow = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal', 'reveal--slow'));
+  const revealScale = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal--scale'));
+  const stagger = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('stagger'));
+
+  // FLAGSHIP
+  revealScale('.flagship__visual');
+  reveal('.flagship__eyebrow');
+  revealSlow('.flagship__title');
+  reveal('.flagship__lede, .flagship__includes, .flagship__price-row, .flagship__ctas');
+
+  // COLLECTION
+  reveal('.collection__eyebrow, .collection__sub, .collection__ornament');
+  revealSlow('.collection__title');
+  stagger('.collection__filters');
+  stagger('.product-grid');
+
+  // FOUNDERS
+  reveal('.founders__eyebrow');
+  revealSlow('.founders__title');
+  reveal('.founders__lede, .founders__includes, .founders__price-row');
+  revealScale('.founders__visual');
+
+  // GIFTING
+  reveal('.gifting__script, .gifting__body, .gifting__cta');
+  revealSlow('.gifting__title');
+
+  // SUBSCRIBE
+  reveal('.subscribe__script, .subscribe__sub, .subscribe__form, .subscribe__fine');
+  revealSlow('.subscribe__title');
+
+  // ── IntersectionObserver: fire when ~15% visible ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+
+  document.querySelectorAll('.reveal, .reveal--scale, .stagger, .draw-rule, .fade-in').forEach(el => io.observe(el));
+
+  // ── Filter pills — filter the product grid ──
+  const pills = document.querySelectorAll('.filter-pill');
+  const products = document.querySelectorAll('.product');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.filter;
+      pills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+
+      products.forEach(product => {
+        const cat = product.dataset.category;
+        if (filter === 'all' || cat === filter) {
+          product.style.display = '';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+
+<script src="js/script.js" defer></script>
+
+
+<script src="js/snipcart-init.js" defer></script>
+</body>
+</html>

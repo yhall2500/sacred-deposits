@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Page Not Found — Sacred Deposits™</title>
+<meta name="description" content="The page you are looking for has moved or never existed. Return to the Sacred Deposits™ homepage or explore the framework."/>
+<meta name="robots" content="noindex,follow"/>
+<link rel="canonical" href="https://sacreddeposits.com/404.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" href="assets/images/logo.webp"/>
+<link rel="apple-touch-icon" href="assets/images/logo.webp"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+<style>
+body{background:var(--ivory);min-height:100vh;display:flex;flex-direction:column}
+.nf{flex:1;display:flex;align-items:center;justify-content:center;padding:160px 60px 100px;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% 35%,rgba(184,144,69,.08) 0%,transparent 60%),var(--ivory)}
+.nf__inner{max-width:680px}
+.nf__num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(7rem,18vw,12rem);line-height:1;color:var(--gold);margin-bottom:24px;letter-spacing:-.04em}
+.nf__rule{width:60px;height:1px;background:var(--gold);margin:0 auto 36px;opacity:.55}
+.nf__title{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.04;color:var(--ink);margin-bottom:24px;letter-spacing:-.022em}
+.nf__title em{font-style:italic;color:var(--gold)}
+.nf__body{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,1.55vw,1.42rem);line-height:1.6;color:#3a3225;margin-bottom:46px;max-width:520px;margin-left:auto;margin-right:auto}
+.nf__body em{color:var(--gold);font-style:italic;font-weight:400}
+.nf__ctas{display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.nf__links{margin-top:64px;padding-top:46px;border-top:1px solid var(--rule)}
+.nf__links-heading{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.nf__links-list{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px}
+.nf__links-list a{font-family:var(--serif);font-size:1.06rem;color:var(--ink);border-bottom:1px solid var(--rule);padding:4px 0;transition:color .35s,border-color .35s}
+.nf__links-list a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+@media (max-width:640px){
+  .nf{padding:120px 24px 80px}
+  .nf__ctas{flex-direction:column;align-items:stretch;width:100%;max-width:360px;margin:0 auto}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV DROPDOWNS — Sacred Deposits header navigation
+   ═══════════════════════════════════════════════════════════════ */
+.nav-group { position: relative; }
+.nav-group .nav-link {
+  font-family: var(--sans);
+  font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: none; text-decoration: none;
+  padding: 8px 0; margin: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .3s var(--ease);
+  position: relative;
+  white-space: nowrap;
+}
+.nav-group .nav-link:hover { color: var(--gold); }
+.nav-group .nav-link.is-active { color: var(--gold); }
+.nav-group .nav-link.is-active::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1.5px; background: var(--gold); opacity: 1;
+}
+.nav-caret {
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .75;
+  transition: transform .3s var(--ease), opacity .3s;
+}
+.nav-group:hover .nav-caret { transform: rotate(225deg) translateY(0); opacity: 1; }
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  margin-top: 4px;
+  background: var(--ivory);
+  border: 1px solid rgba(184,144,69,.22);
+  box-shadow: 0 22px 60px -28px rgba(7,20,50,.18), 0 4px 14px -8px rgba(7,20,50,.06);
+  padding: 12px 0;
+  min-width: 240px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s var(--ease), visibility .25s var(--ease), transform .25s var(--ease);
+  z-index: 100;
+  pointer-events: none;
+}
+.nav-group.has-dropdown:hover .nav-dropdown,
+.nav-group.has-dropdown:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.nav-dropdown::before {
+  /* Bridge gap so hover doesn't break between link and dropdown */
+  content: ""; position: absolute;
+  top: -10px; left: 0; right: 0; height: 10px;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 11px 28px;
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color .2s, background .2s, padding-left .25s var(--ease);
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  color: var(--gold);
+  background: rgba(184,144,69,.04);
+  padding-left: 32px;
+}
+
+/* Mobile menu sub-item styling */
+.mobile-menu__sub {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--muted);
+  padding: 8px 0 8px 22px;
+  text-decoration: none;
+  border-left: 1px solid rgba(184,144,69,.22);
+  margin-left: 6px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  transition: color .2s, border-color .25s;
+}
+.mobile-menu__sub:hover { color: var(--gold); border-left-color: var(--gold); }
+
+/* Hide dropdowns on small screens — mobile menu shows everything inline */
+@media (max-width: 980px) {
+  .nav-dropdown { display: none; }
+  .nav-caret { display: none; }
+}
+
+
+/* FORCE: dropdown text must always be dark — overrides any dark-header inheritance */
+.nav-dropdown a,
+body.dark-header .nav .nav-dropdown a,
+body.dark-header .nav-group .nav-dropdown a {
+  color: #071432 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+.nav-dropdown a:hover,
+body.dark-header .nav-dropdown a:hover {
+  color: var(--gold) !important;
+}
+</style>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Sacred Deposits™"/>
+<meta property="og:title" content="Page Not Found — Sacred Deposits™"/>
+<meta property="og:description" content="The page you are looking for is not here. Find your way back to the framework."/>
+<meta property="og:url" content="https://sacreddeposits.com/404.html"/>
+<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Page Not Found — Sacred Deposits™"/>
+<meta name="twitter:description" content="The page you are looking for is not here. Find your way back to the framework."/>
+<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+
+
+<style id="launch-strip-style">
+.launch-strip { background: linear-gradient(90deg, #02060f 0%, #071432 50%, #02060f 100%); color: var(--ivory, #FBF4E6); border-bottom: 1px solid rgba(184,144,69,.28); position: fixed; top: 0; left: 0; right: 0; z-index: 999; padding: 9px 24px; font-family: var(--serif, "Cormorant Garamond", serif); font-size: .92rem; }
+.launch-strip__inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; line-height: 1.4; }
+.launch-strip__inner > * { line-height: 1.4; }
+.launch-strip__date { line-height: 1.4; transform: translateY(1px); }
+.launch-strip__msg, .launch-strip__sep, .launch-strip__cta { line-height: 1.4; }
+.launch-strip__pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #D1AD66; box-shadow: 0 0 0 0 rgba(209,173,102,.7); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(209,173,102,.7); } 70% { box-shadow: 0 0 0 8px rgba(209,173,102,0); } 100% { box-shadow: 0 0 0 0 rgba(209,173,102,0); } }
+.launch-strip__date { font-family: var(--caps, "Cinzel", serif); font-size: .58rem; font-weight: 600; letter-spacing: .42em; text-transform: uppercase; color: #D1AD66; }
+.launch-strip__sep { color: rgba(251,244,230,.4); }
+.launch-strip__msg { font-style: italic; color: rgba(251,244,230,.92); }
+.launch-strip__msg em { color: #D1AD66; font-style: italic; }
+.launch-strip__cta { color: #D1AD66; text-decoration: underline; text-decoration-color: rgba(209,173,102,.35); text-underline-offset: 3px; font-style: italic; transition: text-decoration-color .3s ease; }
+.launch-strip__cta:hover { text-decoration-color: #D1AD66; }
+.header { top: 38px !important; }
+body { padding-top: 38px; }
+@media (max-width: 720px) {
+  .launch-strip { padding: 8px 14px; font-size: .82rem; }
+  .launch-strip__inner { gap: 6px; }
+  .launch-strip__date { font-size: .52rem; letter-spacing: .36em; }
+  .launch-strip__sep, .launch-strip__pulse { display: none; }
+  .header { top: 46px !important; }
+  body { padding-top: 46px; }
+}
+</style>
+
+</head>
+<body>
+<script src="snipcart-config.js"></script>
+<div class="launch-strip" role="banner" aria-label="Order announcement">
+  <div class="launch-strip__inner">
+    <span class="launch-strip__pulse" aria-hidden="true"></span>
+    <span class="launch-strip__date">Now Available</span>
+    <span class="launch-strip__sep">·</span>
+    <span class="launch-strip__msg"><em>Sacred Deposits</em><sup>&trade;</sup> —</span>
+    <a href="sacred-deposits-hardcover.html" class="launch-strip__cta">order now &rarr;</a>
+  </div>
+</div>
+<header class="header">
+  <a href="index.html" class="brand">
+    <div class="brand__ring"><img src="assets/images/logo.webp" alt="Sacred Deposits — covenant marriage framework"></div>
+    <span class="brand__name">Sacred Deposits<sup>&trade;</sup></span>
+  </a>
+  <nav class="nav">
+    <div class="nav-group has-dropdown">
+      <a href="book.html" class="nav-link">Book<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="book.html" role="menuitem">About the Book</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="book.html#editions" role="menuitem">Order Editions</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="frameworks.html" class="nav-link">Frameworks<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="frameworks.html" role="menuitem">All Frameworks</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="reset.html" role="menuitem">The Phases</a>
+        <a href="audit.html" role="menuitem">The Audit</a>
+        <a href="assessment.html" role="menuitem">EWD-1 Assessment</a>
+        <a href="reset.html" role="menuitem">30-Day Reset</a>
+        <a href="legacy-ledger.html" role="menuitem">The Legacy Ledger</a>
+        <a href="manifesto.html" role="menuitem">The Manifesto</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="vault.html" class="nav-link">Vault<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="vault.html" role="menuitem">Inside the Vault</a>
+        <a href="vault.html#reserve" role="menuitem">Reserve Your Place</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group has-dropdown">
+      <a href="podcast.html" class="nav-link">Podcast<span class="nav-caret"></span></a>
+      <div class="nav-dropdown">
+        <a href="podcast.html#featured" role="menuitem">Latest Episode</a>
+        <a href="podcast.html#library" role="menuitem">All Episodes</a>
+        <a href="podcast.html#subscribe" role="menuitem">Subscribe</a>
+      </div>
+    </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="shop.html" class="nav-link">Shop<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="shop.html" role="menuitem">All Products</a>
+        <a href="book.html" role="menuitem">The Book</a>
+        <a href="sacred-union-set.html" role="menuitem">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" role="menuitem">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" role="menuitem">Her Covenant Journal</a>
+        <a href="his-journal.html" role="menuitem">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" role="menuitem">Couples Workbook</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="about.html" class="nav-link">About<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="about.html" role="menuitem">About Yvonne</a>
+        <a href="life-in-darkness.html" role="menuitem">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" role="menuitem">YGH Technology Consultants</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="contact.html" class="nav-link">Contact<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="contact.html" role="menuitem">Contact</a>
+        <a href="churches.html" role="menuitem">Churches & Groups</a>
+        <a href="licensing.html" role="menuitem">Licensing</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle__label">MENU</span>
+    <span class="nav-toggle__lines" aria-hidden="true"><span></span><span></span></span>
+  </button>
+  <button class="snipcart-checkout cart-icon" aria-label="Open cart" title="Cart">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-icon__count snipcart-items-count" style="display:none;">0</span>
+</button>
+      <a href="vault.html" class="nav__cta">Enter the Vault</a>
+</header>
+
+<!-- Mobile full-screen menu overlay -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Site navigation">
+  <div class="mobile-menu__topbar">
+    <button class="mobile-menu__close" type="button" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-menu__brand">
+      <img src="assets/images/logo.webp" alt="" class="mobile-menu__logo" width="28" height="28">
+      <span class="mobile-menu__brand-name">Sacred Deposits</span>
+    </a>
+    <div class="mobile-menu__actions">
+      <a href="#cart" class="mobile-menu__action mobile-menu__cart snipcart-checkout" aria-label="Cart">
+        <span class="mobile-menu__cart-count snipcart-items-count">0</span>
+      </a>
+    </div>
+  </div>
+  <div class="mobile-menu__panels">
+    <div class="mobile-menu__panel mobile-menu__panel--root is-active" data-panel="root">
+      <nav class="mobile-menu__nav" aria-label="Mobile primary">
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="book">
+          <span>Book</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="frameworks">
+          <span>Frameworks</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="vault">
+          <span>Vault</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="podcast">
+          <span>Podcast</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="shop">
+          <span>Shop</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="about">
+          <span>About</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch mobile-menu__item--last" type="button" data-target="contact">
+          <span>Contact</span>
+        </button>
+      </nav>
+      <div class="mobile-menu__footer">
+        <a href="vault.html" class="mobile-menu__cta">Enter the Vault</a>
+        <p class="mobile-menu__signature">A Covenant Framework by EQGenix Inc.</p>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="book" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Book</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Book navigation">
+        <a href="book.html" class="mobile-menu__sublink">About the Book</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="book.html#editions" class="mobile-menu__sublink">Order Editions</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="frameworks" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Frameworks</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Frameworks navigation">
+        <a href="frameworks.html" class="mobile-menu__sublink">All Frameworks</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="audit.html" class="mobile-menu__sublink">The Audit</a>
+        <a href="reset.html" class="mobile-menu__sublink">30-Day Reset</a>
+        <a href="legacy-ledger.html" class="mobile-menu__sublink">The Legacy Ledger</a>
+        <a href="manifesto.html" class="mobile-menu__sublink">The Manifesto</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="vault" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Vault</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Vault navigation">
+        <a href="vault.html" class="mobile-menu__sublink">Inside the Vault</a>
+        <a href="vault.html#reserve" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="podcast" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Podcast</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Podcast navigation">
+        <a href="podcast.html#featured" class="mobile-menu__sublink">Latest Episode</a>
+        <a href="podcast.html#library" class="mobile-menu__sublink">All Episodes</a>
+        <a href="podcast.html#subscribe" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="shop" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Shop</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Shop navigation">
+        <a href="shop.html" class="mobile-menu__sublink">All Products</a>
+        <a href="sacred-deposits-hardcover.html" class="mobile-menu__sublink">S.D Book</a>
+        <a href="sacred-union-set.html" class="mobile-menu__sublink">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" class="mobile-menu__sublink">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" class="mobile-menu__sublink">Her Covenant Journal</a>
+        <a href="his-journal.html" class="mobile-menu__sublink">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" class="mobile-menu__sublink">Couples Workbook</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="about" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">About</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="About navigation">
+        <a href="about.html" class="mobile-menu__sublink">About Yvonne</a>
+        <a href="life-in-darkness.html" class="mobile-menu__sublink">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" class="mobile-menu__sublink">YGH Technology Consultants</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="contact" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Contact</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Contact navigation">
+        <a href="contact.html" class="mobile-menu__sublink">Contact</a>
+        <a href="churches.html" class="mobile-menu__sublink">Churches &amp; Groups</a>
+        <a href="press.html" class="mobile-menu__sublink">Press &amp; Media</a>
+        <a href="licensing.html" class="mobile-menu__sublink">Licensing</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<main class="nf">
+  <div class="nf__inner">
+    <p class="nf__num">404</p>
+    <div class="nf__rule"></div>
+    <h1 class="nf__title">A page <em>that does not exist</em>.</h1>
+    <p class="nf__body">Either the page has moved, or the link that brought you here was incomplete. The covenant work is still here — <em>somewhere on this site</em>. Find your way back.</p>
+    <div class="nf__ctas">
+      <a href="index.html" class="btn btn--primary">Return Home<span class="btn__arrow"></span></a>
+      <a href="site-map.html" class="btn btn--secondary">View Site Map<span class="btn__arrow"></span></a>
+    </div>
+
+    <div class="nf__links">
+      <p class="nf__links-heading">Or begin here</p>
+      <div class="nf__links-list">
+        <a href="book.html">The Book</a>
+        <a href="frameworks.html">The Frameworks</a>
+        <a href="audit.html">Take the Audit</a>
+        <a href="shop.html">The Shop</a>
+          <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__main">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo-row">
+          <svg class="site-footer__logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="24" cy="24" r="1.2" fill="#D1AD66"/>
+          </svg>
+          <span class="site-footer__name">SACRED DEPOSITS<sup>&trade;</sup></span>
+        </div>
+        <p class="site-footer__tagline"><em>A covenant framework by EQGenix Inc.</em></p>
+      </div>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">THE BOOK</p>
+        <a href="book.html">About the Book</a>
+        <a href="book.html#editions">Order</a>
+        <a href="five-deposits.html">The Five Deposits</a>
+        <a href="frameworks.html">Frameworks</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">PRACTICE</p>
+        <a href="legacy-ledger.html">The Legacy Ledger</a>
+        <a href="vault.html">The Vault</a>
+        <a href="reset.html">30-Day Reset</a>
+        <a href="audit.html">The Audit</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">CONNECT</p>
+          <a href="podcast.html">Podcast</a>
+        <a href="about.html">About Yvonne</a>
+        <a href="contact.html">Contact</a>
+        <a href="licensing.html">Licensing</a>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <div class="site-footer__legal-left">
+        <p class="site-footer__copy">&copy; 2026 EQGenix Inc. All rights reserved.</p>
+        <p class="site-footer__copy-tm">Sacred Deposits<sup>&trade;</sup>, Build Emotional Wealth<sup>&trade;</sup>, Emotional Portfolio<sup>&trade;</sup>, The Covenant Card<sup>&trade;</sup>, The Covenant Ledger<sup>&trade;</sup>, Her Sacred Chronicle<sup>&trade;</sup>, The Covenant Playbook<sup>&trade;</sup>, The Sacred Union Set<sup>&trade;</sup>, The Legacy Ledger<sup>&trade;</sup>, Sovereign Foundations<sup>&trade;</sup>, Built, Not Downloaded<sup>&trade;</sup>, The Covenant Economy<sup>&trade;</sup>, and related frameworks are trademarks of EQGenix Inc.</p>
+      </div>
+      <p class="site-footer__terms">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="site-footer__dot">·</span>
+        <a href="terms.html">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js" defer></script>
+
+
+<script src="js/snipcart-init.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+
+<style>
+:root {
+  --ivory:#FBF4E6; --chalk:#F9F7F2; --ink:#071432; --navy:#071432;
+  --navy-2:#0b1e40; --navy-3:#040c22; --navy-4:#02060f;
+  --gold:#B89045; --gold-s:#D1AD66; --gold-d:#8A6A28; --muted:#3A3528;
+  --rule:rgba(184,144,69,.22); --rule-d:rgba(184,144,69,.12);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --caps:"Cinzel","Cormorant Garamond",Georgia,serif;
+  --script:"Allura",cursive;
+  --sans:"Manrope",-apple-system,Helvetica,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--gold);color:var(--ivory)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+
+/* HEADER */
+.header{position:absolute;top:0;left:0;right:0;z-index:200;background:transparent;height:92px;display:flex;align-items:center;padding:0 72px}
+.brand{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.brand__ring{width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand__ring img{width:52px;height:52px}
+.brand__name{font-family:var(--serif);font-size:1.42rem;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--ink);line-height:1}
+.brand__name sup{font-size:.45em;vertical-align:super}
+.nav { display: flex; align-items: center; justify-content: flex-end; flex: 1; gap: 48px; padding: 0; margin-right: 24px; }
+.nav a{font-family:var(--sans);font-size: .64rem;font-weight:700;letter-spacing: .20em;text-transform:uppercase;color:var(--navy);transition:opacity .2s;position:relative;padding-bottom:3px;text-shadow:none}
+.nav a::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:var(--navy);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.nav a:hover{opacity:0.7}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__cta{font-family:var(--sans);font-size: .62rem;font-weight:500;letter-spacing: .22em;text-transform:uppercase;color:#fff;padding: 12px 24px;background:var(--gold);transition:background .3s;white-space:nowrap}
+.nav__cta:hover{background:var(--gold-s)}
+
+/* SCREENS — fade transitions */
+.screen{display:none;opacity:0;transition:opacity .55s var(--ease)}
+.screen.is-active{display:block;opacity:1}
+.screen.q-screen.is-active{display:flex;flex-direction:column}
+.screen.is-fading{opacity:0}
+
+/* ════════════════════════════════════════════════════════════════
+   INTRO SCREEN
+════════════════════════════════════════════════════════════════ */
+.intro{padding:82px 60px 70px;text-align:center;background:radial-gradient(ellipse 70% 50% at 30% 20%,rgba(184,144,69,.08) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(184,144,69,.04) 0%,transparent 65%),var(--ivory);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.intro__inner{max-width:880px;margin:0 auto}
+.intro__cap{font-family:var(--caps);font-size:.58rem;font-weight:500;letter-spacing:.56em;text-transform:uppercase;color:var(--gold);margin-bottom:30px;display:inline-flex;align-items:center;gap:18px}
+.intro__cap::before,.intro__cap::after{content:"";width:42px;height:1px;background:var(--gold);opacity:.6}
+.intro__script{font-family:var(--script);font-size:2.6rem;color:var(--gold);margin-bottom:14px;display:block}
+.intro__title{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,6vw,5.4rem);line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:28px}
+.intro__title em{font-style:italic;color:var(--gold)}
+.intro__title sup{font-size:.32em;vertical-align:super;color:var(--gold)}
+.intro__sub{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.7vw,1.55rem);line-height:1.5;color:#3a3525;max-width:50ch;margin:0 auto 44px}
+.intro__sub em{color:var(--gold);font-style:italic;font-weight:400}
+.intro__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:36px auto 50px;padding:30px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);max-width:680px}
+.intro__stat{padding:0 24px;border-right:1px solid var(--rule)}
+.intro__stat:last-child{border-right:none}
+.intro__stat-num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(2.4rem,3.6vw,3.2rem);line-height:1;color:var(--gold);display:block;margin-bottom:10px}
+.intro__stat-label{font-family:var(--sans);font-size:.52rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+.intro__measures{padding:30px 0;margin-bottom:50px}
+.intro__measures-label{font-family:var(--sans);font-size:.54rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:block}
+.intro__measures-list{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 14px}
+.intro__measures-list li{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);padding:6px 14px;border:1px solid var(--rule);background:var(--chalk)}
+.intro__resume{margin-top:30px;padding:18px 24px;border:1px dashed var(--rule);background:var(--chalk);font-family:var(--serif);font-style:italic;font-size:.95rem;color:#3a3225;display:none;max-width:520px;margin-left:auto;margin-right:auto}
+.intro__resume.is-visible{display:block}
+.intro__resume strong{font-style:normal;color:var(--gold);font-weight:600}
+.intro__resume a{color:var(--ink);text-decoration:underline;cursor:pointer}
+
+/* ════════════════════════════════════════════════════════════════
+   QUESTION SCREEN
+════════════════════════════════════════════════════════════════ */
+.q-screen{min-height:100vh;flex-direction:column;background:var(--ivory)}
+.q-progress-bar{position:fixed;top:92px;left:0;right:0;height:2px;background:rgba(184,144,69,.12);z-index:100}
+.q-progress-bar__fill{height:100%;background:var(--gold);width:0%;transition:width .5s var(--ease)}
+
+.q-container{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:70px 60px 90px;max-width:1000px;margin:0 auto;width:100%}
+.q-meta{display:flex;align-items:center;gap:18px;margin-bottom:40px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.q-meta__num{display:inline-flex;align-items:center;gap:12px}
+.q-meta__num::before{content:"";width:32px;height:1px;background:var(--gold);opacity:.65}
+.q-meta__measure{padding-left:18px;border-left:1px solid var(--rule);color:var(--muted);font-weight:500;letter-spacing:.36em}
+.q-card{background:#FCFAF4;border:1px solid rgba(184,144,69,.20);border-top:3px solid var(--gold);padding:58px 68px 50px;box-shadow:0 28px 60px -34px rgba(7,20,50,.20),0 6px 18px -10px rgba(7,20,50,.08);max-width:880px;margin:0 auto 44px;width:100%;position:relative}
+.q-card::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:48px;height:3px;background:var(--gold-s);opacity:.8}
+.q-card .q-meta{margin-bottom:32px}
+.q-text{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.6rem,3.1vw,2.5rem);line-height:1.3;letter-spacing:-.012em;color:var(--ink);text-align:center;max-width:32ch;margin:0 auto}
+.q-text em{color:var(--gold)}
+.q-options{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%;max-width:820px}
+.q-option{padding:28px 16px;background:var(--chalk);border:1.5px solid var(--rule-d);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:96px;transition:all .35s var(--ease);font-family:inherit;color:inherit;position:relative}
+.q-option:hover{background:var(--ivory);border-color:var(--gold);transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(7,20,50,.18)}
+.q-option.is-selected{background:var(--gold);border-color:var(--gold)}
+.q-option.is-selected .q-option__label{color:var(--ivory)}
+.q-option__label{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);line-height:1.45;text-align:center;transition:color .35s}
+
+.q-nav{display:flex;justify-content:space-between;align-items:center;padding:30px 60px 50px;max-width:1000px;margin:0 auto;width:100%}
+.q-prev{font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);background:transparent;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:8px 0;transition:color .3s,gap .3s var(--ease)}
+.q-prev::before{content:"\2190 ";font-family:var(--serif);font-size:1.1rem;letter-spacing:0}
+.q-prev:hover{color:var(--ink);gap:14px}
+.q-prev[disabled]{opacity:.3;cursor:not-allowed}
+.q-prev[disabled]:hover{color:var(--muted);gap:10px}
+.q-counter{font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+
+/* ════════════════════════════════════════════════════════════════
+   RESULTS SCREEN
+════════════════════════════════════════════════════════════════ */
+.results{background:var(--ivory);padding-bottom:0}
+.results__hero{padding:88px 60px 50px;text-align:center;background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(184,144,69,.10) 0%,transparent 65%),var(--ivory)}
+.results__hero-inner{max-width:1000px;margin:0 auto}
+.results__cap{font-family:var(--caps);font-size:.58rem;font-weight:500;letter-spacing:.56em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:inline-flex;align-items:center;gap:18px}
+.results__cap::before,.results__cap::after{content:"";width:42px;height:1px;background:var(--gold);opacity:.6}
+.results__title{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.04;letter-spacing:-.022em;color:var(--ink);margin-bottom:32px}
+.results__title em{font-style:italic;color:var(--gold)}
+.results__title sup{font-size:.32em;vertical-align:super}
+
+.results__index{display:flex;flex-direction:column;align-items:center;margin:20px auto 30px;position:relative}
+.results__index-ring{width:280px;height:280px;border-radius:50%;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle,rgba(184,144,69,.04),transparent 70%)}
+.results__index-ring::before{content:"";position:absolute;inset:14px;border:1px solid var(--rule-d);border-radius:50%}
+.results__index-svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.results__index-track{fill:none;stroke:rgba(184,144,69,.15);stroke-width:2}
+.results__index-fill{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-dasharray:879.6;stroke-dashoffset:879.6;transition:stroke-dashoffset 2s var(--ease)}
+.results__index-inner{position:relative;z-index:2;text-align:center}
+.results__index-num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:5.4rem;line-height:1;color:var(--ink);letter-spacing:-.025em;display:block}
+.results__index-out-of{font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.results__index-label{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:24px;letter-spacing:.005em}
+.results__index-descriptor{font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.46em;text-transform:uppercase;color:var(--ink);margin-top:6px}
+
+.results__interpretation{max-width:680px;margin:20px auto 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:1.22rem;line-height:1.6;color:#3a3525}
+.results__interpretation em{color:var(--gold);font-style:italic;font-weight:400}
+
+/* MEASURE CARDS */
+.measures-section{background:var(--chalk);padding:90px 60px 68px}
+.measures-section__inner{max-width:1100px;margin:0 auto}
+.measures-section__header{text-align:center;margin-bottom:56px;max-width:700px;margin-left:auto;margin-right:auto}
+.measures-section__eyebrow{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:inline-flex;align-items:center;gap:18px}
+.measures-section__eyebrow::before,.measures-section__eyebrow::after{content:"";width:32px;height:1px;background:var(--gold);opacity:.6}
+.measures-section__title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.06;color:var(--ink);letter-spacing:-.018em}
+.measures-section__title em{font-style:italic;color:var(--gold)}
+
+.measure-card{padding:42px 44px 38px;background:var(--ivory);border:1px solid var(--rule-d);margin-bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start}
+.measure-card__num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:3rem;line-height:.9;color:var(--gold)}
+.measure-card__body{display:flex;flex-direction:column}
+.measure-card__head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:18px;flex-wrap:wrap}
+.measure-card__name{font-family:var(--serif);font-weight:400;font-size:1.7rem;line-height:1.1;color:var(--ink);letter-spacing:-.01em}
+.measure-card__name em{font-style:italic}
+.measure-card__name sup{font-size:.4em;vertical-align:super}
+.measure-card__score{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.6rem;color:var(--gold);white-space:nowrap}
+.measure-card__bar{height:6px;background:rgba(184,144,69,.12);position:relative;margin-bottom:18px;overflow:hidden}
+.measure-card__bar-fill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--gold);transition:width 1.6s var(--ease)}
+.measure-card__interpretation{font-family:var(--serif);font-style:italic;font-weight:300;font-size:1.08rem;line-height:1.6;color:#3a3525}
+.measure-card__interpretation em{font-style:italic;color:var(--gold);font-weight:400}
+
+/* RESULTS EMAIL CAPTURE */
+.results-email{background:linear-gradient(170deg,var(--navy-2) 0%,var(--navy) 55%,var(--navy-4) 100%);color:var(--ivory);padding:68px 60px 88px;text-align:center;position:relative;overflow:hidden}
+.results-email::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.4}
+.results-email__inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.results-email__script{font-family:var(--script);font-size:2.4rem;color:var(--gold-s);margin-bottom:14px;display:block}
+.results-email__title{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.04;color:var(--ivory);margin-bottom:24px;letter-spacing:-.022em}
+.results-email__title em{font-style:italic;color:var(--gold-s)}
+.results-email__body{font-family:var(--serif);font-style:italic;font-weight:300;font-size:1.22rem;line-height:1.6;color:rgba(251,244,230,.78);margin-bottom:36px;max-width:54ch;margin-left:auto;margin-right:auto}
+.results-email__body em{color:var(--gold-s);font-style:italic;font-weight:400}
+.results-email__form{display:flex;max-width:520px;margin:0 auto;border-bottom:1px solid rgba(209,173,102,.3);transition:border-color .35s}
+.results-email__form:focus-within{border-color:var(--gold-s)}
+.results-email__input{flex:1;font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--ivory);background:transparent;border:none;padding:16px 4px;outline:none}
+.results-email__input::placeholder{color:rgba(251,244,230,.4)}
+.results-email__submit{font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-s);background:transparent;border:none;padding:0 18px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:color .35s}
+.results-email__submit::after{content:"\2192 ";font-family:var(--serif);font-size:1rem;transition:transform .35s var(--ease)}
+.results-email__submit:hover{color:var(--ivory)}
+.results-email__submit:hover::after{transform:translateX(6px)}
+.results-email__fine{font-family:var(--sans);font-size:.54rem;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(251,244,230,.4);margin-top:26px}
+
+/* NEXT STEPS */
+.results-next{background:var(--ivory);padding:90px 60px 58px}
+.results-next__inner{max-width:1200px;margin:0 auto}
+.results-next__header{text-align:center;margin-bottom:56px;max-width:700px;margin-left:auto;margin-right:auto}
+.results-next__eyebrow{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:inline-flex;align-items:center;gap:18px}
+.results-next__eyebrow::before,.results-next__eyebrow::after{content:"";width:32px;height:1px;background:var(--gold);opacity:.6}
+.results-next__title{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.06;color:var(--ink);letter-spacing:-.018em}
+.results-next__title em{font-style:italic;color:var(--gold)}
+.results-next__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.next-card {background:var(--chalk);border:1px solid var(--rule-d);padding:42px 36px 38px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:all .55s var(--ease);
+  background: linear-gradient(165deg, #F5EFE0 0%, #F0E7D2 100%);
+  border: 1px solid rgba(184,144,69,.26);
+  border-radius: 4px;
+  padding: 44px 42px;
+  margin-bottom: 18px;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease)
+}
+.next-card::before{content:"";position:absolute;top:0;left:0;height:2px;width:0;background:var(--gold);transition:width .6s var(--ease)}
+.next-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 30px 60px -30px rgba(7,20,50,.18)}
+.next-card:hover::before{width:100%}
+.next-card__cap{font-family:var(--caps);font-size:.54rem;font-weight:500;letter-spacing:.46em;text-transform:uppercase;color:var(--gold)}
+.next-card__name{font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.16;color:var(--ink);transition:color .35s}
+.next-card__name em{font-style:italic}
+.next-card:hover .next-card__name{color:var(--gold)}
+.next-card__desc{font-family:var(--serif);font-style:italic;font-weight:300;font-size:1.05rem;line-height:1.6;color:#3a3225;flex:1}
+.next-card__cta{font-family:var(--sans);font-size:.56rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--rule);transition:color .35s,gap .35s var(--ease)}
+.next-card__cta::after{content:"\2192 ";font-family:var(--serif);font-size:.95rem}
+.next-card:hover .next-card__cta{color:var(--gold-s);gap:16px}
+
+.results-retake{text-align:center;padding:30px 60px 80px;background:var(--ivory)}
+.results-retake__link{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);background:transparent;border:none;border-bottom:1px solid var(--rule);padding-bottom:6px;cursor:pointer;transition:color .3s,border-color .3s}
+.results-retake__link:hover{color:var(--ink);border-color:var(--ink)}
+
+/* FOOTER */
+.site-footer{background:linear-gradient(170deg,#0b1e40 0%,#071432 65%,#040c22 100%);color:var(--ivory);padding:88px 80px 80px;position:relative}
+.site-footer::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.35}
+.site-footer__inner{position:relative;z-index:1;max-width:1160px;margin:0 auto}
+.site-footer__main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:72px;padding-bottom:72px}
+.site-footer__brand{display:flex;flex-direction:column;gap:14px}
+.site-footer__logo-row{display:flex;align-items:center;gap:12px}
+.site-footer__logo{width:34px;height:34px;flex-shrink:0}
+.site-footer__name{font-family:var(--serif);font-weight:400;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(209,173,102,.80)}
+.site-footer__name sup{font-size:.38em;vertical-align:super}
+.site-footer__tagline{font-family:var(--serif);font-style:italic;font-size:.88rem;color:rgba(251,244,230,.38);max-width:240px;line-height:1.6}
+.site-footer__col{display:flex;flex-direction:column}
+.site-footer__heading{font-family:var(--sans);font-size:.54rem;font-weight:600;letter-spacing:.30em;text-transform:uppercase;color:rgba(209,173,102,.62);margin-bottom:26px}
+.site-footer__col a{font-family:var(--serif);font-size:.95rem;line-height:1.4;color:rgba(251,244,230,.62);padding:7px 0;transition:color .3s}
+.site-footer__col a:hover{color:var(--gold-s)}
+.site-footer__legal{border-top:1px solid rgba(209,173,102,.08);padding:36px 0 22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.site-footer__copy{font-family:var(--sans);font-size:.75rem;color:rgba(251,244,230,.32);margin-bottom:4px}
+.site-footer__copy-tm{font-family:var(--sans);font-size:.7rem;color:rgba(251,244,230,.28);line-height:1.6;max-width:580px}
+.site-footer__terms{font-family:var(--sans);font-size:.75rem;color:rgba(251,244,230,.32);display:flex;align-items:center;gap:8px}
+.site-footer__terms a{color:rgba(251,244,230,.32);transition:color .3s}
+.site-footer__terms a:hover{color:var(--gold-s)}
+.site-footer__dot{color:rgba(251,244,230,.20)}
+.site-footer__trademarks{font-family:var(--sans);font-size:.70rem;line-height:1.8;color:rgba(251,244,230,.22);max-width:980px;margin-top:24px}
+.site-footer__trademarks sup{font-size:.50em;vertical-align:super}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:14px;font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;padding:17px 28px;justify-content:center;transition:background .35s,color .35s,border-color .35s,transform .25s;cursor:pointer;text-decoration:none;line-height:1;border:none}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--navy);color:var(--gold-s);border:1.5px solid var(--navy)}
+.btn--primary:hover{background:#0F2050}
+.btn--gold{background:var(--gold);color:var(--ivory);border:1.5px solid var(--gold)}
+.btn--gold:hover{background:var(--gold-s);border-color:var(--gold-s)}
+.btn__arrow{display:inline-block;width:8px;height:8px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);margin-left:2px;background:transparent;transition:margin-left .35s var(--ease),transform .35s var(--ease)}
+.btn__arrow::after{display:none}
+.btn:hover .btn__arrow{margin-left:8px;transform:rotate(45deg)}
+
+/* RESPONSIVE */
+@media (max-width:1200px){.header{padding:0 36px}.nav{gap:36px}.intro,.q-container,.results__hero,.measures-section,.results-email,.results-next{padding-left:40px;padding-right:40px}.q-nav{padding-left:40px;padding-right:40px}.site-footer{padding:68px 40px 70px}}
+@media (max-width:980px){.q-options{grid-template-columns:repeat(5,1fr);gap:8px}.q-option{padding:22px 6px;min-height:78px}.q-option__label{font-size:.58rem;letter-spacing:.16em}.site-footer__main{grid-template-columns:1fr 1fr;gap:44px 28px}.results-next__grid{grid-template-columns:1fr;gap:22px;max-width:520px;margin-left:auto;margin-right:auto}.measure-card{padding:32px 28px}.measure-card__num{font-size:2.4rem}.measure-card__name{font-size:1.4rem}}
+@media (max-width:720px){.header{padding:0 20px;height:78px}.nav{display:none}.nav__cta{padding:13px 22px;font-size:.66rem}.intro{padding:68px 24px 80px;min-height:auto}.intro__title{font-size:2.4rem}.intro__sub{font-size:1.05rem}.intro__stats{grid-template-columns:1fr;gap:18px;padding:24px 0}.intro__stat{border-right:none;border-bottom:1px solid var(--rule);padding-bottom:14px}.intro__stat:last-child{border-bottom:none;padding-bottom:0}.q-container{padding:88px 20px 60px}.q-card{padding:34px 24px 30px;margin-bottom:32px}.q-text{font-size:1.4rem;margin-bottom:0}.q-options{grid-template-columns:1fr;gap:10px;max-width:420px}.q-option{padding:22px 26px;min-height:64px;align-items:flex-start;justify-content:flex-start;text-align:left}.q-option__label{text-align:left;font-size:.78rem;letter-spacing:.28em}.q-nav{padding:20px 24px 40px}.results__hero{padding:90px 24px 40px}.results__title{font-size:2rem}.results__index-ring{width:240px;height:240px}.results__index-num{font-size:4.2rem}.measures-section{padding:60px 24px 80px}.measure-card{grid-template-columns:1fr;gap:14px}.measure-card__head{flex-direction:column;align-items:flex-start;gap:4px}.results-email{padding:70px 24px 90px}.results-email__title{font-size:1.9rem}.results-email__form{flex-direction:column;gap:12px;border-bottom:none}.results-email__input{border-bottom:1px solid rgba(209,173,102,.3);text-align:center}.results-email__submit{justify-content:center;padding:12px 0}.results-next{padding:60px 24px 80px}.site-footer{padding:80px 24px 50px}.site-footer__main{grid-template-columns:1fr;gap:36px;padding-bottom:40px}.site-footer__legal{flex-direction:column}}
+
+/* ═══ MOBILE EDITORIAL REFINEMENTS ═══ */
+
+/* 820px and below — primary mobile threshold */
+@media (max-width: 820px) {
+  /* Hero refinements — keep cinematic, give breathing room */
+  .hero {
+    padding:55px 28px 68px !important;
+  }
+  .hero__inner { max-width: 580px; }
+  .hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -.022em !important;
+    margin-bottom:28px;
+  }
+  .hero__sub {
+    font-size: 1.18rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+    margin-bottom:40px;
+  }
+  .hero__cap {
+    font-size: .54rem !important;
+    letter-spacing: .42em !important;
+    margin-bottom:24px;
+  }
+  .hero__cap::before, .hero__cap::after { width: 32px; }
+  .hero__script { font-size: 2rem !important; }
+  .hero__ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 14px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .hero__ctas .btn { width: 100%; }
+}
+
+/* 640px and below — phone */
+@media (max-width: 640px) {
+  .hero {
+    padding:88px 24px 58px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.4rem, 10vw, 3.6rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.12rem !important;
+    line-height: 1.62 !important;
+    max-width: 38ch !important;
+  }
+}
+
+/* 480px and below — mid phone */
+@media (max-width: 480px) {
+  .hero {
+    padding:78px 22px 90px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem) !important;
+    line-height: 1.02 !important;
+  }
+  .hero__sub {
+    font-size: 1.08rem !important;
+  }
+  .hero__script { font-size: 1.8rem !important; }
+}
+
+/* 390px and below — smallest phones */
+@media (max-width: 390px) {
+  .hero {
+    padding:68px 20px 80px !important;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.02rem !important;
+    line-height: 1.65 !important;
+  }
+}
+
+/* Cross-cutting hero variants — apply to specific page hero classes */
+@media (max-width: 820px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub, .legal-hero__date {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.3rem, 10vw, 3.4rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.1rem, 10.5vw, 3rem) !important;
+    letter-spacing: -.018em !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub {
+    font-size: 1.06rem !important;
+  }
+}
+
+/* Improve readability on long-form body text across all pages */
+@media (max-width: 640px) {
+  p {
+    line-height: 1.7;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV DROPDOWNS — Sacred Deposits header navigation
+   ═══════════════════════════════════════════════════════════════ */
+.nav-group { position: relative; }
+.nav-group .nav-link {
+  font-family: var(--sans);
+  font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: none; text-decoration: none;
+  padding: 8px 0; margin: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .3s var(--ease);
+  position: relative;
+  white-space: nowrap;
+}
+.nav-group .nav-link:hover { color: var(--gold); }
+.nav-group .nav-link.is-active { color: var(--gold); }
+.nav-group .nav-link.is-active::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1.5px; background: var(--gold); opacity: 1;
+}
+.nav-caret {
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .75;
+  transition: transform .3s var(--ease), opacity .3s;
+}
+.nav-group:hover .nav-caret { transform: rotate(225deg) translateY(0); opacity: 1; }
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  margin-top: 4px;
+  background: var(--ivory);
+  border: 1px solid rgba(184,144,69,.22);
+  box-shadow: 0 22px 60px -28px rgba(7,20,50,.18), 0 4px 14px -8px rgba(7,20,50,.06);
+  padding: 12px 0;
+  min-width: 240px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s var(--ease), visibility .25s var(--ease), transform .25s var(--ease);
+  z-index: 100;
+  pointer-events: none;
+}
+.nav-group.has-dropdown:hover .nav-dropdown,
+.nav-group.has-dropdown:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.nav-dropdown::before {
+  /* Bridge gap so hover doesn't break between link and dropdown */
+  content: ""; position: absolute;
+  top: -10px; left: 0; right: 0; height: 10px;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 11px 28px;
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color .2s, background .2s, padding-left .25s var(--ease);
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  color: var(--gold);
+  background: rgba(184,144,69,.04);
+  padding-left: 32px;
+}
+
+/* Mobile menu sub-item styling */
+.mobile-menu__sub {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--muted);
+  padding: 8px 0 8px 22px;
+  text-decoration: none;
+  border-left: 1px solid rgba(184,144,69,.22);
+  margin-left: 6px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  transition: color .2s, border-color .25s;
+}
+.mobile-menu__sub:hover { color: var(--gold); border-left-color: var(--gold); }
+
+/* Hide dropdowns on small screens — mobile menu shows everything inline */
+@media (max-width: 980px) {
+  .nav-dropdown { display: none; }
+  .nav-caret { display: none; }
+}
+
+
+/* FORCE: dropdown text must always be dark — overrides any dark-header inheritance */
+.nav-dropdown a,
+body.dark-header .nav .nav-dropdown a,
+body.dark-header .nav-group .nav-dropdown a {
+  color: #071432 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+.nav-dropdown a:hover,
+body.dark-header .nav-dropdown a:hover {
+  color: var(--gold) !important;
+}
+</style>
+<title>Take the EWD-1™ Marriage Assessment | Sacred Deposits™</title>
+<meta name="description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<meta name="author" content="Yvonne G. Hall"/>
+<link rel="canonical" href="https://sacreddeposits.com/assessment.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" href="assets/images/logo.webp"/>
+<link rel="apple-touch-icon" href="assets/images/logo.webp"/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Sacred Deposits"/>
+<meta property="og:title" content="Take the EWD-1™ Marriage Assessment | Sacred Deposits™"/>
+<meta property="og:description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
+<meta property="og:url" content="https://sacreddeposits.com/assessment.html"/>
+<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Take the EWD-1™ Marriage Assessment | Sacred Deposits™"/>
+<meta name="twitter:description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
+<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sacreddeposits.com/#organization",
+      "name": "EQGenix Inc.",
+      "url": "https://sacreddeposits.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "founder": {
+        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+      },
+      "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
+      "knowsLanguage": [
+        "English",
+        "Spanish"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "name": "Yvonne G. Hall",
+      "givenName": "Yvonne",
+      "familyName": "Hall",
+      "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
+      "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
+      "url": "https://sacreddeposits.com/about.html",
+      "sameAs": [],
+      "knowsAbout": [
+        "Christian marriage",
+        "Covenant marriage",
+        "Marriage communication",
+        "Emotional intimacy",
+        "Relationship repair",
+        "Applied behavioral science",
+        "Marriage ministry"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EQGenix Inc."
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sacreddeposits.com/assessment.html#page",
+      "url": "https://sacreddeposits.com/assessment.html",
+      "name": "Take the EWD-1\u2122 Marriage Assessment | Sacred Deposits\u2122",
+      "isPartOf": {
+        "@id": "https://sacreddeposits.com/#website"
+      },
+      "about": {
+        "@id": "https://sacreddeposits.com/#organization"
+      }
+    }
+  ]
+}
+</script>
+
+<style id="launch-strip-style">
+.launch-strip { background: linear-gradient(90deg, #02060f 0%, #071432 50%, #02060f 100%); color: var(--ivory, #FBF4E6); border-bottom: 1px solid rgba(184,144,69,.28); position: fixed; top: 0; left: 0; right: 0; z-index: 999; padding: 9px 24px; font-family: var(--serif, "Cormorant Garamond", serif); font-size: .92rem; }
+.launch-strip__inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; line-height: 1.4; }
+.launch-strip__inner > * { line-height: 1.4; }
+.launch-strip__date { line-height: 1.4; transform: translateY(1px); }
+.launch-strip__msg, .launch-strip__sep, .launch-strip__cta { line-height: 1.4; }
+.launch-strip__pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #D1AD66; box-shadow: 0 0 0 0 rgba(209,173,102,.7); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(209,173,102,.7); } 70% { box-shadow: 0 0 0 8px rgba(209,173,102,0); } 100% { box-shadow: 0 0 0 0 rgba(209,173,102,0); } }
+.launch-strip__date { font-family: var(--caps, "Cinzel", serif); font-size: .58rem; font-weight: 600; letter-spacing: .42em; text-transform: uppercase; color: #D1AD66; }
+.launch-strip__sep { color: rgba(251,244,230,.4); }
+.launch-strip__msg { font-style: italic; color: rgba(251,244,230,.92); }
+.launch-strip__msg em { color: #D1AD66; font-style: italic; }
+.launch-strip__cta { color: #D1AD66; text-decoration: underline; text-decoration-color: rgba(209,173,102,.35); text-underline-offset: 3px; font-style: italic; transition: text-decoration-color .3s ease; }
+.launch-strip__cta:hover { text-decoration-color: #D1AD66; }
+.header { top: 38px !important; }
+body { padding-top: 38px; }
+@media (max-width: 720px) {
+  .launch-strip { padding: 8px 14px; font-size: .82rem; }
+  .launch-strip__inner { gap: 6px; }
+  .launch-strip__date { font-size: .52rem; letter-spacing: .36em; }
+  .launch-strip__sep, .launch-strip__pulse { display: none; }
+  .header { top: 46px !important; }
+  body { padding-top: 46px; }
+}
+</style>
+
+</head>
+<body>
+<script src="snipcart-config.js"></script>
+<div class="launch-strip" role="banner" aria-label="Order announcement">
+  <div class="launch-strip__inner">
+    <span class="launch-strip__pulse" aria-hidden="true"></span>
+    <span class="launch-strip__date">Now Available</span>
+    <span class="launch-strip__sep">·</span>
+    <span class="launch-strip__msg"><em>Sacred Deposits</em><sup>&trade;</sup> —</span>
+    <a href="sacred-deposits-hardcover.html" class="launch-strip__cta">order now &rarr;</a>
+  </div>
+</div>
+<header class="header">
+  <a href="index.html" class="brand">
+    <div class="brand__ring"><img src="assets/images/logo.webp" alt="Sacred Deposits — covenant marriage framework"></div>
+    <span class="brand__name">Sacred Deposits<sup>&trade;</sup></span>
+  </a>
+  <nav class="nav">
+    <div class="nav-group has-dropdown">
+      <a href="book.html" class="nav-link">Book<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="book.html" role="menuitem">About the Book</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="book.html#editions" role="menuitem">Order Editions</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="frameworks.html" class="nav-link is-active">Frameworks<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="frameworks.html" role="menuitem">All Frameworks</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="reset.html" role="menuitem">The Phases</a>
+        <a href="audit.html" role="menuitem">The Audit</a>
+        <a href="assessment.html" role="menuitem">EWD-1 Assessment</a>
+        <a href="reset.html" role="menuitem">30-Day Reset</a>
+        <a href="legacy-ledger.html" role="menuitem">The Legacy Ledger</a>
+        <a href="manifesto.html" role="menuitem">The Manifesto</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="vault.html" class="nav-link">Vault<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="vault.html" role="menuitem">Inside the Vault</a>
+        <a href="vault.html#reserve" role="menuitem">Reserve Your Place</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group has-dropdown">
+      <a href="podcast.html" class="nav-link">Podcast<span class="nav-caret"></span></a>
+      <div class="nav-dropdown">
+        <a href="podcast.html#featured" role="menuitem">Latest Episode</a>
+        <a href="podcast.html#library" role="menuitem">All Episodes</a>
+        <a href="podcast.html#subscribe" role="menuitem">Subscribe</a>
+      </div>
+    </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="shop.html" class="nav-link">Shop<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="shop.html" role="menuitem">All Products</a>
+        <a href="book.html" role="menuitem">The Book</a>
+        <a href="sacred-union-set.html" role="menuitem">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" role="menuitem">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" role="menuitem">Her Covenant Journal</a>
+        <a href="his-journal.html" role="menuitem">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" role="menuitem">Couples Workbook</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="about.html" class="nav-link">About<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="about.html" role="menuitem">About Yvonne</a>
+        <a href="life-in-darkness.html" role="menuitem">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" role="menuitem">YGH Technology Consultants</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="contact.html" class="nav-link">Contact<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="contact.html" role="menuitem">Contact</a>
+        <a href="churches.html" role="menuitem">Churches & Groups</a>
+        <a href="licensing.html" role="menuitem">Licensing</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle__label">MENU</span>
+    <span class="nav-toggle__lines" aria-hidden="true"><span></span><span></span></span>
+  </button>
+  <button class="snipcart-checkout cart-icon" aria-label="Open cart" title="Cart">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-icon__count snipcart-items-count" style="display:none;">0</span>
+</button>
+      <a href="vault.html" class="nav__cta">Enter the Vault</a>
+</header>
+
+<!-- Mobile full-screen menu overlay -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Site navigation">
+  <div class="mobile-menu__topbar">
+    <button class="mobile-menu__close" type="button" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-menu__brand">
+      <img src="assets/images/logo.webp" alt="" class="mobile-menu__logo" width="28" height="28">
+      <span class="mobile-menu__brand-name">Sacred Deposits</span>
+    </a>
+    <div class="mobile-menu__actions">
+      <a href="#cart" class="mobile-menu__action mobile-menu__cart snipcart-checkout" aria-label="Cart">
+        <span class="mobile-menu__cart-count snipcart-items-count">0</span>
+      </a>
+    </div>
+  </div>
+  <div class="mobile-menu__panels">
+    <div class="mobile-menu__panel mobile-menu__panel--root is-active" data-panel="root">
+      <nav class="mobile-menu__nav" aria-label="Mobile primary">
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="book">
+          <span>Book</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="frameworks">
+          <span>Frameworks</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="vault">
+          <span>Vault</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="podcast">
+          <span>Podcast</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="shop">
+          <span>Shop</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="about">
+          <span>About</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch mobile-menu__item--last" type="button" data-target="contact">
+          <span>Contact</span>
+        </button>
+      </nav>
+      <div class="mobile-menu__footer">
+        <a href="vault.html" class="mobile-menu__cta">Enter the Vault</a>
+        <p class="mobile-menu__signature">A Covenant Framework by EQGenix Inc.</p>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="book" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Book</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Book navigation">
+        <a href="book.html" class="mobile-menu__sublink">About the Book</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="book.html#editions" class="mobile-menu__sublink">Order Editions</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="frameworks" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Frameworks</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Frameworks navigation">
+        <a href="frameworks.html" class="mobile-menu__sublink">All Frameworks</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="audit.html" class="mobile-menu__sublink">The Audit</a>
+        <a href="reset.html" class="mobile-menu__sublink">30-Day Reset</a>
+        <a href="legacy-ledger.html" class="mobile-menu__sublink">The Legacy Ledger</a>
+        <a href="manifesto.html" class="mobile-menu__sublink">The Manifesto</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="vault" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Vault</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Vault navigation">
+        <a href="vault.html" class="mobile-menu__sublink">Inside the Vault</a>
+        <a href="vault.html#reserve" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="podcast" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Podcast</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Podcast navigation">
+        <a href="podcast.html#featured" class="mobile-menu__sublink">Latest Episode</a>
+        <a href="podcast.html#library" class="mobile-menu__sublink">All Episodes</a>
+        <a href="podcast.html#subscribe" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="shop" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Shop</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Shop navigation">
+        <a href="shop.html" class="mobile-menu__sublink">All Products</a>
+        <a href="sacred-deposits-hardcover.html" class="mobile-menu__sublink">S.D Book</a>
+        <a href="sacred-union-set.html" class="mobile-menu__sublink">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" class="mobile-menu__sublink">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" class="mobile-menu__sublink">Her Covenant Journal</a>
+        <a href="his-journal.html" class="mobile-menu__sublink">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" class="mobile-menu__sublink">Couples Workbook</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="about" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">About</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="About navigation">
+        <a href="about.html" class="mobile-menu__sublink">About Yvonne</a>
+        <a href="life-in-darkness.html" class="mobile-menu__sublink">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" class="mobile-menu__sublink">YGH Technology Consultants</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="contact" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Contact</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Contact navigation">
+        <a href="contact.html" class="mobile-menu__sublink">Contact</a>
+        <a href="churches.html" class="mobile-menu__sublink">Churches &amp; Groups</a>
+        <a href="press.html" class="mobile-menu__sublink">Press &amp; Media</a>
+        <a href="licensing.html" class="mobile-menu__sublink">Licensing</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ INTRO SCREEN ════════ -->
+<section class="screen is-active" id="screen-intro">
+  <div class="intro">
+    <div class="intro__inner">
+      <span class="intro__cap">The EWD-1<sup>&trade;</sup> Diagnostic</span>
+      <span class="intro__script">Begin the audit.</span>
+      <h1 class="intro__title">The Covenant <em>Audit</em><sup>&trade;</sup></h1>
+      <p class="intro__sub">Sixteen questions. Eight minutes. A structured read on <em>where your marriage is compounding</em> — and where it is quietly costing you.</p>
+
+      <div class="intro__stats">
+        <div class="intro__stat">
+          <span class="intro__stat-num">16</span>
+          <span class="intro__stat-label">Questions</span>
+        </div>
+        <div class="intro__stat">
+          <span class="intro__stat-num">8</span>
+          <span class="intro__stat-label">Minutes</span>
+        </div>
+        <div class="intro__stat">
+          <span class="intro__stat-num">6</span>
+          <span class="intro__stat-label">Dimensions</span>
+        </div>
+      </div>
+
+      <div class="intro__measures">
+        <span class="intro__measures-label">What This Measures</span>
+        <ul class="intro__measures-list">
+          <li>The Five Deposits Score</li>
+          <li>The Silent Withdrawal Index<sup>&trade;</sup></li>
+          <li>Repair Velocity</li>
+          <li>Anti-Pattern Surface</li>
+          <li>Covenant Climate</li>
+          <li>The Inherited Ledger</li>
+        </ul>
+      </div>
+
+      <button class="btn btn--primary" id="begin-btn">
+        Begin the Audit<span class="btn__arrow"></span>
+      </button>
+
+      <div class="intro__resume" id="resume-banner">
+        <strong>You have an audit in progress.</strong> You were on question <span id="resume-q-num">?</span> of 16.
+        <a id="resume-link">Continue where you left off &rarr;</a> · <a id="reset-link">Start fresh</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ QUESTION SCREEN ════════ -->
+<section class="screen q-screen" id="screen-question">
+  <div class="q-progress-bar">
+    <div class="q-progress-bar__fill" id="progress-fill"></div>
+  </div>
+
+  <div class="q-container">
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-meta__num"><span id="q-current">1</span> / 16</span>
+        <span class="q-meta__measure" id="q-measure">The Honor Protocol&trade;</span>
+      </div>
+      <p class="q-text" id="q-text">Loading question&hellip;</p>
+    </div>
+    <div class="q-options" id="q-options">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <div class="q-nav">
+    <button class="q-prev" id="prev-btn" disabled>Previous</button>
+    <span class="q-counter" id="q-counter">Question 1 of 16</span>
+  </div>
+</section>
+
+<!-- ════════ RESULTS SCREEN ════════ -->
+<section class="screen results" id="screen-results">
+
+  <div class="results__hero">
+    <div class="results__hero-inner">
+      <span class="results__cap">Your Result</span>
+      <h2 class="results__title">The Covenant Wealth <em>Index</em><sup>&trade;</sup></h2>
+
+      <div class="results__index">
+        <div class="results__index-ring">
+          <svg class="results__index-svg" viewBox="0 0 300 300">
+            <circle class="results__index-track" cx="150" cy="150" r="140"/>
+            <circle class="results__index-fill" cx="150" cy="150" r="140" id="index-fill"/>
+          </svg>
+          <div class="results__index-inner">
+            <span class="results__index-num" id="index-num">0</span>
+            <span class="results__index-out-of">of 100</span>
+          </div>
+        </div>
+        <p class="results__index-label" id="index-label">—</p>
+        <p class="results__index-descriptor" id="index-descriptor">—</p>
+      </div>
+
+      <p class="results__interpretation" id="overall-interpretation">—</p>
+    </div>
+  </div>
+
+  <div class="measures-section">
+    <div class="measures-section__inner">
+      <header class="measures-section__header">
+        <span class="measures-section__eyebrow">Six Readings</span>
+        <h2 class="measures-section__title">Your marriage, <em>by the measure</em>.</h2>
+      </header>
+
+      <div id="measure-cards"><!-- Populated by JS --></div>
+    </div>
+  </div>
+
+  <div class="results-email" id="email-section">
+    <div class="results-email__inner">
+      <span class="results-email__script">The full report.</span>
+      <h2 class="results-email__title">Send me <em>the deeper read.</em></h2>
+      <p class="results-email__body">The on-screen scores are the summary. <em>The full report</em> — with specific framework references, recommended protocols for your weakest measure, and a printable PDF — is delivered to your inbox.</p>
+      <form method="POST" class="results-email__form" id="email-form" name="assessment-results" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sdNetlifySubmit(this, function(form){ var b=this.querySelector('button'); if(b){b.textContent='Results coming your way.';b.disabled=true;} })">
+    <input type="hidden" name="form-name" value="assessment-results"/>
+    <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
+    
+        <input type="email" class="results-email__input" placeholder="your email address" required id="email-input">
+        <button type="submit" class="results-email__submit" id="email-submit">Send My Report</button>
+      </form>
+      <p class="results-email__fine">No noise. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <div class="results-next">
+    <div class="results-next__inner">
+      <header class="results-next__header">
+        <span class="results-next__eyebrow">What's Next</span>
+        <h2 class="results-next__title">Three doors <em>from here</em>.</h2>
+      </header>
+
+      <div class="results-next__grid">
+        <a href="book.html" class="next-card">
+          <span class="next-card__cap">The Framework</span>
+          <h3 class="next-card__name">Order <em>the book</em>.</h3>
+          <p class="next-card__desc">Sacred Deposits<sup>&trade;</sup> — the full architecture behind everything you just measured. Launches May 25, 2026.</p>
+          <span class="next-card__cta">View the Book</span>
+        </a>
+
+        <a href="reset.html" class="next-card">
+          <span class="next-card__cap">The Practice</span>
+          <h3 class="next-card__name">Begin the <em>Reset</em>.</h3>
+          <p class="next-card__desc">The 30-Day Reset Protocol<sup>&trade;</sup> — thirty days of structured deposits, quieted withdrawals, and small repairs.</p>
+          <span class="next-card__cta">Begin the Reset</span>
+        </a>
+
+        <a href="vault.html" class="next-card">
+          <span class="next-card__cap">The Community</span>
+          <h3 class="next-card__name">Reserve <em>The Vault</em>.</h3>
+          <p class="next-card__desc">Private practice community. Annual audits with year-over-year tracking. Monthly conversations with Yvonne.</p>
+          <span class="next-card__cta">Reserve Your Place</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-retake">
+    <button class="results-retake__link" id="retake-btn">Retake the Audit</button>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__main">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo-row">
+          <svg class="site-footer__logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="24" cy="24" r="1.2" fill="#D1AD66"/>
+          </svg>
+          <span class="site-footer__name">SACRED DEPOSITS<sup>&trade;</sup></span>
+        </div>
+        <p class="site-footer__tagline"><em>A covenant framework by EQGenix Inc.</em></p>
+      </div>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">THE BOOK</p>
+        <a href="book.html">About the Book</a>
+        <a href="book.html#editions">Order</a>
+        <a href="five-deposits.html">The Five Deposits</a>
+        <a href="frameworks.html">Frameworks</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">PRACTICE</p>
+        <a href="legacy-ledger.html">The Legacy Ledger</a>
+        <a href="vault.html">The Vault</a>
+        <a href="reset.html">30-Day Reset</a>
+        <a href="audit.html">The Audit</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">CONNECT</p>
+          <a href="podcast.html">Podcast</a>
+        <a href="about.html">About Yvonne</a>
+        <a href="contact.html">Contact</a>
+        <a href="licensing.html">Licensing</a>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <div class="site-footer__legal-left">
+        <p class="site-footer__copy">&copy; 2026 EQGenix Inc. All rights reserved.</p>
+        <p class="site-footer__copy-tm">Sacred Deposits<sup>&trade;</sup>, Build Emotional Wealth<sup>&trade;</sup>, Emotional Portfolio<sup>&trade;</sup>, The Covenant Card<sup>&trade;</sup>, The Covenant Ledger<sup>&trade;</sup>, Her Sacred Chronicle<sup>&trade;</sup>, The Covenant Playbook<sup>&trade;</sup>, The Sacred Union Set<sup>&trade;</sup>, The Legacy Ledger<sup>&trade;</sup>, Sovereign Foundations<sup>&trade;</sup>, Built, Not Downloaded<sup>&trade;</sup>, The Covenant Economy<sup>&trade;</sup>, and related frameworks are trademarks of EQGenix Inc.</p>
+      </div>
+      <p class="site-footer__terms">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="site-footer__dot">·</span>
+        <a href="terms.html">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// THE EWD-1™ — Emotional Wealth Diagnostic, Instrument One
+// 16 questions across 6 measures
+// ═══════════════════════════════════════════════════════════════════
+
+const QUESTIONS = [
+  // FIVE DEPOSITS (5)
+  { id:1, measure:'deposits', label:'The Honor Protocol™', text:'I speak about my spouse, in their absence, the way I would want them to overhear it.', inverted:false },
+  { id:2, measure:'deposits', label:'The Gentleness Discipline™', text:'When I raise something hard, I lead with what I need — not with what they got wrong.', inverted:false },
+  { id:3, measure:'deposits', label:'The Attunement Practice™', text:'When my spouse speaks to me, I look up from what I am doing and meet their eyes within seconds.', inverted:false },
+  { id:4, measure:'deposits', label:'The Repair Cycle™', text:'After a rupture, I initiate the return to it within twenty-four hours.', inverted:false },
+  { id:5, measure:'deposits', label:'The Compound Tenderness Effect™', text:'Even on hard days, I make at least one small deposit on purpose — when no one is watching or asking.', inverted:false },
+
+  // SILENT WITHDRAWAL INDEX (3) — inverted
+  { id:6, measure:'withdrawal', label:'The Silent Withdrawal Index™', text:'I notice myself going quiet rather than naming what is actually bothering me.', inverted:true },
+  { id:7, measure:'withdrawal', label:'The Silent Withdrawal Index™', text:'There are things I have been holding back from my spouse for weeks or longer.', inverted:true },
+  { id:8, measure:'withdrawal', label:'The Silent Withdrawal Index™', text:'I emotionally check out rather than engaging when the conversation gets hard.', inverted:true },
+
+  // REPAIR VELOCITY (2)
+  { id:9, measure:'repair', label:'Repair Velocity', text:'When my spouse and I have a difficult moment, we typically return to it the same day or the next.', inverted:false },
+  { id:10, measure:'repair', label:'Repair Velocity', text:'After conflict, I am willing to name my own part — specifically — before they name theirs.', inverted:false },
+
+  // ANTI-PATTERN SURFACE (3) — inverted
+  { id:11, measure:'antipattern', label:'Anti-Pattern Surface', text:'I catch myself responding with sarcasm, contempt, or eye-rolling more often than I would like to admit.', inverted:true },
+  { id:12, measure:'antipattern', label:'Anti-Pattern Surface', text:'There are times I am physically present with my spouse but emotionally elsewhere.', inverted:true },
+  { id:13, measure:'antipattern', label:'Anti-Pattern Surface', text:'There are stories I tell about my spouse to others that would make them uncomfortable to overhear.', inverted:true },
+
+  // COVENANT CLIMATE (2)
+  { id:14, measure:'climate', label:'Covenant Climate', text:'Our marriage feels emotionally safe — neither of us walks on eggshells.', inverted:false },
+  { id:15, measure:'climate', label:'Covenant Climate', text:'I look forward to time alone with my spouse — even after years of marriage.', inverted:false },
+
+  // INHERITED LEDGER (1)
+  { id:16, measure:'inherited', label:'The Inherited Ledger', text:'I am aware of at least one pattern from my parents\u2019 marriage that I am actively working to break.', inverted:false }
+];
+
+const MEASURES = {
+  deposits:    { name:'The Five Deposits™',     desc:'Honor, Gentleness, Attunement, Repair, Compound Tenderness.', num:5, idx:'I.' },
+  withdrawal:  { name:'The Silent Withdrawal Index™', desc:'What is being quietly withdrawn without anyone signing for it.', num:3, idx:'II.' },
+  repair:      { name:'Repair Velocity',         desc:'How quickly the marriage returns to rupture.', num:2, idx:'III.' },
+  antipattern: { name:'Anti-Pattern Surface',    desc:'Which of the anti-patterns are running the most.', num:3, idx:'IV.' },
+  climate:     { name:'Covenant Climate',        desc:'The emotional atmosphere of the marriage on average.', num:2, idx:'V.' },
+  inherited:   { name:'The Inherited Ledger',    desc:'The patterns brought in from prior generations.', num:1, idx:'VI.' }
+};
+
+const LIKERT = [
+  { value:1, label:'Strongly Disagree' },
+  { value:2, label:'Disagree' },
+  { value:3, label:'Neutral' },
+  { value:4, label:'Agree' },
+  { value:5, label:'Strongly Agree' }
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+const STORAGE_KEY = 'eqgenix_audit_v1';
+
+let state = {
+  currentQuestion: 0,
+  answers: {},   // {1: 4, 2: 3, ...}
+  completed: false
+};
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') return parsed;
+    }
+  } catch(e) {}
+  return null;
+}
+
+function resetState() {
+  state = { currentQuestion: 0, answers: {}, completed: false };
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SCREEN MANAGEMENT
+// ═══════════════════════════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    if (s.id === id) {
+      s.classList.add('is-active');
+    } else {
+      s.classList.remove('is-active');
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// QUESTION RENDERING
+// ═══════════════════════════════════════════════════════════════════
+function renderQuestion(idx) {
+  const q = QUESTIONS[idx];
+  if (!q) return;
+
+  document.getElementById('q-current').textContent = idx + 1;
+  document.getElementById('q-counter').textContent = `Question ${idx + 1} of ${QUESTIONS.length}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-measure').textContent = q.label;
+
+  const progressPct = ((idx) / QUESTIONS.length) * 100;
+  document.getElementById('progress-fill').style.width = progressPct + '%';
+
+  const optionsEl = document.getElementById('q-options');
+  optionsEl.innerHTML = '';
+  LIKERT.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option';
+    if (state.answers[q.id] === opt.value) btn.classList.add('is-selected');
+    btn.dataset.value = opt.value;
+    btn.innerHTML = `<span class="q-option__label">${opt.label}</span>`;
+    btn.addEventListener('click', () => recordAnswer(opt.value));
+    optionsEl.appendChild(btn);
+  });
+
+  const prevBtn = document.getElementById('prev-btn');
+  prevBtn.disabled = idx === 0;
+}
+
+function recordAnswer(value) {
+  const q = QUESTIONS[state.currentQuestion];
+  state.answers[q.id] = value;
+
+  // Visual feedback — mark selected
+  document.querySelectorAll('.q-option').forEach(b => {
+    b.classList.toggle('is-selected', parseInt(b.dataset.value, 10) === value);
+  });
+
+  saveState();
+
+  // Auto-advance after brief pause
+  setTimeout(() => {
+    if (state.currentQuestion < QUESTIONS.length - 1) {
+      state.currentQuestion++;
+      saveState();
+      renderQuestion(state.currentQuestion);
+    } else {
+      // Complete
+      state.completed = true;
+      saveState();
+      completeAssessment();
+    }
+  }, 380);
+}
+
+function previousQuestion() {
+  if (state.currentQuestion > 0) {
+    state.currentQuestion--;
+    saveState();
+    renderQuestion(state.currentQuestion);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SCORING
+// ═══════════════════════════════════════════════════════════════════
+function calculateScores() {
+  // Each measure: average of answers normalized 0-100
+  // Inverted questions: score = 6 - raw_answer (so 5 -> 1, 1 -> 5)
+  const measureSums = {};
+  const measureCounts = {};
+
+  QUESTIONS.forEach(q => {
+    const raw = state.answers[q.id];
+    if (raw === undefined) return;
+    const score = q.inverted ? (6 - raw) : raw;
+    measureSums[q.measure] = (measureSums[q.measure] || 0) + score;
+    measureCounts[q.measure] = (measureCounts[q.measure] || 0) + 1;
+  });
+
+  const measureScores = {};
+  Object.keys(MEASURES).forEach(key => {
+    const sum = measureSums[key] || 0;
+    const count = measureCounts[key] || 1;
+    // Average is 1-5 scale → convert to 0-100
+    measureScores[key] = Math.round(((sum / count) - 1) / 4 * 100);
+  });
+
+  // Overall Covenant Wealth Index = weighted average
+  // Weights reflect the framework's emphasis: deposits = strongest signal
+  const WEIGHTS = {
+    deposits: 0.30,
+    withdrawal: 0.18,
+    repair: 0.18,
+    antipattern: 0.15,
+    climate: 0.15,
+    inherited: 0.04
+  };
+
+  let overall = 0;
+  Object.keys(WEIGHTS).forEach(key => {
+    overall += (measureScores[key] || 0) * WEIGHTS[key];
+  });
+  overall = Math.round(overall);
+
+  return { overall, measures: measureScores };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INTERPRETATION
+// ═══════════════════════════════════════════════════════════════════
+function interpretScore(score) {
+  if (score >= 81) return { label: 'Compounding', descriptor: 'Mature · Strong', tier: 'high' };
+  if (score >= 61) return { label: 'Building', descriptor: 'Healthy · Active', tier: 'mid-high' };
+  if (score >= 41) return { label: 'Variable', descriptor: 'Mixed · Worth Attention', tier: 'mid' };
+  if (score >= 21) return { label: 'Thin', descriptor: 'At Risk · Reset Indicated', tier: 'low' };
+  return { label: 'Depleted', descriptor: 'Critical · Begin Now', tier: 'very-low' };
+}
+
+function overallInterpretation(score) {
+  const i = interpretScore(score);
+  const map = {
+    'high': 'Your marriage is <em>compounding</em>. The deposits are landing, the withdrawals are signed for, and the repair velocity is doing real work. The next move is protection — don\u2019t let comfort become complacence.',
+    'mid-high': 'Your marriage is <em>building</em>. The disciplines are mostly in place, with one or two measures running thin. A 30-Day Reset would sharpen the weakest deposit and lock the compounding in.',
+    'mid': 'Your marriage is <em>variable</em>. Some measures are healthy; others are quietly costing you. The Reset Protocol was built for exactly this season — structured deposits, made on purpose, for thirty days.',
+    'low': 'Your marriage is showing <em>thin reserves</em>. The withdrawal patterns are outpacing the deposits. The 30-Day Reset is the recommended next step — with or without your spouse beside you.',
+    'very-low': 'Your reading is <em>critical</em>. This is the room where the framework was built. Begin the Reset today — quietly, alone if necessary — and if you are in any form of abusive relationship, please contact a qualified professional immediately.'
+  };
+  return map[i.tier] || map['mid'];
+}
+
+function measureInterpretation(measureKey, score) {
+  const tier = interpretScore(score).tier;
+  const interp = {
+    deposits: {
+      'high':       'The Five Deposits are <em>compounding</em>. Honor, Gentleness, Attunement, Repair, and Compound Tenderness are all running.',
+      'mid-high':   'The Deposits are mostly running. <em>One or two are thin</em> — review which on the book\u2019s deposit chart.',
+      'mid':        'The Deposits are <em>uneven</em>. Two or three are working; the others need attention. The Reset names which.',
+      'low':        'The Deposits are <em>thin</em>. The framework\u2019s foundation needs rebuilding — begin with The Honor Protocol.',
+      'very-low':   'The Deposits are <em>not running</em>. This is the place to start. The Reset, day one.'
+    },
+    withdrawal: {
+      'high':       '<em>Low silent withdrawal</em>. You name what bothers you. You don\u2019t carry resentment in silence.',
+      'mid-high':   'Some silent withdrawal is present. <em>Worth naming what you\u2019ve been holding back.</em>',
+      'mid':        'Silent withdrawal is <em>variable</em>. There are things being held back that should be named.',
+      'low':        'The Silent Withdrawal Index is <em>elevated</em>. The most predictive of the framework\u2019s measures.',
+      'very-low':   'High silent withdrawal — <em>this is the place to start.</em> Naming begins the deposit.'
+    },
+    repair: {
+      'high':       'Your <em>repair velocity is strong</em>. You return quickly, and you name your part.',
+      'mid-high':   'Repair is mostly happening. <em>Watch for the days when it doesn\u2019t.</em>',
+      'mid':        'Repair velocity is <em>uneven</em>. Some ruptures return; others linger.',
+      'low':        'Repair velocity is <em>slow</em>. Ruptures are accumulating without resolution.',
+      'very-low':   'Repair is <em>not happening</em>. This is the highest-leverage measure to address.'
+    },
+    antipattern: {
+      'high':       '<em>Few anti-patterns</em>. Contempt, performance, and speaking-ill are not running in this marriage.',
+      'mid-high':   'Mostly clear. <em>One or two anti-patterns are showing up</em> — worth identifying.',
+      'mid':        'Anti-patterns are <em>present</em>. Sarcasm, presence fraud, or speaking ill are recurring.',
+      'low':        '<em>Anti-patterns are running.</em> The framework names them; the Reset interrupts them.',
+      'very-low':   'High anti-pattern surface. <em>Critical to interrupt</em> — particularly contempt and presence fraud.'
+    },
+    climate: {
+      'high':       'The <em>covenant climate is warm</em>. Safe, anticipatory, mutual.',
+      'mid-high':   'The climate is mostly healthy. <em>One or two seasons may be running cold.</em>',
+      'mid':        'The covenant climate is <em>variable</em>. Some seasons are warm; others cool.',
+      'low':        'The climate is <em>cool</em>. Walking on eggshells or losing the anticipation of one another.',
+      'very-low':   'The covenant climate is <em>cold</em>. The deposits must begin even when the feeling has left.'
+    },
+    inherited: {
+      'high':       'You are <em>actively breaking</em> at least one inherited pattern. This is rare and significant.',
+      'mid-high':   'Some awareness of inherited patterns. <em>Worth naming one and addressing it explicitly.</em>',
+      'mid':        'Limited awareness of inherited patterns. <em>The Legacy Ledger names them.</em>',
+      'low':        'Inherited patterns are likely <em>running unnamed.</em> Begin with the Legacy Ledger.',
+      'very-low':   'Inherited patterns are unexamined. <em>Critical to name them before the cycle continues.</em>'
+    }
+  };
+  return (interp[measureKey] && interp[measureKey][tier]) || 'Score recorded.';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RESULTS RENDERING
+// ═══════════════════════════════════════════════════════════════════
+function completeAssessment() {
+  // Fill progress to 100
+  document.getElementById('progress-fill').style.width = '100%';
+
+  setTimeout(() => {
+    renderResults();
+    showScreen('screen-results');
+  }, 300);
+}
+
+function renderResults() {
+  const scores = calculateScores();
+
+  // Animate the overall index
+  document.getElementById('index-num').textContent = '0';
+  const interp = interpretScore(scores.overall);
+  document.getElementById('index-label').textContent = interp.label;
+  document.getElementById('index-descriptor').textContent = interp.descriptor;
+  document.getElementById('overall-interpretation').innerHTML = overallInterpretation(scores.overall);
+
+  // Animate the ring fill (circumference 879.6 for r=140)
+  const fillCircle = document.getElementById('index-fill');
+  const offset = 879.6 - (879.6 * scores.overall / 100);
+  // Trigger animation after a tick
+  requestAnimationFrame(() => {
+    fillCircle.style.strokeDashoffset = offset;
+  });
+
+  // Animate the number counting up
+  let displayed = 0;
+  const target = scores.overall;
+  const duration = 1600;
+  const start = performance.now();
+  function countUp(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    displayed = Math.round(target * eased);
+    document.getElementById('index-num').textContent = displayed;
+    if (t < 1) requestAnimationFrame(countUp);
+  }
+  requestAnimationFrame(countUp);
+
+  // Render measure cards
+  const cardsEl = document.getElementById('measure-cards');
+  cardsEl.innerHTML = '';
+  Object.keys(MEASURES).forEach((key, i) => {
+    const m = MEASURES[key];
+    const score = scores.measures[key] || 0;
+    const card = document.createElement('div');
+    card.className = 'measure-card';
+    card.innerHTML = `
+      <span class="measure-card__num">${m.idx}</span>
+      <div class="measure-card__body">
+        <div class="measure-card__head">
+          <h3 class="measure-card__name">${m.name}</h3>
+          <span class="measure-card__score">${score}/100</span>
+        </div>
+        <div class="measure-card__bar">
+          <div class="measure-card__bar-fill" data-target="${score}"></div>
+        </div>
+        <p class="measure-card__interpretation">${measureInterpretation(key, score)}</p>
+      </div>
+    `;
+    cardsEl.appendChild(card);
+  });
+
+  // Animate measure bars
+  setTimeout(() => {
+    document.querySelectorAll('.measure-card__bar-fill').forEach((bar, i) => {
+      setTimeout(() => {
+        bar.style.width = bar.dataset.target + '%';
+      }, i * 120);
+    });
+  }, 400);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+function init() {
+  // Try to load saved state
+  const saved = loadState();
+  if (saved && !saved.completed && saved.currentQuestion > 0) {
+    state = saved;
+    const banner = document.getElementById('resume-banner');
+    banner.classList.add('is-visible');
+    document.getElementById('resume-q-num').textContent = saved.currentQuestion + 1;
+    document.getElementById('resume-link').addEventListener('click', () => {
+      renderQuestion(state.currentQuestion);
+      showScreen('screen-question');
+    });
+    document.getElementById('reset-link').addEventListener('click', () => {
+      resetState();
+      banner.classList.remove('is-visible');
+    });
+  } else if (saved && saved.completed) {
+    // Previously completed — preserve data but start at intro
+    // (don't force users back to their old result every visit)
+    state = saved;
+    state.currentQuestion = 0;
+  }
+
+  // Begin button
+  document.getElementById('begin-btn').addEventListener('click', () => {
+    // If previously completed, clear state for a fresh run
+    if (state.completed) {
+      resetState();
+    }
+    if (!state.answers || Object.keys(state.answers).length === 0) {
+      state.currentQuestion = 0;
+    }
+    renderQuestion(state.currentQuestion);
+    showScreen('screen-question');
+  });
+
+  // Previous button
+  document.getElementById('prev-btn').addEventListener('click', previousQuestion);
+
+  // Retake
+  document.getElementById('retake-btn').addEventListener('click', () => {
+    if (confirm('Retake the audit? Your current results will be cleared.')) {
+      resetState();
+      document.getElementById('resume-banner').classList.remove('is-visible');
+      // Reset visuals
+      document.getElementById('progress-fill').style.width = '0%';
+      document.getElementById('index-fill').style.strokeDashoffset = '879.6';
+      showScreen('screen-intro');
+    }
+  });
+
+  // Email form
+  document.getElementById('email-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    if (!email) return;
+    // In production: POST to ESP (Mailchimp/ConvertKit/etc.)
+    const btn = document.getElementById('email-submit');
+    const orig = btn.innerHTML;
+    btn.innerHTML = 'Sent ' + '\u2713';
+    document.getElementById('email-input').value = '';
+    setTimeout(() => { btn.innerHTML = orig; }, 3200);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<script src="js/script.js" defer></script>
+
+
+<script src="js/snipcart-init.js" defer></script>
+</body>
+</html>
