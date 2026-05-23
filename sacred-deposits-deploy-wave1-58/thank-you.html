@@ -82,12 +82,29 @@
     </svg>
     <span class="ty__eyebrow">Sacred Deposits&trade;</span>
     <p class="ty__script">Thank you</p>
-    <h1 class="ty__title">Thank you for your <em>submission</em>.</h1>
+    <h1 class="ty__title" id="tyTitle">Thank you for your <em>submission</em>.</h1>
     <div class="ty__rule"></div>
-    <p class="ty__body">Your response has been received with care.</p>
-    <p class="ty__body ty__body--soft">We&rsquo;re grateful you took the time to connect with Sacred Deposits.</p>
+    <p class="ty__body" id="tyBody">Your response has been received with care.</p>
+    <p class="ty__body ty__body--soft" id="tyBodySoft">We&rsquo;re grateful you took the time to connect with Sacred Deposits.</p>
     <a href="/" class="ty__btn">Return to Sacred Deposits</a>
     <p class="ty__sig">&mdash; Yvonne G. Hall</p>
   </main>
+  <script>
+    (function () {
+      var p = new URLSearchParams(window.location.search);
+      var ref = document.referrer || '';
+      var fromStripe = ref.indexOf('stripe.com') > -1; // checkout.stripe.com or buy.stripe.com
+      // Stripe sends buyers here with ?session_id=... ; ?purchase=1 also works; or arriving from Stripe.
+      if (p.get('session_id') || p.get('purchase') === '1' || fromStripe) {
+        var t = document.getElementById('tyTitle');
+        var b = document.getElementById('tyBody');
+        var s = document.getElementById('tyBodySoft');
+        if (t) t.innerHTML = 'Thank you for your <em>purchase</em>.';
+        if (b) b.textContent = 'Your order has been received.';
+        if (s) s.innerHTML = 'A receipt and confirmation are on their way to your email \u2014 we\u2019re honored to be part of your covenant.';
+        document.title = 'Thank You for Your Purchase \u2014 Sacred Deposits\u2122';
+      }
+    })();
+  </script>
 </body>
 </html>
