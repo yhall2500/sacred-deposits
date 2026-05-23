@@ -13,7 +13,7 @@
   'use strict';
 
   var STORAGE_KEY = 'sd_cart_v1';
-  var ENDPOINT = '/.netlify/functions/create-checkout';
+  var ENDPOINT = '/.netlify/functions/create-checkout-session';
 
   /* ───────────────────────────────────────────────────────────────
    * STRIPE PRICE IDs — paste your real price_… IDs from the Stripe
