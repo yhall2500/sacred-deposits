@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+
+<style>
+/* ════════════════════════════════════════════════════════════════
+   THE FRAMEWORKS — Sacred Deposits™ IP Architecture
+═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --ivory:    #FBF4E6;
+  --ivory-2:  #F5EFE0;
+  --ivory-3:  #EFE6CF;
+  --chalk:    #F9F7F2;
+  --ink:      #071432;
+  --navy:     #071432;
+  --navy-2:   #0b1e40;
+  --navy-3:   #040c22;
+  --navy-4:   #02060f;
+  --gold:     #B89045;
+  --gold-s:   #D1AD66;
+  --gold-d:   #8A6A28;
+  --muted:    #6F6250;
+  --muted-2:  #8A7E68;
+  --rule:     rgba(184,144,69,.22);
+  --rule-d:   rgba(184,144,69,.12);
+
+  --serif:  "Cormorant Garamond", Georgia, serif;
+  --caps:   "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --script: "Allura", "Pinyon Script", cursive;
+  --sans:   "Manrope", -apple-system, Helvetica, sans-serif;
+
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--gold); color: var(--ivory); }
+
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999; opacity: .14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   HEADER — production system
+════════════════════════════════════════════════════════════════ */
+.header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 200;
+  background: transparent;
+  border-bottom: none;
+  height: 92px;
+  display: flex; align-items: center;
+  padding: 0 72px;
+}
+.brand { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.brand__ring {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border: none; border-radius: 0; background: none;
+}
+.brand__ring img { width: 52px; height: 52px; }
+.brand__name {
+  font-family: var(--serif);
+  font-size: 1.42rem; font-weight: 500;
+  letter-spacing: .30em; text-transform: uppercase;
+  color: var(--ink); line-height: 1;
+}
+.brand__name sup { font-size: .45em; vertical-align: super; }
+
+.nav { display: flex; align-items: center; justify-content: flex-end; flex: 1; gap: 48px; padding: 0; margin-right: 24px; }
+.nav a {
+  font-family: var(--sans); font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--navy); opacity: 1;
+  transition: opacity .2s;
+  position: relative; padding-bottom:3px;
+  text-shadow: 0 1px 3px rgba(251,244,230,0.8);
+}
+.nav a::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: var(--navy);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .3s;
+}
+.nav a:hover { opacity: 0.7; }
+.nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav a.is-active::after { transform: scaleX(1); }
+.nav__cta {
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: #ffffff; padding: 12px 24px;
+  background: var(--gold); border: none;
+  white-space: nowrap;
+  transition: background .3s;
+}
+.nav__cta:hover { background: var(--gold-s); }
+
+/* ════════════════════════════════════════════════════════════════
+   MASTHEAD
+════════════════════════════════════════════════════════════════ */
+.masthead {
+  position: relative;
+  padding:140px 60px 68px;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 30%, rgba(184,144,69,.06) 0%, transparent 70%),
+    var(--ivory);
+  text-align: center;
+  overflow: hidden;
+}
+.masthead__bg-mark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px; height: 720px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  opacity: .35;
+  z-index: 1;
+  pointer-events: none;
+}
+.masthead__bg-mark::before {
+  content: "";
+  position: absolute; inset: 60px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+}
+.masthead__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.masthead__eyebrow {
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:32px;
+  display: inline-flex; align-items: center; gap: 18px;
+  opacity: 0;
+  animation: rise 1.4s var(--ease) 0.2s forwards;
+}
+.masthead__eyebrow::before,
+.masthead__eyebrow::after {
+  content: "";
+  width: 36px; height: 1px;
+  background: var(--gold); opacity: .6;
+}
+.masthead__script {
+  font-family: var(--script);
+  font-size: 2.4rem;
+  color: var(--gold);
+  margin-bottom:22px;
+  display: block;
+  opacity: 0;
+  animation: rise 1.6s var(--ease) 0.4s forwards;
+}
+.masthead__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 7vw, 7.4rem);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  margin-bottom:36px;
+  opacity: 0;
+  animation: rise 1.8s var(--ease) 0.55s forwards;
+}
+.masthead__title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.masthead__sub {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.55;
+  color: #3a3525;
+  max-width: 60ch;
+  margin: 0 auto 56px;
+  opacity: 0;
+  animation: rise 1.8s var(--ease) 0.75s forwards;
+}
+.masthead__ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  opacity: 0;
+  animation: rise 1.6s var(--ease) 0.9s forwards;
+}
+.masthead__ornament .o-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: .55; }
+.masthead__ornament .o-line { width: 72px; height: 1px; background: var(--gold); opacity: .35; }
+.masthead__ornament .o-dia { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); opacity: .8; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TABLE OF CONTENTS — orienting overview, 4 anchor columns
+════════════════════════════════════════════════════════════════ */
+.toc-frame {
+  background: var(--ivory);
+  padding:80px 60px 88px;
+}
+.toc-frame__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-item {
+  padding:44px 36px 48px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  border-radius: 4px;
+  margin: 8px;
+  overflow: hidden;
+}
+.toc-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px -28px rgba(7,20,50,.18);
+}
+.toc-item::after {
+  content: ""; position: absolute; top: 0; left: 36px;
+  width: 44px; height: 3px;
+  background: var(--gold-s); opacity: .9;
+}
+/* 4 variants — visually distinct but harmonious */
+.toc-item--one {
+  background: #FDFBF6;
+  border: 1px solid rgba(184,144,69,.22);
+}
+.toc-item--two {
+  background: linear-gradient(168deg, #0E1A38 0%, #08101f 100%);
+  border: 1px solid rgba(184,144,69,.32);
+  color: var(--ivory);
+}
+.toc-item--two .toc-item__label { color: var(--gold-s); }
+.toc-item--two .toc-item__title { color: var(--ivory); }
+.toc-item--two .toc-item__meta { color: rgba(251,244,230,.65); }
+.toc-item--two .toc-item__desc { color: rgba(251,244,230,.85); }
+.toc-item--two .toc-item__cta { color: var(--gold-s); }
+.toc-item--two .toc-item__cta:hover { color: var(--ivory); }
+.toc-item--three {
+  background: linear-gradient(165deg, #F5EFE0 0%, #F0E7D2 100%);
+  border: 1px solid rgba(184,144,69,.28);
+}
+.toc-item--four {
+  background: #F4ECD8;
+  border: 1px solid rgba(184,144,69,.32);
+}
+.toc-item:last-child { border-right: none; }
+.toc-item:hover { background: rgba(255,255,255,.5); }
+.toc-item:hover .toc-item__title { color: var(--gold); }
+.toc-item:hover .toc-item__arrow { transform: translateX(8px); }
+
+.toc-item__no {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.toc-item__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom:8px;
+  transition: color .35s var(--ease);
+}
+.toc-item__count {
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .36em; text-transform: uppercase;
+  color: var(--muted);
+}
+.toc-item__desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: auto;
+  padding-top:14px;
+}
+.toc-item__arrow {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gold);
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top:14px;
+  transition: transform .35s var(--ease);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   THE FIVE DEPOSITS — foundation, vertical chapter layout
+════════════════════════════════════════════════════════════════ */
+.deposits-section {
+  background: var(--ivory);
+  padding:88px 60px 70px;
+}
+.deposits-section__inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom:58px;
+  max-width: 740px;
+  margin-left: auto; margin-right: auto;
+}
+.section-eyebrow {
+  font-family: var(--sans);
+  font-size: .66rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:26px;
+  display: inline-flex; align-items: center; gap: 18px;
+}
+.section-eyebrow::before,
+.section-eyebrow::after {
+  content: "";
+  width: 36px; height: 1px;
+  background: var(--gold); opacity: .6;
+}
+.section-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom:28px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: clamp(1.18rem, 1.5vw, 1.4rem);
+  line-height: 1.55;
+  color: #3a3225;
+}
+.anti-section .section-sub{color:rgba(251,244,230,.88);}
+
+.deposits-list {
+  display: flex; flex-direction: column;
+}
+
+.deposit-entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 80px;
+  padding: 50px 56px;
+  margin-bottom: 22px;
+  background: #FDFBF6;
+  border: 1px solid rgba(184,144,69,.22);
+  border-radius: 4px;
+  position: relative;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.deposit-entry::before {
+  content: "";
+  position: absolute;
+  left: -28px; top: 50%;
+  width: 14px; height: 1px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity .4s, width .55s var(--ease);
+}
+.deposit-entry:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -26px rgba(7,20,50,.15); }
+.deposit-entry:hover::before { opacity: 1; width: 18px; }
+.deposit-entry:hover .deposit-entry__name { color: var(--gold); }
+.deposit-entry:last-child { margin-bottom: 0; }
+
+.deposit-entry__left {
+  display: flex; flex-direction: column;
+}
+.deposit-entry__roman {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(4rem, 6vw, 5.4rem);
+  line-height: .9;
+  color: var(--gold);
+  letter-spacing: -.02em;
+  margin-bottom:12px;
+}
+.deposit-entry__label {
+  font-family: var(--caps);
+  font-size: .56rem; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.deposit-entry__right {
+  padding-top:4px;
+}
+.deposit-entry__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin-bottom:22px;
+  transition: color .4s var(--ease);
+}
+.deposit-entry__name em { font-style: italic; color: var(--gold); }
+.deposit-entry__name sup { font-size: .42em; vertical-align: super; }
+.deposit-entry__body {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.18rem;
+  line-height: 1.65;
+  color: #3a3525;
+  margin-bottom:24px;
+  max-width: 56ch;
+}
+.deposit-entry__body em { font-style: italic; color: var(--gold); }
+.deposit-entry__practice {
+  display: flex; align-items: baseline; gap: 18px;
+  padding-top:22px;
+  border-top: 1px solid var(--rule);
+  max-width: 56ch;
+}
+.deposit-entry__practice-label {
+  font-family: var(--sans);
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.deposit-entry__practice-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   THE ANTI-PATTERNS — dark section, villain grid
+════════════════════════════════════════════════════════════════ */
+.anti-section {
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(184,144,69,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 80%, rgba(184,144,69,.04) 0%, transparent 60%),
+    linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 50%, var(--navy-4) 100%);
+  color: var(--ivory);
+  padding:75px 60px 95px;
+  position: relative;
+  overflow: hidden;
+}
+.anti-section::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .4;
+  pointer-events: none;
+}
+.anti-section__inner {
+  position: relative; z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.anti-section .section-eyebrow { color: rgba(209,173,102,.85); }
+.anti-section .section-eyebrow::before,
+.anti-section .section-eyebrow::after { background: rgba(209,173,102,.5); }
+.anti-section .section-title { color: var(--ivory); }
+.anti-section .section-title em { color: var(--gold-s); }
+.anti-section .section-sub { color: rgba(251,244,230,.72); }
+
+.anti-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.anti-card {
+  padding:36px 36px 38px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(209,173,102,.16);
+  transition: all .5s var(--ease);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.anti-card:hover {
+  background: rgba(255,255,255,.045);
+  border-color: rgba(209,173,102,.4);
+  transform: translateY(-4px);
+}
+.anti-card__num {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-size: .52rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: rgba(209,173,102,.6);
+}
+.anti-card__num::after {
+  content: ""; flex: 1; height: 1px;
+  background: rgba(209,173,102,.16);
+}
+.anti-card__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.16;
+  letter-spacing: -.012em;
+  color: var(--ivory);
+}
+.anti-card__name em { font-style: italic; color: var(--gold-s); }
+.anti-card__name sup { font-size: .4em; vertical-align: super; color: var(--gold-s); }
+.anti-card__desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  color: rgba(251,244,230,.74);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   THE OPERATING SYSTEM — light section, framework cards
+════════════════════════════════════════════════════════════════ */
+.os-section {
+  background: var(--chalk);
+  padding:70px 60px 82px;
+}
+.os-section__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.os-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.os-card {
+  background: var(--ivory);
+  padding:44px 38px 42px;
+  border: 1px solid var(--rule-d);
+  display: flex; flex-direction: column; gap: 18px;
+  transition: all .55s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.os-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px; width: 0;
+  background: var(--gold);
+  transition: width .6s var(--ease);
+}
+.os-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 30px 60px -30px rgba(7,20,50,.18);
+}
+.os-card:hover::before { width: 100%; }
+.os-card:hover .os-card__name { color: var(--gold); }
+
+.os-card__no {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.os-card__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.16;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  transition: color .4s var(--ease);
+}
+.os-card__name sup { font-size: .4em; vertical-align: super; }
+.os-card__desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.08rem;
+  line-height: 1.62;
+  color: #3a3525;
+  flex: 1;
+}
+.os-card__desc em { font-style: italic; color: var(--gold); }
+.os-card__cta {
+  font-family: var(--sans);
+  font-size: .56rem; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding-top:16px;
+  border-top: 1px solid var(--rule);
+  transition: color .35s, gap .35s var(--ease);
+}
+.os-card__cta::after {
+  content: "→";
+  font-family: var(--serif);
+  font-size: .95rem; letter-spacing: 0;
+  font-weight: 400;
+}
+.os-card:hover .os-card__cta { color: var(--gold-s); gap: 16px; }
+
+/* ════════════════════════════════════════════════════════════════
+   THE PROTOCOLS — clean editorial roster, left-aligned, minimal
+════════════════════════════════════════════════════════════════ */
+.protocols-section {
+  background: var(--ivory);
+  padding:70px 60px 70px;
+}
+.protocols-section__inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.protocol-chapter {
+  padding: 60px 64px 60px;
+  margin-bottom: 22px;
+  background: linear-gradient(165deg, #F5EFE0 0%, #F0E7D2 100%);
+  border: 1px solid rgba(184,144,69,.28);
+  border-radius: 4px;
+  position: relative;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  overflow: hidden;
+}
+.protocol-chapter::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--gold);
+  opacity: .65;
+}
+
+.protocol-chapter:last-child { margin-bottom: 0; }
+.protocol-chapter:first-of-type { padding-top:30px; }
+
+.protocol-chapter:hover .protocol-chapter__name { color: var(--gold); }
+.protocol-chapter::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 0; height: 1px;
+  background: var(--gold);
+  opacity: 0;
+  transition: width .55s var(--ease), opacity .4s;
+}
+.protocol-chapter:hover::before { width: 18px; opacity: 1; }
+
+.protocol-chapter__cap {
+  font-family: var(--sans);
+  font-size: .58rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom:26px;
+  display: inline-flex; align-items: center; gap: 16px;
+}
+.protocol-chapter__cap::before {
+  content: ""; width: 32px; height: 1px;
+  background: var(--gold); opacity: .55;
+}
+
+.protocol-chapter__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom:28px;
+  transition: color .4s var(--ease);
+  max-width: 22ch;
+}
+.protocol-chapter__name em { font-style: italic; color: var(--gold); }
+.protocol-chapter__name sup { font-size: .4em; vertical-align: super; }
+
+.protocol-chapter__lede {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #3a3525;
+  max-width: 60ch;
+  margin-bottom:36px;
+}
+.protocol-chapter__lede em { font-style: italic; color: var(--gold); }
+
+.protocol-chapter__cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom:6px;
+  transition: color .35s, border-color .35s, gap .35s var(--ease);
+}
+.protocol-chapter__cta::after {
+  content: "→"; font-family: var(--serif);
+  font-size: 1.05rem; letter-spacing: 0; font-weight: 400;
+}
+.protocol-chapter__cta:hover { color: var(--gold); border-color: var(--gold); gap: 22px; }
+
+/* ════════════════════════════════════════════════════════════════
+   ASSESSMENT CTA — drive to EWD-1 diagnostic
+════════════════════════════════════════════════════════════════ */
+.assessment-cta {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(184,144,69,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 50% 90%, rgba(184,144,69,.06) 0%, transparent 60%),
+    linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 50%, var(--navy-4) 100%);
+  color: var(--ivory);
+  padding:95px 60px 108px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.assessment-cta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .4;
+}
+.assessment-cta__inner {
+  position: relative; z-index: 2;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.assessment-cta__eyebrow {
+  font-family: var(--sans);
+  font-size: .62rem; font-weight: 600;
+  letter-spacing: .46em; text-transform: uppercase;
+  color: var(--gold-s);
+  margin-bottom:30px;
+  display: inline-flex; align-items: center; gap: 16px;
+}
+.assessment-cta__eyebrow::before,
+.assessment-cta__eyebrow::after {
+  content: ""; width: 40px; height: 1px;
+  background: rgba(209,173,102,.5);
+}
+.assessment-cta__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ivory);
+  margin-bottom:32px;
+}
+.assessment-cta__title em { font-style: italic; color: var(--gold-s); }
+.assessment-cta__body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.6;
+  color: rgba(251,244,230,.78);
+  margin-bottom:56px;
+  max-width: 60ch;
+  margin-left: auto; margin-right: auto;
+}
+.assessment-cta__buttons {
+  display: inline-flex; gap: 18px; flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans); font-size: .68rem; font-weight: 700;
+  letter-spacing: .24em; text-transform: uppercase;
+  padding: 17px 28px;
+  justify-content: center;
+  transition: background .35s, color .35s, border-color .35s, transform .25s;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary-light {
+  background: var(--gold);
+  color: var(--ivory);
+  border: 1.5px solid var(--gold);
+}
+.btn--primary-light:hover { background: var(--gold-s); border-color: var(--gold-s); }
+.btn--ghost-light {
+  background: transparent;
+  color: var(--ivory);
+  border: 1.5px solid rgba(251,244,230,.3);
+}
+.btn--ghost-light:hover {
+  background: var(--ivory); color: var(--ink); border-color: var(--ivory);
+}
+.btn__arrow{display:inline-block;width:8px;height:8px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);margin-left:2px;background:transparent;transition:margin-left .35s var(--ease),transform .35s var(--ease)}
+.btn__arrow::after{display:none}
+.btn:hover .btn__arrow{margin-left:8px;transform:rotate(45deg)}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER — homepage system
+════════════════════════════════════════════════════════════════ */
+.site-footer {
+  background:
+    radial-gradient(ellipse at 75% 5%, rgba(184,144,69,.03) 0%, transparent 50%),
+    linear-gradient(170deg, #0b1e40 0%, #071432 65%, #040c22 100%);
+  color: var(--ivory); padding:88px 80px 80px; position: relative;
+}
+.site-footer::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: .35;
+}
+.site-footer__inner { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; }
+.site-footer__main {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 72px; padding-bottom:72px;
+}
+.site-footer__brand { display: flex; flex-direction: column; gap: 14px; }
+.site-footer__logo-row { display: flex; align-items: center; gap: 12px; }
+.site-footer__logo { width: 34px; height: 34px; flex-shrink: 0; }
+.site-footer__name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 1rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(209,173,102,.80);
+}
+.site-footer__name sup { font-size: .38em; vertical-align: super; }
+.site-footer__tagline {
+  font-family: var(--serif); font-style: italic;
+  font-size: .88rem; color: rgba(251,244,230,.38); max-width: 240px; line-height: 1.6;
+}
+.site-footer__col { display: flex; flex-direction: column; }
+.site-footer__heading {
+  font-family: var(--sans); font-size: .54rem; font-weight: 600;
+  letter-spacing: .30em; text-transform: uppercase;
+  color: rgba(209,173,102,.62); margin-bottom:26px;
+}
+.site-footer__col a {
+  font-family: var(--serif); font-size: .95rem; line-height: 1.4;
+  color: rgba(251,244,230,.62); padding: 7px 0;
+  transition: color .3s;
+}
+.site-footer__col a:hover { color: var(--gold-s); }
+.site-footer__email { font-family: var(--sans) !important; font-size: .80rem !important; color: rgba(209,173,102,.52) !important; margin-top:6px; }
+.site-footer__email:hover { color: var(--gold-s) !important; }
+.site-footer__legal {
+  border-top: 1px solid rgba(209,173,102,.08);
+  padding: 36px 0 22px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 16px;
+}
+.site-footer__legal-left { display: flex; flex-direction: column; gap: 5px; }
+.site-footer__copy { font-family: var(--sans); font-size: .75rem; color: rgba(251,244,230,.32); margin-bottom: 4px; }
+.site-footer__copy-tm { font-family: var(--sans); font-size: .7rem; color: rgba(251,244,230,.28); line-height: 1.6; max-width: 580px; }
+.site-footer__terms { font-family: var(--sans); font-size: .75rem; color: rgba(251,244,230,.32); display: flex; align-items: center; gap: 8px; }
+.site-footer__terms a { color: rgba(251,244,230,.32); transition: color .3s; }
+.site-footer__terms a:hover { color: var(--gold-s); }
+.site-footer__dot { color: rgba(251,244,230,.20); }
+.site-footer__contact {
+  font-family: var(--sans); font-size: .75rem;
+  color: var(--gold-s); opacity: .60;
+  border-bottom: 1px solid rgba(209,173,102,.20);
+  padding-bottom:2px; transition: opacity .3s;
+}
+.site-footer__contact:hover { opacity: 1; }
+.site-footer__trademarks {
+  font-family: var(--sans); font-size: .70rem; line-height: 1.8;
+  color: rgba(251,244,230,.22); max-width: 980px; margin-top:24px;
+}
+.site-footer__trademarks sup { font-size: .50em; vertical-align: super; }
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .header { padding: 0 36px; }
+  .nav { gap: 36px; }
+  .masthead { padding:118px 40px 90px }
+  .toc-frame { padding:60px 40px 68px; }
+  .toc-item { padding:36px 28px 40px; }
+  .deposits-section, .anti-section, .os-section, .protocols-section { padding-left: 40px; padding-right: 40px; }
+  .deposit-entry { grid-template-columns: 160px 1fr; gap: 56px; }
+  .os-grid { gap: 32px; }
+  .protocol-chapter { padding: 64px 0; }
+  .assessment-cta { padding:75px 40px 88px; }
+  .site-footer { padding:68px 40px 70px; }
+}
+@media (max-width: 980px) {
+  .toc-grid { grid-template-columns: repeat(2, 1fr); }
+  .toc-item { border-right: none; border-bottom: 1px solid var(--rule); }
+  .toc-item:nth-child(2n) { border-right: none; }
+  .toc-item:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .toc-item:nth-last-child(-n+2) { border-bottom: none; }
+  .anti-grid { gap: 24px; }
+  .os-grid { grid-template-columns: repeat(2, 1fr); }
+  .protocol-chapter__name { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
+  .site-footer__main { grid-template-columns: 1fr 1fr; gap: 44px 28px; }
+  .masthead__bg-mark { width: 540px; height: 540px; }
+}
+@media (max-width: 720px) {
+  .header { padding: 0 20px; height: 78px; }
+  .nav { display: none; }
+  .nav__cta { padding: 13px 22px; font-size: .66rem; }
+  .masthead { padding:118px 24px 70px }
+  .masthead__title { font-size: 2.6rem; }
+  .masthead__sub { font-size: 1.05rem; }
+  .masthead__bg-mark { display: none; }
+  .toc-frame { padding:40px 24px 80px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .toc-item { border-right: none !important; border-bottom: 1px solid var(--rule); padding:32px 4px 36px; }
+  .toc-item:last-child { border-bottom: none; }
+  .deposits-section, .anti-section, .os-section, .protocols-section { padding:80px 24px 68px; }
+  .section-title { font-size: 2.2rem; }
+  .deposit-entry { grid-template-columns: 1fr; gap: 20px; padding: 44px 0; }
+  .deposit-entry__roman { font-size: 3.4rem; }
+  .deposit-entry__name { font-size: 1.7rem; }
+  .deposit-entry__body { font-size: 1.08rem; }
+  .anti-grid { grid-template-columns: 1fr; gap: 18px; }
+  .anti-card { padding:28px 24px 30px; }
+  .os-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .protocol-chapter { padding: 50px 0; }
+  
+  .protocol-chapter__name { font-size: 1.9rem; }
+  .protocol-chapter__lede { font-size: 1.08rem; }
+  .assessment-cta { padding:68px 24px 88px; }
+  .assessment-cta__title { font-size: 2.2rem; }
+  .assessment-cta__buttons { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; padding: 16px 24px; }
+  .site-footer { padding:80px 24px 50px; }
+  .site-footer__main { grid-template-columns: 1fr; gap: 36px; padding-bottom:40px; }
+  .site-footer__legal { flex-direction: column; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANIMATION SYSTEM
+════════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.2s var(--anim-ease), transform 1.2s var(--anim-ease);
+  will-change: opacity, transform;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal--slow { transition-duration: 1.6s; }
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(20px);
+  transition: opacity 1.4s var(--anim-ease), transform 1.4s var(--anim-ease);
+}
+.reveal--scale.in-view { opacity: 1; transform: scale(1) translateY(0); }
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--anim-ease), transform 1s var(--anim-ease);
+}
+.stagger.in-view > *:nth-child(1)  { transition-delay: 0s; }
+.stagger.in-view > *:nth-child(2)  { transition-delay: 0.08s; }
+.stagger.in-view > *:nth-child(3)  { transition-delay: 0.16s; }
+.stagger.in-view > *:nth-child(4)  { transition-delay: 0.24s; }
+.stagger.in-view > *:nth-child(5)  { transition-delay: 0.32s; }
+.stagger.in-view > *:nth-child(6)  { transition-delay: 0.40s; }
+.stagger.in-view > *:nth-child(7)  { transition-delay: 0.48s; }
+.stagger.in-view > *:nth-child(8)  { transition-delay: 0.56s; }
+.stagger.in-view > *:nth-child(9)  { transition-delay: 0.64s; }
+.stagger.in-view > *:nth-child(10) { transition-delay: 0.72s; }
+.stagger.in-view > * { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal--scale, .stagger > *,
+  .masthead__eyebrow, .masthead__script, .masthead__title, .masthead__sub, .masthead__ornament {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══ MOBILE EDITORIAL REFINEMENTS ═══ */
+
+/* 820px and below — primary mobile threshold */
+@media (max-width: 820px) {
+  /* Hero refinements — keep cinematic, give breathing room */
+  .hero {
+    padding:130px 28px 68px !important;
+  }
+  .hero__inner { max-width: 580px; }
+  .hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -.022em !important;
+    margin-bottom:28px;
+  }
+  .hero__sub {
+    font-size: 1.18rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+    margin-bottom:40px;
+  }
+  .hero__cap {
+    font-size: .54rem !important;
+    letter-spacing: .42em !important;
+    margin-bottom:24px;
+  }
+  .hero__cap::before, .hero__cap::after { width: 32px; }
+  .hero__script { font-size: 2rem !important; }
+  .hero__ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 14px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .hero__ctas .btn { width: 100%; }
+}
+
+/* 640px and below — phone */
+@media (max-width: 640px) {
+  .hero {
+    padding:115px 24px 58px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.4rem, 10vw, 3.6rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.12rem !important;
+    line-height: 1.62 !important;
+    max-width: 38ch !important;
+  }
+}
+
+/* 480px and below — mid phone */
+@media (max-width: 480px) {
+  .hero {
+    padding:110px 22px 90px !important;
+  }
+  .hero__title {
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem) !important;
+    line-height: 1.02 !important;
+  }
+  .hero__sub {
+    font-size: 1.08rem !important;
+  }
+  .hero__script { font-size: 1.8rem !important; }
+}
+
+/* 390px and below — smallest phones */
+@media (max-width: 390px) {
+  .hero {
+    padding:100px 20px 80px !important;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+  }
+  .hero__sub {
+    font-size: 1.02rem !important;
+    line-height: 1.65 !important;
+  }
+}
+
+/* Cross-cutting hero variants — apply to specific page hero classes */
+@media (max-width: 820px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    line-height: 1 !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub, .legal-hero__date {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.3rem, 10vw, 3.4rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero, .book-hero, .vault-hero, .intro, .legal-hero {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .about-hero__title, .book-hero__title, .vault-hero__title,
+  .intro__title, .legal-hero__title {
+    font-size: clamp(2.1rem, 10.5vw, 3rem) !important;
+    letter-spacing: -.018em !important;
+  }
+  .about-hero__sub, .book-hero__sub, .vault-hero__sub,
+  .intro__sub, .legal-hero__sub {
+    font-size: 1.06rem !important;
+  }
+}
+
+/* Improve readability on long-form body text across all pages */
+@media (max-width: 640px) {
+  p {
+    line-height: 1.7;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV DROPDOWNS — Sacred Deposits header navigation
+   ═══════════════════════════════════════════════════════════════ */
+.nav-group { position: relative; }
+.nav-group .nav-link {
+  font-family: var(--sans);
+  font-size: .64rem; font-weight: 700;
+  letter-spacing: .20em; text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: none; text-decoration: none;
+  padding: 8px 0; margin: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .3s var(--ease);
+  position: relative;
+  white-space: nowrap;
+}
+.nav-group .nav-link:hover { color: var(--gold); }
+.nav-group .nav-link.is-active { color: var(--gold); }
+.nav-group .nav-link.is-active::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1.5px; background: var(--gold); opacity: 1;
+}
+.nav-caret {
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .75;
+  transition: transform .3s var(--ease), opacity .3s;
+}
+.nav-group:hover .nav-caret { transform: rotate(225deg) translateY(0); opacity: 1; }
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  margin-top: 4px;
+  background: var(--ivory);
+  border: 1px solid rgba(184,144,69,.22);
+  box-shadow: 0 22px 60px -28px rgba(7,20,50,.18), 0 4px 14px -8px rgba(7,20,50,.06);
+  padding: 12px 0;
+  min-width: 240px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s var(--ease), visibility .25s var(--ease), transform .25s var(--ease);
+  z-index: 100;
+  pointer-events: none;
+}
+.nav-group.has-dropdown:hover .nav-dropdown,
+.nav-group.has-dropdown:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.nav-dropdown::before {
+  /* Bridge gap so hover doesn't break between link and dropdown */
+  content: ""; position: absolute;
+  top: -10px; left: 0; right: 0; height: 10px;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 11px 28px;
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color .2s, background .2s, padding-left .25s var(--ease);
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  color: var(--gold);
+  background: rgba(184,144,69,.04);
+  padding-left: 32px;
+}
+
+/* Mobile menu sub-item styling */
+.mobile-menu__sub {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--muted);
+  padding: 8px 0 8px 22px;
+  text-decoration: none;
+  border-left: 1px solid rgba(184,144,69,.22);
+  margin-left: 6px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  transition: color .2s, border-color .25s;
+}
+.mobile-menu__sub:hover { color: var(--gold); border-left-color: var(--gold); }
+
+/* Hide dropdowns on small screens — mobile menu shows everything inline */
+@media (max-width: 980px) {
+  .nav-dropdown { display: none; }
+  .nav-caret { display: none; }
+}
+
+
+/* FORCE: dropdown text must always be dark — overrides any dark-header inheritance */
+.nav-dropdown a,
+body.dark-header .nav .nav-dropdown a,
+body.dark-header .nav-group .nav-dropdown a {
+  color: #071432 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+.nav-dropdown a:hover,
+body.dark-header .nav-dropdown a:hover {
+  color: var(--gold) !important;
+}
+
+/* Mobile header responsive — added for viewport overflow fix */
+@media (max-width: 640px){
+  .header{padding:0 20px !important}
+  .brand{gap:10px !important}
+  .brand__ring,.brand__ring img{width:42px !important;height:42px !important}
+  .brand__name{font-size:1.05rem !important;letter-spacing:.22em !important}
+}
+@media (max-width: 480px){
+  .header{padding:0 16px !important}
+  .brand{gap:8px !important}
+  .brand__ring,.brand__ring img{width:38px !important;height:38px !important}
+  .brand__name{font-size:.85rem !important;letter-spacing:.18em !important}
+  .brand__name sup{font-size:.4em !important}
+}
+@media (max-width: 380px){
+  .brand__name{font-size:.78rem !important;letter-spacing:.14em !important}
+}
+</style>
+<title>The Frameworks — Christian Marriage Communication & Repair | Sacred Deposits™</title>
+<meta name="description" content="The Sacred Deposits™ frameworks: the Five Deposits™, Anti-Patterns™, the Repair Cycle™, and the Sacred Safety Model — a complete architecture for covenant marriage."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<meta name="author" content="Yvonne G. Hall"/>
+<link rel="canonical" href="https://sacreddeposit.com/frameworks.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" href="assets/images/logo.webp"/>
+<link rel="apple-touch-icon" href="assets/images/logo.webp"/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Sacred Deposits"/>
+<meta property="og:title" content="The Frameworks — Christian Marriage Communication & Repair | Sacred Deposits™"/>
+<meta property="og:description" content="The Sacred Deposits™ frameworks: the Five Deposits™, Anti-Patterns™, the Repair Cycle™, and the Sacred Safety Model — a complete architecture for covenant marriage."/>
+<meta property="og:url" content="https://sacreddeposit.com/frameworks.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The Frameworks — Christian Marriage Communication & Repair | Sacred Deposits™"/>
+<meta name="twitter:description" content="The Sacred Deposits™ frameworks: the Five Deposits™, Anti-Patterns™, the Repair Cycle™, and the Sacred Safety Model — a complete architecture for covenant marriage."/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sacreddeposit.com/#organization",
+      "name": "EQGenix Inc.",
+      "url": "https://sacreddeposit.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "founder": {
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
+      },
+      "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
+      "knowsLanguage": [
+        "English",
+        "Spanish"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
+      "name": "Yvonne G. Hall",
+      "givenName": "Yvonne",
+      "familyName": "Hall",
+      "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
+      "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
+      "url": "https://sacreddeposit.com/about.html",
+      "sameAs": [],
+      "knowsAbout": [
+        "Christian marriage",
+        "Covenant marriage",
+        "Marriage communication",
+        "Emotional intimacy",
+        "Relationship repair",
+        "Applied behavioral science",
+        "Marriage ministry"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EQGenix Inc."
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sacreddeposit.com/frameworks.html#page",
+      "url": "https://sacreddeposit.com/frameworks.html",
+      "name": "The Frameworks \u2014 Christian Marriage Communication & Repair | Sacred Deposits\u2122",
+      "isPartOf": {
+        "@id": "https://sacreddeposit.com/#website"
+      },
+      "about": {
+        "@id": "https://sacreddeposit.com/#organization"
+      }
+    }
+  ]
+}
+</script>
+
+<style id="launch-strip-style">
+.launch-strip { background: linear-gradient(90deg, #02060f 0%, #071432 50%, #02060f 100%); color: var(--ivory, #FBF4E6); border-bottom: 1px solid rgba(184,144,69,.28); position: fixed; top: 0; left: 0; right: 0; z-index: 999; padding: 9px 24px; font-family: var(--serif, "Cormorant Garamond", serif); font-size: .92rem; }
+.launch-strip__inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; line-height: 1.4; }
+.launch-strip__inner > * { line-height: 1.4; }
+.launch-strip__date { line-height: 1.4; transform: translateY(1px); }
+.launch-strip__msg, .launch-strip__sep, .launch-strip__cta { line-height: 1.4; }
+.launch-strip__pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #D1AD66; box-shadow: 0 0 0 0 rgba(209,173,102,.7); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(209,173,102,.7); } 70% { box-shadow: 0 0 0 8px rgba(209,173,102,0); } 100% { box-shadow: 0 0 0 0 rgba(209,173,102,0); } }
+.launch-strip__date { font-family: var(--caps, "Cinzel", serif); font-size: .58rem; font-weight: 600; letter-spacing: .42em; text-transform: uppercase; color: #D1AD66; }
+.launch-strip__sep { color: rgba(251,244,230,.4); }
+.launch-strip__msg { font-style: italic; color: rgba(251,244,230,.92); }
+.launch-strip__msg em { color: #D1AD66; font-style: italic; }
+.launch-strip__cta { color: #D1AD66; text-decoration: underline; text-decoration-color: rgba(209,173,102,.35); text-underline-offset: 3px; font-style: italic; transition: text-decoration-color .3s ease; }
+.launch-strip__cta:hover { text-decoration-color: #D1AD66; }
+.header { top: 38px !important; }
+body { padding-top: 38px; }
+@media (max-width: 720px) {
+  .launch-strip { padding: 8px 14px; font-size: .82rem; }
+  .launch-strip__inner { gap: 6px; }
+  .launch-strip__date { font-size: .52rem; letter-spacing: .36em; }
+  .launch-strip__sep, .launch-strip__pulse { display: none; }
+  .header { top: 46px !important; }
+  body { padding-top: 46px; }
+}
+</style>
+
+</head>
+<body>
+<script src="snipcart-config.js"></script>
+<div class="launch-strip" role="banner" aria-label="Order announcement">
+  <div class="launch-strip__inner">
+    <span class="launch-strip__pulse" aria-hidden="true"></span>
+    <span class="launch-strip__date">Now Available</span>
+    <span class="launch-strip__sep">·</span>
+    <span class="launch-strip__msg"><em>Sacred Deposits</em><sup>&trade;</sup> —</span>
+    <a href="sacred-deposits-hardcover.html" class="launch-strip__cta">order now &rarr;</a>
+  </div>
+</div>
+<header class="header">
+  <a href="index.html" class="brand">
+    <div class="brand__ring"><img src="assets/images/logo.webp" alt="Sacred Deposits — covenant marriage framework"></div>
+    <span class="brand__name">Sacred Deposits<sup>&trade;</sup></span>
+  </a>
+  <nav class="nav">
+    <div class="nav-group has-dropdown">
+      <a href="book.html" class="nav-link">Book<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="book.html" role="menuitem">About the Book</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="book.html#editions" role="menuitem">Order Editions</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="frameworks.html" class="nav-link is-active">Frameworks<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="frameworks.html" role="menuitem">All Frameworks</a>
+        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
+        <a href="reset.html" role="menuitem">The Phases</a>
+        <a href="audit.html" role="menuitem">The Audit</a>
+        <a href="assessment.html" role="menuitem">EWD-1 Assessment</a>
+        <a href="reset.html" role="menuitem">30-Day Reset</a>
+        <a href="legacy-ledger.html" role="menuitem">The Legacy Ledger</a>
+        <a href="manifesto.html" role="menuitem">The Manifesto</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="vault.html" class="nav-link">Vault<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="vault.html" role="menuitem">Inside the Vault</a>
+        <a href="vault.html#reserve" role="menuitem">Reserve Your Place</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group has-dropdown">
+      <a href="podcast.html" class="nav-link">Podcast<span class="nav-caret"></span></a>
+      <div class="nav-dropdown">
+        <a href="podcast.html#featured" role="menuitem">Latest Episode</a>
+        <a href="podcast.html#library" role="menuitem">All Episodes</a>
+        <a href="podcast.html#subscribe" role="menuitem">Subscribe</a>
+      </div>
+    </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="shop.html" class="nav-link">Shop<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="shop.html" role="menuitem">All Products</a>
+        <a href="book.html" role="menuitem">The Book</a>
+        <a href="sacred-union-set.html" role="menuitem">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" role="menuitem">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" role="menuitem">Her Covenant Journal</a>
+        <a href="his-journal.html" role="menuitem">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" role="menuitem">Couples Workbook</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="about.html" class="nav-link">About<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="about.html" role="menuitem">About Yvonne</a>
+        <a href="life-in-darkness.html" role="menuitem">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" role="menuitem">YGH Technology Consultants</a>
+      </div>
+    </div>
+    <div class="nav-group has-dropdown">
+      <a href="contact.html" class="nav-link">Contact<span class="nav-caret" aria-hidden="true"></span></a>
+      <div class="nav-dropdown" role="menu">
+        <a href="contact.html" role="menuitem">Contact</a>
+        <a href="churches.html" role="menuitem">Churches & Groups</a>
+        <a href="licensing.html" role="menuitem">Licensing</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle__label">MENU</span>
+    <span class="nav-toggle__lines" aria-hidden="true"><span></span><span></span></span>
+  </button>
+  <button class="snipcart-checkout cart-icon" aria-label="Open cart" title="Cart">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-icon__count snipcart-items-count" style="display:none;">0</span>
+</button>
+      <a href="vault.html" class="nav__cta">Enter the Vault</a>
+</header>
+
+<!-- Mobile full-screen menu overlay -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Site navigation">
+  <div class="mobile-menu__topbar">
+    <button class="mobile-menu__close" type="button" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-menu__brand">
+      <img src="assets/images/logo.webp" alt="" class="mobile-menu__logo" width="28" height="28">
+      <span class="mobile-menu__brand-name">Sacred Deposits</span>
+    </a>
+    <div class="mobile-menu__actions">
+      <a href="#cart" class="mobile-menu__action mobile-menu__cart snipcart-checkout" aria-label="Cart">
+        <span class="mobile-menu__cart-count snipcart-items-count">0</span>
+      </a>
+    </div>
+  </div>
+  <div class="mobile-menu__panels">
+    <div class="mobile-menu__panel mobile-menu__panel--root is-active" data-panel="root">
+      <nav class="mobile-menu__nav" aria-label="Mobile primary">
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="book">
+          <span>Book</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="frameworks">
+          <span>Frameworks</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="vault">
+          <span>Vault</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="podcast">
+          <span>Podcast</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="shop">
+          <span>Shop</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch" type="button" data-target="about">
+          <span>About</span>
+        </button>
+        <button class="mobile-menu__item mobile-menu__item--branch mobile-menu__item--last" type="button" data-target="contact">
+          <span>Contact</span>
+        </button>
+      </nav>
+      <div class="mobile-menu__footer">
+        <a href="vault.html" class="mobile-menu__cta">Enter the Vault</a>
+        <p class="mobile-menu__signature">A Covenant Framework by EQGenix Inc.</p>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="book" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Book</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Book navigation">
+        <a href="book.html" class="mobile-menu__sublink">About the Book</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="book.html#editions" class="mobile-menu__sublink">Order Editions</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="frameworks" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Frameworks</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Frameworks navigation">
+        <a href="frameworks.html" class="mobile-menu__sublink">All Frameworks</a>
+        <a href="five-deposits.html" class="mobile-menu__sublink">The Five Deposits</a>
+        <a href="audit.html" class="mobile-menu__sublink">The Audit</a>
+        <a href="reset.html" class="mobile-menu__sublink">30-Day Reset</a>
+        <a href="legacy-ledger.html" class="mobile-menu__sublink">The Legacy Ledger</a>
+        <a href="manifesto.html" class="mobile-menu__sublink">The Manifesto</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="vault" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Vault</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Vault navigation">
+        <a href="vault.html" class="mobile-menu__sublink">Inside the Vault</a>
+        <a href="vault.html#reserve" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="podcast" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Podcast</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Podcast navigation">
+        <a href="podcast.html#featured" class="mobile-menu__sublink">Latest Episode</a>
+        <a href="podcast.html#library" class="mobile-menu__sublink">All Episodes</a>
+        <a href="podcast.html#subscribe" class="mobile-menu__sublink">Subscribe</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="shop" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Shop</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Shop navigation">
+        <a href="shop.html" class="mobile-menu__sublink">All Products</a>
+        <a href="sacred-deposits-hardcover.html" class="mobile-menu__sublink">S.D Book</a>
+        <a href="sacred-union-set.html" class="mobile-menu__sublink">Sacred Union Set</a>
+        <a href="sacred-100-founders-edition.html" class="mobile-menu__sublink">Sacred 100 Founders</a>
+        <a href="her-covenant-journal.html" class="mobile-menu__sublink">Her Covenant Journal</a>
+        <a href="his-journal.html" class="mobile-menu__sublink">His Covenant Journal</a>
+        <a href="sacred-deposits-couples-workbook.html" class="mobile-menu__sublink">Couples Workbook</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="about" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">About</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="About navigation">
+        <a href="about.html" class="mobile-menu__sublink">About Yvonne</a>
+        <a href="life-in-darkness.html" class="mobile-menu__sublink">Life in Darkness</a>
+        <a href="ygh-technology-consultants.html" class="mobile-menu__sublink">YGH Technology Consultants</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" data-panel="contact" aria-hidden="true">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-back="root" aria-label="Back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back</span>
+        </button>
+        <span class="mobile-menu__subtitle">Contact</span>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Contact navigation">
+        <a href="contact.html" class="mobile-menu__sublink">Contact</a>
+        <a href="churches.html" class="mobile-menu__sublink">Churches &amp; Groups</a>
+        <a href="press.html" class="mobile-menu__sublink">Press &amp; Media</a>
+        <a href="licensing.html" class="mobile-menu__sublink">Licensing</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<section class="masthead">
+  <div class="masthead__bg-mark"></div>
+  <div class="masthead__inner">
+    <span class="masthead__eyebrow">The Frameworks</span>
+    <span class="masthead__script">The language of covenant.</span>
+    <h1 class="masthead__title">
+      Twenty-one frameworks. <em>One covenant.</em>
+    </h1>
+    <p class="masthead__sub">
+      Most marriages are operating without a language for what's actually happening between them. These are the frameworks that name it — the deposits that build covenant, the patterns that erode it, the systems that run beneath both, and the protocols that protect what God called sacred.
+    </p>
+    <div class="masthead__ornament">
+      <span class="o-dot"></span>
+      <span class="o-line"></span>
+      <span class="o-dia"></span>
+      <span class="o-line"></span>
+      <span class="o-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc-frame">
+  <div class="toc-frame__inner">
+    <div class="toc-grid">
+
+      <a href="#deposits" class="toc-item toc-item--one">
+        <span class="toc-item__no">I.</span>
+        <h3 class="toc-item__title">The Five Deposits</h3>
+        <span class="toc-item__count">5 Frameworks · The Foundation</span>
+        <p class="toc-item__desc">Honor, gentleness, attunement, repair, tenderness — what builds the account.</p>
+        <span class="toc-item__arrow">Read &nbsp;&rarr;</span>
+      </a>
+
+      <a href="#anti-patterns" class="toc-item toc-item--two">
+        <span class="toc-item__no">II.</span>
+        <h3 class="toc-item__title">The Anti-Patterns</h3>
+        <span class="toc-item__count">10 Frameworks · The Silent Threats</span>
+        <p class="toc-item__desc">The villains that erode covenant slowly, until the marriage no longer recognizes itself.</p>
+        <span class="toc-item__arrow">Read &nbsp;&rarr;</span>
+      </a>
+
+      <a href="#operating-system" class="toc-item toc-item--three">
+        <span class="toc-item__no">III.</span>
+        <h3 class="toc-item__title">The Operating System</h3>
+        <span class="toc-item__count">5 Frameworks · The Mechanics</span>
+        <p class="toc-item__desc">The systemic principles that govern how every marriage actually runs — and why most don't know it.</p>
+        <span class="toc-item__arrow">Read &nbsp;&rarr;</span>
+      </a>
+
+      <a href="#protocols" class="toc-item toc-item--four">
+        <span class="toc-item__no">IV.</span>
+        <h3 class="toc-item__title">The Protocols</h3>
+        <span class="toc-item__count">3 Frameworks · The Practice</span>
+        <p class="toc-item__desc">Action protocols for the marriages ready to interrupt the pattern.</p>
+        <span class="toc-item__arrow">Read &nbsp;&rarr;</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- I. THE FIVE DEPOSITS -->
+<section class="deposits-section" id="deposits">
+  <div class="deposits-section__inner">
+
+    <header class="section-header">
+      <span class="section-eyebrow">I · The Foundation</span>
+      <h2 class="section-title">The <em>Five Deposits.</em></h2>
+      <p class="section-sub">
+        <em>The five disciplines that build the kind of marriage no quick fix can replicate. Small. Repeated. Compounding.</em>
+      </p>
+    </header>
+
+    <div class="deposits-list">
+
+      <article class="deposit-entry">
+        <div class="deposit-entry__left">
+          <span class="deposit-entry__roman">I</span>
+          <span class="deposit-entry__label">DEPOSIT I</span>
+        </div>
+        <div class="deposit-entry__right">
+          <h3 class="deposit-entry__name">The Honor Protocol<sup>&trade;</sup></h3>
+          <p class="deposit-entry__body">
+            Honor is not a feeling. It is a position. And it is the deposit your spouse hears <em>before</em> they hear anything else — before the explanation, before the apology, before the rebuttal. Most marriages mistake admiration for honor. Honor is what you choose to do with someone's reputation when they are not in the room.
+          </p>
+          <div class="deposit-entry__practice">
+            <span class="deposit-entry__practice-label">The Practice</span>
+            <p class="deposit-entry__practice-text">Speak about your spouse in their absence the way you'd want them to hear it — even when they have failed you.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="deposit-entry">
+        <div class="deposit-entry__left">
+          <span class="deposit-entry__roman">II</span>
+          <span class="deposit-entry__label">DEPOSIT II</span>
+        </div>
+        <div class="deposit-entry__right">
+          <h3 class="deposit-entry__name">The Gentleness Discipline<sup>&trade;</sup></h3>
+          <p class="deposit-entry__body">
+            The strength most marriages are missing. Gentleness is not weakness; it is the most underestimated form of spiritual authority inside a covenant. <em>Leadership without tenderness is not leadership</em> — it is administration with a wedding ring.
+          </p>
+          <div class="deposit-entry__practice">
+            <span class="deposit-entry__practice-label">The Practice</span>
+            <p class="deposit-entry__practice-text">Choose the gentle answer when you have every right to the sharp one. Every time.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="deposit-entry">
+        <div class="deposit-entry__left">
+          <span class="deposit-entry__roman">III</span>
+          <span class="deposit-entry__label">DEPOSIT III</span>
+        </div>
+        <div class="deposit-entry__right">
+          <h3 class="deposit-entry__name">The Attunement Practice<sup>&trade;</sup></h3>
+          <p class="deposit-entry__body">
+            The listening that heals. Most couples are talking; very few are attuning. Attunement is the practice that turns the conversation in your kitchen into the <em>safest room in your marriage</em> — the place where the truth can be said without strategy.
+          </p>
+          <div class="deposit-entry__practice">
+            <span class="deposit-entry__practice-label">The Practice</span>
+            <p class="deposit-entry__practice-text">Reflect what your spouse said before you respond to what your spouse said. Slow the round.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="deposit-entry">
+        <div class="deposit-entry__left">
+          <span class="deposit-entry__roman">IV</span>
+          <span class="deposit-entry__label">DEPOSIT IV</span>
+        </div>
+        <div class="deposit-entry__right">
+          <h3 class="deposit-entry__name">The Repair Cycle<sup>&trade;</sup></h3>
+          <p class="deposit-entry__body">
+            The mechanism that distinguishes a covenant marriage from a contract one. Strong marriages are not the ones that never wound — they are the ones that <em>return</em>. The repair is the marriage. Everything before it was preparation.
+          </p>
+          <div class="deposit-entry__practice">
+            <span class="deposit-entry__practice-label">The Practice</span>
+            <p class="deposit-entry__practice-text">Never let a wound go unaddressed by sundown of the following day. The longer the silence, the heavier the ledger.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="deposit-entry">
+        <div class="deposit-entry__left">
+          <span class="deposit-entry__roman">V</span>
+          <span class="deposit-entry__label">DEPOSIT V</span>
+        </div>
+        <div class="deposit-entry__right">
+          <h3 class="deposit-entry__name">The Compound Tenderness Effect<sup>&trade;</sup></h3>
+          <p class="deposit-entry__body">
+            Small deposits, repeated daily, compounding into a marriage no quick fix can build. Most couples are looking for the grand gesture; covenant is built in the <em>boring Tuesday</em> — the unremarkable kindness, the un-photographed hand on the shoulder, the question asked twice.
+          </p>
+          <div class="deposit-entry__practice">
+            <span class="deposit-entry__practice-label">The Practice</span>
+            <p class="deposit-entry__practice-text">One tender act per day, intentionally. For ninety days, without skipping. Then look up.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- II. THE ANTI-PATTERNS -->
+<section class="anti-section" id="anti-patterns">
+  <div class="anti-section__inner">
+
+    <header class="section-header">
+      <span class="section-eyebrow">II · The Silent Threats</span>
+      <h2 class="section-title">The <em>Anti-Patterns.</em></h2>
+      <p class="section-sub">
+        <em>Ten frameworks naming the silent withdrawals that compound into estrangement. Most marriages don't end in betrayal — they erode in the unnamed.</em>
+      </p>
+    </header>
+
+    <div class="anti-grid">
+
+      <article class="anti-card">
+        <p class="anti-card__num">i</p>
+        <h3 class="anti-card__name">Subsidizing Absence<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">Showing up enough to keep a marriage alive but not enough to keep it home. The husband paying rent on a relationship he has emotionally vacated.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">ii</p>
+        <h3 class="anti-card__name">Presence Fraud<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">Physically present, emotionally elsewhere. The body in the room, the spirit two states away. The most photographed empty seat in modern marriage.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">iii</p>
+        <h3 class="anti-card__name">The Silent Withdrawal Index<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">The compounding ledger of what was never said, never asked, never returned. Nobody signs for these withdrawals — but every covenant pays them.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">iv</p>
+        <h3 class="anti-card__name">The Negativity Tax<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">What every unkind word costs, compounded weekly until the account runs dry. The marriage paying interest on contempt it can't afford.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">v</p>
+        <h3 class="anti-card__name">The Contempt Protocol<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">The single most reliable predictor of marital collapse. Detectable in one sentence, often delivered with a smile. The rolled eye your spouse will remember in twelve years.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">vi</p>
+        <h3 class="anti-card__name">Identity Foreclosure<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">Losing yourself to a marriage that asked you to disappear. The mother who forgot her own name. The husband who outsourced his interiority a decade ago.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">vii</p>
+        <h3 class="anti-card__name">The Loyalty Tax<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">What the silent partner pays to keep the peace nobody else carries. The wife who stopped speaking up. The husband who stopped feeling at all.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">viii</p>
+        <h3 class="anti-card__name">Covenant Debt<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">The accumulated weight of unrepaired moments. It always gets called due — usually at the worst possible time, often by someone the marriage trusted.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">ix</p>
+        <h3 class="anti-card__name">Armor Permanence<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">When the protective wall stops being seasonal and becomes the furniture of the marriage. Both partners now live in the bunker they built for the storm.</p>
+      </article>
+
+      <article class="anti-card">
+        <p class="anti-card__num">x</p>
+        <h3 class="anti-card__name">Legacy Liability<sup>&trade;</sup></h3>
+        <p class="anti-card__desc">The inherited patterns running silently through your marriage that nobody in your family ever named — and that your children are watching you repeat in real time.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- III. THE OPERATING SYSTEM -->
+<section class="os-section" id="operating-system">
+  <div class="os-section__inner">
+
+    <header class="section-header">
+      <span class="section-eyebrow">III · The Mechanics</span>
+      <h2 class="section-title">The <em>Operating System.</em></h2>
+      <p class="section-sub">
+        <em>Five systemic frameworks that govern how every marriage actually runs — the principles operating in the background of every couple, named or not.</em>
+      </p>
+    </header>
+
+    <div class="os-grid">
+
+      <article class="os-card">
+        <span class="os-card__no">I.</span>
+        <h3 class="os-card__name">The Overdraft Principle<sup>&trade;</sup></h3>
+        <p class="os-card__desc">What happens when withdrawals exceed deposits. Most marriages are operating at a <em>deficit</em> and don't know it — until the day the account is called.</p>
+        <a href="book.html#order" class="os-card__cta">In the Book</a>
+      </article>
+
+      <article class="os-card">
+        <span class="os-card__no">II.</span>
+        <h3 class="os-card__name">The Covenant Exchange Rate<sup>&trade;</sup></h3>
+        <p class="os-card__desc">Why one harsh sentence costs five gentle ones. The five-to-one ratio applied to covenant marriage — <em>five compliments do not erase one cut.</em></p>
+        <a href="book.html#order" class="os-card__cta">In the Book</a>
+      </article>
+
+      <article class="os-card">
+        <span class="os-card__no">III.</span>
+        <h3 class="os-card__name">The Sacred Safety Model<sup>&trade;</sup></h3>
+        <p class="os-card__desc">The four conditions a marriage requires before vulnerability becomes possible. Without them, every conversation is a negotiation. With them, the room becomes home.</p>
+        <a href="vault.html" class="os-card__cta">In the Vault</a>
+      </article>
+
+      <article class="os-card">
+        <span class="os-card__no">IV.</span>
+        <h3 class="os-card__name">The Inherited Ledger System<sup>&trade;</sup></h3>
+        <p class="os-card__desc">The deposits and debts you inherited from your parents' marriage, running silently in the background of yours. <em>You are not starting from zero.</em></p>
+        <a href="vault.html" class="os-card__cta">In the Vault</a>
+      </article>
+
+      <article class="os-card">
+        <span class="os-card__no">V.</span>
+        <h3 class="os-card__name">The Spiritual Weapon Audit<sup>&trade;</sup></h3>
+        <p class="os-card__desc">Which scriptures are being deployed in your home for <em>shelter</em>, and which are being deployed as <em>munitions</em>. Most couples can't tell the difference until the wound has scarred.</p>
+        <a href="vault.html" class="os-card__cta">In the Vault</a>
+      </article>
+
+      <article class="os-card">
+        <span class="os-card__no">VI.</span>
+        <h3 class="os-card__name">The Empire Stack<sup>&trade;</sup></h3>
+        <p class="os-card__desc">For the legacy work: the founder-independent architecture that lets covenant scale across generations. <em>The marriage that protects the marriage that comes after it.</em></p>
+        <a href="book.html" class="os-card__cta">Legacy Layer</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- IV. THE PROTOCOLS -->
+<section class="protocols-section" id="protocols">
+  <div class="protocols-section__inner">
+
+    <header class="section-header">
+      <span class="section-eyebrow">IV · The Practice</span>
+      <h2 class="section-title">The <em>Protocols.</em></h2>
+      <p class="section-sub">
+        <em>Three action protocols for the marriages ready to interrupt the pattern — not in theory, on Tuesday morning.</em>
+      </p>
+    </header>
+
+    <article class="protocol-chapter">
+      <p class="protocol-chapter__cap">Protocol I · 30 Days</p>
+      <h3 class="protocol-chapter__name">The 30-Day <em>Reset</em> Protocol<sup>&trade;</sup></h3>
+      <p class="protocol-chapter__lede">
+        Thirty days of structured deposits, quieted withdrawals, and small repairs — for the marriages ready to interrupt the pattern without waiting for the breakthrough.
+      </p>
+      <a href="reset.html" class="protocol-chapter__cta">Begin the Reset</a>
+    </article>
+
+    <article class="protocol-chapter">
+      <p class="protocol-chapter__cap">Protocol II · Annual</p>
+      <h3 class="protocol-chapter__name">The Covenant <em>Audit</em><sup>&trade;</sup></h3>
+      <p class="protocol-chapter__lede">
+        The annual review every marriage needs and almost no marriage runs. A structured read on where the deposits compounded, where the withdrawals went unsigned for, and what the next twelve months need to protect.
+      </p>
+      <a href="audit.html" class="protocol-chapter__cta">Run the Audit</a>
+    </article>
+
+    <article class="protocol-chapter">
+      <p class="protocol-chapter__cap">Protocol III · Multi-Generational</p>
+      <h3 class="protocol-chapter__name">The Legacy <em>Ledger</em><sup>&trade;</sup></h3>
+      <p class="protocol-chapter__lede">
+        A multi-generational accounting tool. What you are depositing into your children's future marriages — whether you know it or not, whether you signed for it or not.
+      </p>
+      <a href="book.html" class="protocol-chapter__cta">Open the Ledger</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ASSESSMENT CTA -->
+<section class="assessment-cta">
+  <div class="assessment-cta__inner">
+    <span class="assessment-cta__eyebrow">The Diagnostic</span>
+    <h2 class="assessment-cta__title">
+      Find out which deposits are <em>compounding</em> and which are quietly costing you.
+    </h2>
+    <p class="assessment-cta__body">
+      The EWD-1<sup style="font-size:.55em;vertical-align:super;color:var(--gold-s);">™</sup> assessment is the diagnostic instrument underneath the Covenant Audit. Sixteen questions. Eight minutes. A clear read on which frameworks your marriage is already running — and which ones are running you.
+    </p>
+    <div class="assessment-cta__buttons">
+      <a href="assessment.html" class="btn btn--primary-light">
+        Take the EWD-1 Assessment<span class="btn__arrow"></span>
+      </a>
+      <a href="book.html" class="btn btn--ghost-light">
+        Read the Framework<span class="btn__arrow"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__main">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo-row">
+          <svg class="site-footer__logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+            <circle cx="24" cy="24" r="1.2" fill="#D1AD66"/>
+          </svg>
+          <span class="site-footer__name">SACRED DEPOSITS<sup>&trade;</sup></span>
+        </div>
+        <p class="site-footer__tagline"><em>A covenant framework by EQGenix Inc.</em></p>
+      </div>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">THE BOOK</p>
+        <a href="book.html">About the Book</a>
+        <a href="book.html#editions">Order</a>
+        <a href="five-deposits.html">The Five Deposits</a>
+        <a href="frameworks.html">Frameworks</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">PRACTICE</p>
+        <a href="legacy-ledger.html">The Legacy Ledger</a>
+        <a href="vault.html">The Vault</a>
+        <a href="reset.html">30-Day Reset</a>
+        <a href="audit.html">The Audit</a>
+      </nav>
+      <nav class="site-footer__col">
+        <p class="site-footer__heading">CONNECT</p>
+          <a href="podcast.html">Podcast</a>
+        <a href="about.html">About Yvonne</a>
+        <a href="contact.html">Contact</a>
+        <a href="licensing.html">Licensing</a>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <div class="site-footer__legal-left">
+        <p class="site-footer__copy">&copy; 2026 EQGenix Inc. All rights reserved.</p>
+        <p class="site-footer__copy-tm">Sacred Deposits<sup>&trade;</sup>, Build Emotional Wealth<sup>&trade;</sup>, Emotional Portfolio<sup>&trade;</sup>, The Covenant Card<sup>&trade;</sup>, The Covenant Ledger<sup>&trade;</sup>, Her Sacred Chronicle<sup>&trade;</sup>, The Covenant Playbook<sup>&trade;</sup>, The Sacred Union Set<sup>&trade;</sup>, The Legacy Ledger<sup>&trade;</sup>, Sovereign Foundations<sup>&trade;</sup>, Built, Not Downloaded<sup>&trade;</sup>, The Covenant Economy<sup>&trade;</sup>, and related frameworks are trademarks of EQGenix Inc.</p>
+      </div>
+      <p class="site-footer__terms">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="site-footer__dot">·</span>
+        <a href="terms.html">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const reveal = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal'));
+  const revealSlow = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal', 'reveal--slow'));
+  const revealScale = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal--scale'));
+  const stagger = (sel) => document.querySelectorAll(sel).forEach(el => el.classList.add('stagger'));
+
+  // TOC
+  stagger('.toc-grid');
+
+  // FIVE DEPOSITS — section header only.
+  // Entries themselves are not scroll-animated. Foundational teaching content
+  // should feel like printed text, not a modern-app reveal. The hover state
+  // (gold rule, name color shift) remains as user-triggered interaction.
+  reveal('.deposits-section .section-eyebrow, .deposits-section .section-sub');
+  revealSlow('.deposits-section .section-title');
+
+  // ANTI-PATTERNS
+  reveal('.anti-section .section-eyebrow, .anti-section .section-sub');
+  revealSlow('.anti-section .section-title');
+  stagger('.anti-grid');
+
+  // OPERATING SYSTEM
+  reveal('.os-section .section-eyebrow, .os-section .section-sub');
+  revealSlow('.os-section .section-title');
+  stagger('.os-grid');
+
+  // PROTOCOLS — section header only.
+  // Same logic as Five Deposits: clean typographic roster content shouldn't
+  // perform on scroll. Hover interactions (gold tick, name color, slide) remain.
+  reveal('.protocols-section .section-eyebrow, .protocols-section .section-sub');
+  revealSlow('.protocols-section .section-title');
+
+  // ASSESSMENT
+  reveal('.assessment-cta__eyebrow, .assessment-cta__body, .assessment-cta__buttons');
+  revealSlow('.assessment-cta__title');
+
+  // IntersectionObserver
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+
+  document.querySelectorAll('.reveal, .reveal--scale, .stagger').forEach(el => io.observe(el));
+})();
+</script>
+
+<script src="js/script.js" defer></script>
+
+
+<script src="js/snipcart-init.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Force UTF-8 charset on all HTML responses
+# Prevents mojibake (â€ artifacts) from server-side charset mismatches
+/*.html
+  Content-Type: text/html; charset=utf-8
+
+/*
+  X-Content-Type-Options: nosniff
+
+# Revalidate CSS/JS every load (prevents stale styles after redeploy; no query-string needed)
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate

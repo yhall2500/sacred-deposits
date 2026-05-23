@@ -1,0 +1,6 @@
+{
+  "claimed": 37,
+  "total": 100,
+  "updated": "2026-05-19",
+  "_comment": "Edit 'claimed' to update the live counter on sacred-100-founders-edition.html and book.html. Re-deploy after editing. The JS on those pages fetches this file on page load."
+}
