@@ -1,8 +1,8 @@
 /**
- * cart.js — Sacred Deposits cart + Stripe Checkout (replaces Snipcart)
+ * cart.js — Sacred Deposits custom cart + Stripe Checkout
  * ---------------------------------------------------------------------------
  * - localStorage cart (id, name, price, image, qty)
- * - Reuses existing .snipcart-add-item buttons (reads their data-item-* attrs)
+ * - Binds .sd-add-to-cart buttons (reads their data-id/name/price/image attrs)
  * - Slide-in drawer (injected once; matches site navy/gold styling)
  * - Checkout POSTs {items:[{id,quantity}]} to the Netlify function, which maps
  *   each id to a Stripe Price ID server-side and returns the Checkout URL.
@@ -14,6 +14,25 @@
 
   var STORAGE_KEY = 'sd_cart_v1';
   var ENDPOINT = '/.netlify/functions/create-checkout';
+
+  /* ───────────────────────────────────────────────────────────────
+   * STRIPE PRICE IDs — paste your real price_… IDs from the Stripe
+   * Dashboard (Products → each product → its Price → copy the ID).
+   * Keys MUST match the data-id on your "Add to Cart" buttons.
+   * A value that is not a real price_… ID will block checkout with a
+   * clear error naming the product.
+   * ─────────────────────────────────────────────────────────────── */
+  var PRICE_IDS = {
+    'sacred-deposits-hardcover': 'price_REPLACE_HARDCOVER',   // $36.99
+    'sacred-deposits-paperback': 'price_REPLACE_PAPERBACK',   // $24.99
+    'sacred-deposits-ebook':     'price_REPLACE_EBOOK',       // $9.99
+    'couples-workbook':          'price_REPLACE_WORKBOOK',    // $16.99
+    'her-covenant-journal':      'price_REPLACE_HER_JOURNAL', // $29.99
+    'his-covenant-journal':      'price_REPLACE_HIS_JOURNAL', // $29.99
+    'sacred-union-set':          'price_REPLACE_UNION_SET',   // $150
+    'sacred-100-founders':       'price_REPLACE_FOUNDERS'     // $249
+  };
+  function priceIdFor(id) { return PRICE_IDS[id] || ''; }
   var C = { navy: '#071432', navy2: '#0b1e40', gold: '#B89045', goldS: '#D1AD66', ivory: '#FBF4E6' };
 
   /* ---------------- storage ---------------- */
@@ -27,8 +46,8 @@
   function add(item) {
     var items = read();
     var found = items.filter(function (i) { return i.id === item.id; })[0];
-    if (found) { found.qty += (item.qty || 1); }
-    else { items.push({ id: item.id, name: item.name, price: item.price, image: item.image, qty: item.qty || 1 }); }
+    if (found) { found.qty += (item.qty || 1); if (!found.priceId) found.priceId = priceIdFor(found.id); }
+    else { items.push({ id: item.id, name: item.name, price: item.price, image: item.image, qty: item.qty || 1, priceId: priceIdFor(item.id) }); }
     write(items); openDrawer();
   }
   function setQty(id, qty) {
@@ -187,7 +206,7 @@
   /* ---------------- badges ---------------- */
   function updateBadges() {
     var c = count();
-    document.querySelectorAll('.cart-icon__count, .snipcart-items-count').forEach(function (b) {
+    document.querySelectorAll('.cart-icon__count, .mobile-menu__cart-count').forEach(function (b) {
       b.textContent = c; b.style.display = c > 0 ? 'inline-flex' : 'none';
     });
   }
@@ -198,20 +217,54 @@
     if (!items.length) return;
     var btn = document.getElementById('sd-cart-checkout') || (pageEl && pageEl.querySelector('#sd-page-checkout'));
     var label = btn ? btn.textContent : '';
+
+    // Backfill price IDs for items saved before they existed, then log.
+    var cartItems = items.map(function (i) {
+      if (!i.priceId) i.priceId = priceIdFor(i.id);
+      return i;
+    });
+    console.log('Checkout cart items:', cartItems);
+
+    // Validate every product has a real Stripe price_… ID — name the culprit.
+    for (var k = 0; k < cartItems.length; k++) {
+      var it = cartItems[k];
+      if (!it.priceId || String(it.priceId).indexOf('price_') !== 0) {
+        alert('Sorry \u2014 checkout could not start.\n\nInvalid Stripe price ID for "' + (it.name || it.id) + '".\n' +
+              'Open js/cart.js and set its real price_\u2026 ID in PRICE_IDS (currently "' + (it.priceId || 'empty') + '").');
+        return;
+      }
+    }
+
     if (btn) { btn.disabled = true; btn.textContent = 'Redirecting\u2026'; }
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: items.map(function (i) { return { id: i.id, quantity: i.qty }; }) })
+      body: JSON.stringify({ items: cartItems.map(function (i) { return { price: i.priceId, quantity: i.qty }; }) })
     })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var d = null;
+          try { d = JSON.parse(t); } catch (e) { /* not JSON */ }
+          return { ok: r.ok, status: r.status, d: d, raw: t };
+        });
+      })
       .then(function (res) {
-        if (res.ok && res.d && res.d.url) { window.location.href = res.d.url; }
-        else { throw new Error((res.d && res.d.error) || 'Checkout could not start.'); }
+        if (res.ok && res.d && res.d.url) { window.location.href = res.d.url; return; }
+        var msg;
+        if (res.d && res.d.error) {
+          msg = res.d.error;                       // real error JSON from the function
+        } else if (res.status === 404) {
+          msg = 'The checkout function was not found (404). It only runs on the live Netlify site \u2014 not a local file or static preview \u2014 and must be deployed with its dependencies.';
+        } else if (!res.d) {
+          msg = 'The checkout function did not return valid data (status ' + res.status + '). Usually means it crashed \u2014 check that STRIPE_SECRET_KEY is set in Netlify and the function deployed with the Stripe package.';
+        } else {
+          msg = 'Checkout could not start (status ' + res.status + ').';
+        }
+        throw new Error(msg);
       })
       .catch(function (err) {
         if (btn) { btn.disabled = false; btn.textContent = label; }
-        alert('Sorry \u2014 checkout could not start.\n' + (err.message || ''));
+        alert('Sorry \u2014 checkout could not start.\n\n' + (err.message || err));
       });
   }
 
@@ -219,21 +272,21 @@
   function bind() {
     buildDrawer(); updateBadges(); renderAll();
 
-    document.querySelectorAll('.snipcart-add-item').forEach(function (btn) {
+    document.querySelectorAll('.sd-add-to-cart').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault(); e.stopPropagation();
-        var price = parseFloat(btn.getAttribute('data-item-price'));
+        var price = parseFloat(btn.getAttribute('data-price'));
         add({
-          id: btn.getAttribute('data-item-id'),
-          name: btn.getAttribute('data-item-name') || 'Item',
+          id: btn.getAttribute('data-id'),
+          name: btn.getAttribute('data-name') || 'Item',
           price: isNaN(price) ? 0 : price,
-          image: btn.getAttribute('data-item-image') || '',
+          image: btn.getAttribute('data-image') || '',
           qty: 1
         });
-      }, true); /* capture so Snipcart (if ever present) can't fire */
+      }, true); /* capture phase keeps the click ours */
     });
 
-    document.querySelectorAll('.cart-icon, .snipcart-checkout, .mobile-menu__cart').forEach(function (el) {
+    document.querySelectorAll('.cart-icon, .mobile-menu__cart').forEach(function (el) {
       el.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openDrawer(); }, true);
     });
 
