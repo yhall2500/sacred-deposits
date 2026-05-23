@@ -506,10 +506,10 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/assessment.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/assessment.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -520,8 +520,8 @@ body.dark-header .nav-dropdown a:hover {
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="Take the EWD-1™ Marriage Assessment | Sacred Deposits™"/>
 <meta property="og:description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
-<meta property="og:url" content="https://sacreddeposits.com/assessment.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/assessment.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:locale" content="en_US"/>
@@ -530,7 +530,7 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Take the EWD-1™ Marriage Assessment | Sacred Deposits™"/>
 <meta name="twitter:description" content="The Emotional Wealth Diagnostic — sixteen questions across six measures of marriage health. A free Christian marriage assessment by Yvonne G. Hall."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -539,17 +539,17 @@ body.dark-header .nav-dropdown a:hover {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com",
+      "url": "https://sacreddeposit.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
         "width": 512,
         "height": 512
       },
       "founder": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
       "knowsLanguage": [
@@ -559,13 +559,13 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Person",
-      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
       "name": "Yvonne G. Hall",
       "givenName": "Yvonne",
       "familyName": "Hall",
       "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
       "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
-      "url": "https://sacreddeposits.com/about.html",
+      "url": "https://sacreddeposit.com/about.html",
       "sameAs": [],
       "knowsAbout": [
         "Christian marriage",
@@ -583,14 +583,14 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "WebPage",
-      "@id": "https://sacreddeposits.com/assessment.html#page",
-      "url": "https://sacreddeposits.com/assessment.html",
+      "@id": "https://sacreddeposit.com/assessment.html#page",
+      "url": "https://sacreddeposit.com/assessment.html",
       "name": "Take the EWD-1\u2122 Marriage Assessment | Sacred Deposits\u2122",
       "isPartOf": {
-        "@id": "https://sacreddeposits.com/#website"
+        "@id": "https://sacreddeposit.com/#website"
       },
       "about": {
-        "@id": "https://sacreddeposits.com/#organization"
+        "@id": "https://sacreddeposit.com/#organization"
       }
     }
   ]
@@ -992,11 +992,11 @@ body { padding-top: 38px; }
       <span class="results-email__script">The full report.</span>
       <h2 class="results-email__title">Send me <em>the deeper read.</em></h2>
       <p class="results-email__body">The on-screen scores are the summary. <em>The full report</em> — with specific framework references, recommended protocols for your weakest measure, and a printable PDF — is delivered to your inbox.</p>
-      <form method="POST" class="results-email__form" id="email-form" name="assessment-results" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sdNetlifySubmit(this, function(form){ var b=this.querySelector('button'); if(b){b.textContent='Results coming your way.';b.disabled=true;} })">
+      <form method="POST" class="results-email__form" id="email-form" name="assessment-results" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="assessment-results"/>
     <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
     
-        <input type="email" class="results-email__input" placeholder="your email address" required id="email-input">
+        <input type="email" name="email" class="results-email__input" placeholder="your email address" required id="email-input">
         <button type="submit" class="results-email__submit" id="email-submit">Send My Report</button>
       </form>
       <p class="results-email__fine">No noise. Unsubscribe anytime.</p>

@@ -7,10 +7,10 @@
 <meta name="description" content="A guided Christian marriage reflection journal for wives — daily prompts, weekly check-ins, and a year of structured reflection on covenant, repair, and emotional intimacy."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/her-covenant-journal.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/her-covenant-journal.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -20,8 +20,8 @@
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="Her Covenant Journal™ — A Christian Marriage Reflection Journal for Wives"/>
 <meta property="og:description" content="A guided Christian marriage reflection journal for wives — daily prompts, weekly check-ins, and a year of structured reflection on covenant, repair, and emotional intimacy."/>
-<meta property="og:url" content="https://sacreddeposits.com/her-covenant-journal.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/her-journal.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/her-covenant-journal.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/her-journal.jpg"/>
 <meta property="og:image:width" content="1086"/>
 <meta property="og:image:height" content="1448"/>
 <meta property="og:locale" content="en_US"/>
@@ -31,7 +31,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Her Covenant Journal™ — A Christian Marriage Reflection Journal for Wives"/>
 <meta name="twitter:description" content="A guided Christian marriage reflection journal for wives — daily prompts, weekly check-ins, and a year of structured reflection on covenant, repair, and emotional intimacy."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/her-journal.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/her-journal.jpg"/>
 
 <script type="application/ld+json">
 {
@@ -39,13 +39,13 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com"
+      "url": "https://sacreddeposit.com"
     },
     {
       "@type": "Product",
-      "@id": "https://sacreddeposits.com/her-covenant-journal.html#product",
+      "@id": "https://sacreddeposit.com/her-covenant-journal.html#product",
       "name": "Her Covenant Journal",
       "description": "A guided Christian marriage reflection journal for wives \u2014 daily prompts, weekly check-ins, and a year of structured reflection on covenant, repair, and emotional intimacy.",
       "category": "Journals",
@@ -53,16 +53,16 @@
         "@type": "Brand",
         "name": "Sacred Deposits"
       },
-      "image": "https://sacreddeposits.com/assets/images/her-journal.jpg",
-      "url": "https://sacreddeposits.com/her-covenant-journal.html",
+      "image": "https://sacreddeposit.com/assets/images/her-journal.jpg",
+      "url": "https://sacreddeposit.com/her-covenant-journal.html",
       "offers": {
         "@type": "Offer",
         "price": "26.00",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://sacreddeposits.com/her-covenant-journal.html",
+        "url": "https://sacreddeposit.com/her-covenant-journal.html",
         "seller": {
-          "@id": "https://sacreddeposits.com/#organization"
+          "@id": "https://sacreddeposit.com/#organization"
         }
       }
     }
@@ -997,5 +997,17 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style id="herjournal-mobile-fix">
+/* MOBILE FIX: shared Sacred-Union override sets aspect-ratio:auto on .prod-hero__visual,
+   collapsing this image hero to 0 height (img is absolute). Restore 3/4 + fill. Page-scoped. */
+@media (max-width: 720px) {
+  html body .prod-hero__visual--image { aspect-ratio: 3 / 4 !important; overflow: hidden !important; }
+  html body .prod-hero__visual-image {
+    position: absolute !important; inset: 0 !important;
+    width: 100% !important; height: 100% !important;
+    object-fit: contain !important; display: block !important;
+  }
+}
+</style>
 </body>
 </html>

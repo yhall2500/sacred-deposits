@@ -392,10 +392,10 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="description" content="For pastors, premarital counselors, and ministry leaders. The Before the Vow™ premarital curriculum and Christian marriage ministry resources for churches."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/churches.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/churches.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -406,8 +406,8 @@ body.dark-header .nav-dropdown a:hover {
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="For Churches — Marriage Ministry & Premarital Curriculum | Sacred Deposits™"/>
 <meta property="og:description" content="For pastors, premarital counselors, and ministry leaders. The Before the Vow™ premarital curriculum and Christian marriage ministry resources for churches."/>
-<meta property="og:url" content="https://sacreddeposits.com/churches.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/churches.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:locale" content="en_US"/>
@@ -416,7 +416,7 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="For Churches — Marriage Ministry & Premarital Curriculum | Sacred Deposits™"/>
 <meta name="twitter:description" content="For pastors, premarital counselors, and ministry leaders. The Before the Vow™ premarital curriculum and Christian marriage ministry resources for churches."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -425,17 +425,17 @@ body.dark-header .nav-dropdown a:hover {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com",
+      "url": "https://sacreddeposit.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
         "width": 512,
         "height": 512
       },
       "founder": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
       "knowsLanguage": [
@@ -445,13 +445,13 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Person",
-      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
       "name": "Yvonne G. Hall",
       "givenName": "Yvonne",
       "familyName": "Hall",
       "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
       "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
-      "url": "https://sacreddeposits.com/about.html",
+      "url": "https://sacreddeposit.com/about.html",
       "sameAs": [],
       "knowsAbout": [
         "Christian marriage",
@@ -469,13 +469,13 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Service",
-      "@id": "https://sacreddeposits.com/churches.html#service",
+      "@id": "https://sacreddeposit.com/churches.html#service",
       "name": "Sacred Deposits\u2122 for Churches",
       "description": "Marriage ministry partnerships, the Before the Vow\u2122 premarital curriculum, and a covenant marriage framework for pastors, premarital counselors, and ministry leaders.",
       "provider": {
-        "@id": "https://sacreddeposits.com/#organization"
+        "@id": "https://sacreddeposit.com/#organization"
       },
-      "url": "https://sacreddeposits.com/churches.html",
+      "url": "https://sacreddeposit.com/churches.html",
       "audience": {
         "@type": "Audience",
         "audienceType": "Pastors, premarital counselors, ministry leaders, churches"
@@ -881,7 +881,7 @@ body { padding-top: 38px; }
 
 <!-- FREE RESOURCES -->
 <!-- FOUNDING PARTNERS -->
-<section class="founding">
+<section class="founding" id="foundingSec">
   <div class="founding__inner">
     <span class="founding__cap">Founding Partners</span>
     <span class="founding__script">It begins in real rooms.</span>
@@ -951,5 +951,23 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style id="churches-founding-fix">
+/* Shared CSS conflict: at <=720 the founding bg goes light but a later <=820 rule
+   (body .founding *) forces all text ivory -> light-on-light. Re-fix on mobile. */
+@media (max-width: 720px) {
+  #foundingSec { background: #F9F7F2 !important; }
+  #foundingSec .founding__title,
+  #foundingSec .founding__body,
+  #foundingSec .founding__body p,
+  #foundingSec p { color: var(--ink) !important; }
+  #foundingSec .founding__cap,
+  #foundingSec .founding__script,
+  #foundingSec .founding__title em,
+  #foundingSec .founding__body em,
+  #foundingSec .founding__body p em,
+  #foundingSec .founding__body p sup { color: var(--gold-d) !important; }
+  #foundingSec .btn--gold { color: var(--navy) !important; }
+}
+</style>
 </body>
 </html>

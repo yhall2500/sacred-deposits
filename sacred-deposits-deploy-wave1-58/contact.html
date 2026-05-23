@@ -1710,10 +1710,10 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="description" content="Get in touch with Yvonne G. Hall — speaking, press, Sacred 100 Founders Circle, licensing, and the Vault. Read by Yvonne or her team."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/about.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/about.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -1724,8 +1724,8 @@ body.dark-header .nav-dropdown a:hover {
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="About Yvonne G. Hall — Christian Marriage Author & Founder"/>
 <meta property="og:description" content="Yvonne G. Hall is the founder of EQGenix Inc. and author of Sacred Deposits™ — a Christian marriage framework drawn from 29+ years of covenant marriage and applied behavioral science."/>
-<meta property="og:url" content="https://sacreddeposits.com/about.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/about.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:locale" content="en_US"/>
@@ -1734,7 +1734,7 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="About Yvonne G. Hall — Christian Marriage Author & Founder"/>
 <meta name="twitter:description" content="Yvonne G. Hall is the founder of EQGenix Inc. and author of Sacred Deposits™ — a Christian marriage framework drawn from 29+ years of covenant marriage and applied behavioral science."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -1743,17 +1743,17 @@ body.dark-header .nav-dropdown a:hover {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com",
+      "url": "https://sacreddeposit.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
         "width": 512,
         "height": 512
       },
       "founder": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
       "knowsLanguage": [
@@ -1763,14 +1763,14 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Person",
-      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
       "name": "Yvonne G. Hall",
-      "image": "https://sacreddeposits.com/assets/images/yvonne/yvonne-portrait-1040.jpg",
+      "image": "https://sacreddeposit.com/assets/images/yvonne/yvonne-portrait-1040.jpg",
       "givenName": "Yvonne",
       "familyName": "Hall",
       "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
       "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
-      "url": "https://sacreddeposits.com/about.html",
+      "url": "https://sacreddeposit.com/about.html",
       "sameAs": [],
       "knowsAbout": [
         "Christian marriage",
@@ -1788,10 +1788,10 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "ProfilePage",
-      "@id": "https://sacreddeposits.com/about.html#profile",
-      "url": "https://sacreddeposits.com/about.html",
+      "@id": "https://sacreddeposit.com/about.html#profile",
+      "url": "https://sacreddeposit.com/about.html",
       "mainEntity": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       }
     }
   ]
@@ -2088,7 +2088,7 @@ body { padding-top: 38px; }
       Speaking. Press. Founders Circle. Licensing. The quiet notes between.<br>
       <em>Everything lands here.</em>
     </p>
-    <p class="contact-hero__note">
+    <p class="contact-hero__note" id="cNote">
       <span class="contact-hero__note-rule"></span>
       Read by Yvonne or her team. Replied to within five business days.
       <span class="contact-hero__note-rule"></span>
@@ -2100,7 +2100,7 @@ body { padding-top: 38px; }
 <section class="write" id="contact-form">
   <div class="write__inner">
 
-    <form method="POST" class="write__form" name="contact-write" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sdNetlifySubmit(this, function(form){ this.querySelectorAll('input,textarea,select').forEach(function(el){el.value='';}); var b=this.querySelector('button[type=submit],button'); if(b){b.textContent='Message received. We will respond within 48 hours.';b.disabled=true;} })">
+    <form method="POST" class="write__form" name="contact-write" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="contact-write"/>
     <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
 
@@ -2132,11 +2132,11 @@ body { padding-top: 38px; }
         <textarea id="cf-message" name="message" placeholder="tell us what you need" required></textarea>
       </div>
 
-      <button type="submit" class="btn btn--primary write__submit">Send the Note<span class="btn__arrow"></span></button>
+      <button type="submit" class="btn btn--primary write__submit" id="cSendBtn">Send the Note<span class="btn__arrow"></span></button>
     </form>
 
     <p class="write__alt">
-      Or write directly · <a href="mailto:hello@sacreddeposits.com">hello@sacreddeposits.com</a>
+      Or write directly · <a href="mailto:hello@sacreddeposit.com">hello@sacreddeposit.com</a>
     </p>
 
   </div>
@@ -2250,5 +2250,44 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style id="contact-note-box">
+/* cart icon sits over the navy hero (transparent header) — make it light so it's visible */
+html body .header .cart-icon { color: var(--ivory) !important; border-color: rgba(209,173,102,.55) !important; }
+html body .header .cart-icon:hover { background: var(--gold) !important; color: var(--ink) !important; border-color: var(--gold) !important; }
+/* note → blue box with smaller text (beats styles.css 'body .contact-hero__note') */
+/* ALL contact tweaks below are mobile-only; desktop is left untouched */
+@media (max-width: 720px) {
+  html body .contact-hero__note {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 10px auto 0 !important;
+    font-size: .34rem !important;
+    letter-spacing: .2em !important;
+    line-height: 1.6 !important;
+    color: #FBF4E6 !important;
+    max-width: 90% !important;
+  }
+  html body .contact-hero__note-rule { display: none !important; }
+  /* ID overrides — beat the shared stylesheet's class rules on mobile */
+  #cNote { font-size: .52rem !important; letter-spacing: .2em !important; }
+  #cSendBtn { font-size: .58rem !important; letter-spacing: .16em !important; }
+  html body .contact-hero { background: var(--navy) !important; }
+  html body .contact-hero__eyebrow { color: var(--gold) !important; }
+  html body .contact-hero__eyebrow::before, html body .contact-hero__eyebrow::after { background: var(--gold) !important; }
+  html body .contact-hero__script { color: var(--gold) !important; }
+  html body .contact-hero__title { color: var(--ivory) !important; }
+  html body .contact-hero__title em { color: var(--gold-s) !important; }
+  html body .contact-hero__sub { color: rgba(251,244,230,.85) !important; }
+  html body .contact-hero__sub em { color: var(--gold-s) !important; }
+  /* req 3 — "Send the Note" button text smaller */
+  html body .write__submit { font-size: .48rem !important; letter-spacing: .14em !important; }
+}
+</style>
 </body>
 </html>

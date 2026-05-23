@@ -7,10 +7,10 @@
 <meta name="description" content="The Legacy Ledger™ — a multi-generational accounting tool from Sacred Deposits™. Name what your marriage is depositing into your children's future marriages."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/legacy-ledger.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/legacy-ledger.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -20,13 +20,13 @@
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="The Legacy Ledger · Sacred Deposits™"/>
 <meta property="og:description" content="The Legacy Ledger™ — a multi-generational accounting tool from Sacred Deposits™. Name what your marriage is depositing into your children's future marriages."/>
-<meta property="og:url" content="https://sacreddeposits.com/legacy-ledger.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/legacy-ledger.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Legacy Ledger · Sacred Deposits™"/>
 <meta name="twitter:description" content="A teaching and worksheet system for naming the deposits worth handing forward. The marriage you build is also the marriage your children inherit."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 
 
 
@@ -459,15 +459,27 @@ body.dark-header .nav-dropdown a:hover {
 }
 
 
-/* When the hero is navy, the absolute-positioned nav above must be readable */
-.header .brand__name { color: var(--ivory) !important; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
-.header .nav-link { color: var(--ivory) !important; }
-.header .nav-caret { border-top-color: var(--gold-s) !important; }
-.header .nav-link:hover { color: var(--gold-s) !important; }
-.header .nav__cta { color: var(--navy) !important; }
-.header .nav-toggle__label { color: var(--ivory) !important; }
-.header .nav-toggle__lines span { background: var(--ivory) !important; }
-
+/* LIGHT ivory header bar — distinct from the navy launch-strip so they don't read as double headers */
+.header { background: var(--ivory) !important; border-bottom: 1px solid rgba(184,144,69,.22) !important; }
+.header .brand__name { color: var(--ink) !important; text-shadow: none !important; }
+.header .nav-link { color: var(--ink) !important; }
+.header .nav-caret { border-top-color: var(--gold-d) !important; }
+.header .nav-link:hover { color: var(--gold) !important; }
+.header .nav-link.is-active { color: var(--gold-d) !important; }
+.header .nav__cta { color: var(--ivory) !important; background: var(--navy) !important; }
+.header .nav-toggle__label { color: var(--ink) !important; }
+.header .nav-toggle__lines span { background: var(--ink) !important; }
+.header .cart-icon, .header button.snipcart-checkout.cart-icon { color: var(--ink) !important; border-color: rgba(184,144,69,.5) !important; }
+/* FORCE proper header layout — this page's nav was collapsing into a vertical stack */
+html body .header { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; }
+html body .header nav.nav { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-end !important; flex: 1 1 auto !important; }
+html body .header .nav-toggle { display: none !important; }
+@media (max-width: 820px) {
+  html body .header nav.nav { display: none !important; }
+  html body .header .nav__cta { display: none !important; }
+  html body .header .nav-toggle { display: inline-flex !important; }
+  .efx-pullquote__text { font-size: 1.9rem !important; line-height: 1.42 !important; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -477,7 +489,7 @@ body.dark-header .nav-dropdown a:hover {
   "description": "A multi-generational accounting tool from Sacred Deposits™. What you are depositing into your children's future marriages.",
   "author": { "@type": "Person", "name": "Yvonne G. Hall" },
   "publisher": { "@type": "Organization", "name": "EQGenix Inc.", "url": "https://eqgenix.com" },
-  "mainEntityOfPage": "https://sacreddeposits.com/legacy-ledger.html"
+  "mainEntityOfPage": "https://sacreddeposit.com/legacy-ledger.html"
 }
 </script>
 
@@ -758,77 +770,14 @@ body { padding-top: 38px; }
     </div>
   </div>
 </div>
-<div class="nav-group has-dropdown">
-      <a href="frameworks.html" class="nav-link">Frameworks<span class="nav-caret" aria-hidden="true"></span></a>
-      <div class="nav-dropdown" role="menu">
-        <a href="frameworks.html" role="menuitem">All Frameworks</a>
-        <a href="five-deposits.html" role="menuitem">The Five Deposits</a>
-        <a href="audit.html" role="menuitem">The Audit</a>
-        <a href="reset.html" role="menuitem">30-Day Reset</a>
-        <a href="legacy-ledger.html" role="menuitem">The Legacy Ledger</a>
-        <a href="manifesto.html" role="menuitem">The Manifesto</a>
-      </div>
-    </div>
-    <div class="nav-group has-dropdown">
-      <a href="vault.html" class="nav-link">Vault<span class="nav-caret" aria-hidden="true"></span></a>
-      <div class="nav-dropdown" role="menu">
-        <a href="vault.html" role="menuitem">Inside the Vault</a>
-        <a href="vault.html#reserve" role="menuitem">Reserve Your Place</a>
-      </div>
-    </div>
-    <div class="nav-group">
-      <div class="nav-group has-dropdown">
-      <a href="podcast.html" class="nav-link">Podcast<span class="nav-caret"></span></a>
-      <div class="nav-dropdown">
-        <a href="podcast.html#featured" role="menuitem">Latest Episode</a>
-        <a href="podcast.html#library" role="menuitem">All Episodes</a>
-        <a href="podcast.html#subscribe" role="menuitem">Subscribe</a>
-      </div>
-    </div>
-    </div>
-    <div class="nav-group has-dropdown">
-      <a href="shop.html" class="nav-link is-active">Shop<span class="nav-caret" aria-hidden="true"></span></a>
-      <div class="nav-dropdown" role="menu">
-        <a href="shop.html" role="menuitem">All Products</a>
-        <a href="sacred-deposits-hardcover.html" role="menuitem">S.D Book</a>
-        <a href="sacred-union-set.html" role="menuitem">Sacred Union Set</a>
-        <a href="sacred-100-founders-edition.html" role="menuitem">Sacred 100 Founders</a>
-        <a href="her-covenant-journal.html" role="menuitem">Her Covenant Journal</a>
-        <a href="his-journal.html" role="menuitem">His Covenant Journal</a>
-        <a href="sacred-deposits-couples-workbook.html" role="menuitem">Couples Workbook</a>
-      </div>
-    </div>
-    <div class="nav-group has-dropdown">
-      <a href="about.html" class="nav-link">About<span class="nav-caret" aria-hidden="true"></span></a>
-      <div class="nav-dropdown" role="menu">
-        <a href="about.html" role="menuitem">About Yvonne</a>
-        <a href="life-in-darkness.html" role="menuitem">Life in Darkness</a>
-        <a href="ygh-technology-consultants.html" role="menuitem">YGH Technology Consultants</a>
-      </div>
-    </div>
-    <div class="nav-group has-dropdown">
-      <a href="contact.html" class="nav-link">Contact<span class="nav-caret" aria-hidden="true"></span></a>
-      <div class="nav-dropdown" role="menu">
-        <a href="contact.html" role="menuitem">Contact</a>
-        <a href="churches.html" role="menuitem">Churches & Groups</a>
-        <a href="press.html" role="menuitem">Press &amp; Media</a>
-        <a href="licensing.html" role="menuitem">Licensing</a>
-      </div>
-    </div>
-  </nav>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-    <span class="nav-toggle__label">MENU</span>
-    <span class="nav-toggle__lines" aria-hidden="true"><span></span><span></span></span>
-  </button>
-  <a href="vault.html" class="nav__cta">Enter the Vault</a>
 
 
 
-<section class="efx-hero">
+<section class="efx-hero" style="background:linear-gradient(170deg,#0b1e40 0%,#071432 55%,#02060f 100%) !important;">
   <div class="efx-hero__inner">
-    <span class="efx-hero__cap">Protocol III · Multi-Generational</span>
-    <h1 class="efx-hero__title">The Legacy <em>Ledger.</em></h1>
-    <p class="efx-hero__sub">A multi-generational accounting tool. <em>What you are depositing into your children's future marriages</em> — whether you know it or not, whether you signed for it or not.</p>
+    <span class="efx-hero__cap" style="color:#FFFFFF !important;">Protocol III · Multi-Generational</span>
+    <h1 class="efx-hero__title" style="color:#FBF4E6 !important;">The Legacy <em style="color:#D1AD66 !important;">Ledger.</em></h1>
+    <p class="efx-hero__sub" style="color:rgba(251,244,230,.9) !important;">A multi-generational accounting tool. <em>What you are depositing into your children's future marriages</em> — whether you know it or not, whether you signed for it or not.</p>
     <div class="efx-hero__ornament" aria-hidden="true">
       <span class="o-line"></span><span class="o-dia"></span><span class="o-line"></span>
     </div>
@@ -947,5 +896,20 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style>
+/* Legacy Ledger — MOBILE hardening: hide desktop nav (kills the double-header), lock hero navy, bigger pullquote */
+@media (max-width: 820px) {
+  .header .nav { display: none !important; }
+  .header .nav-toggle { display: inline-flex !important; }
+  .efx-pullquote__text { font-size: 1.9rem !important; line-height: 1.42 !important; }
+}
+/* PROTOCOL III block stays in its BLUE container on every screen */
+.efx-hero { background: linear-gradient(170deg, var(--navy-2,#0b1e40) 0%, var(--navy,#071432) 55%, var(--navy-4,#02060f) 100%) !important; }
+.efx-hero__cap { color: var(--gold-s) !important; }
+.efx-hero__title { color: var(--ivory) !important; }
+.efx-hero__title em { color: var(--gold-s) !important; }
+.efx-hero__sub { color: rgba(251,244,230,.85) !important; }
+.efx-hero__sub em { color: var(--gold-s) !important; }
+</style>
 </body>
 </html>

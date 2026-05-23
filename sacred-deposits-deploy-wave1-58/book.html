@@ -241,8 +241,8 @@ body::after {
 }
 
 .book-hero__script {
-  font-family: var(--script);
-  font-size: 2.4rem;
+  font-family: 'Allura', 'Pinyon Script', cursive !important;
+  font-size: 3rem;
   color: var(--gold);
   margin-bottom:16px;
   display: block;
@@ -265,7 +265,7 @@ body::after {
 .book-hero__subtitle {
   font-family: var(--serif);
   font-style: italic; font-weight: 300;
-  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-size: clamp(1.5rem, 2.1vw, 1.95rem);
   line-height: 1.4;
   color: #1f1a10;
   margin-bottom:44px;
@@ -301,7 +301,7 @@ body::after {
 .book-hero__byline-name {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   color: var(--ink);
   letter-spacing: -.005em;
 }
@@ -620,6 +620,14 @@ body::after {
 .toc-part__list li:last-child { border-bottom: none; }
 .toc-part__list-name { font-weight: 500; }
 .toc-part__list-name sup { font-size: .55em; vertical-align: super; }
+/* Part Three — all text black per request (parchment card) */
+body .toc-part--three .toc-part__title,
+body .toc-part--three .toc-part__desc,
+body .toc-part--three .toc-part__list-name,
+body .toc-part--three .toc-part__list-name sup { color: #000 !important; }
+body .toc-part--three .toc-part__label-num,
+body .toc-part--three .toc-part__title em { color: var(--gold) !important; }
+body .toc-part--three .toc-part__label { color: #8A6A28 !important; font-weight: 700 !important; opacity: 1 !important; }
 
 .inside__excerpt {
   margin-top:90px;
@@ -1522,8 +1530,8 @@ body::after {
 .waitlist__input::placeholder { color: rgba(251,244,230,.4); }
 .waitlist__submit {
   font-family: var(--sans);
-  font-size: .62rem; font-weight: 700;
-  letter-spacing: .32em; text-transform: uppercase;
+  font-size: .5rem; font-weight: 700;
+  letter-spacing: .28em; text-transform: uppercase;
   color: var(--gold-s);
   background: transparent; border: none;
   padding: 0 18px;
@@ -1652,13 +1660,13 @@ body::after {
   .nav__cta { padding: 13px 22px; font-size: .66rem; }
   .book-hero { padding:108px 24px 60px; }
   .book-hero__title { font-size: 2.6rem; }
-  .book-hero__subtitle { font-size: 1.08rem; }
+  .book-hero__subtitle { font-size: 1.32rem; }
   .book-hero__ctas { flex-direction: column; align-items: stretch; }
   .btn { padding: 16px 24px; }
   .inevitable, .inside, .author-section, .praise, .sacred-100, .editions, .companions, .bib, .waitlist {
     padding:90px 24px 68px;
   }
-  .inevitable__hook { font-size: 1.9rem; }
+  .inevitable__hook { font-size: 3rem; }
   .section-title { font-size: 2.1rem; }
   .author-section__name { font-size: 2rem; }
   .author-section__credits { grid-template-columns: 1fr; gap: 14px; }
@@ -2001,10 +2009,10 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="description" content="The Sacred Deposits™ book by Yvonne G. Hall — a Christian marriage framework on the disciplines that build emotional intimacy, communication, and repair. Launches May 25, 2026."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/book.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/book.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -2015,8 +2023,8 @@ body.dark-header .nav-dropdown a:hover {
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="Sacred Deposits™ Book — Christian Marriage on Honor, Repair & Intimacy"/>
 <meta property="og:description" content="The Sacred Deposits™ book by Yvonne G. Hall — a Christian marriage framework on the disciplines that build emotional intimacy, communication, and repair. Launches May 25, 2026."/>
-<meta property="og:url" content="https://sacreddeposits.com/book.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/sacred-deposits-hardcover.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/book.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/sacred-deposits-hardcover.jpg"/>
 <meta property="og:image:width" content="1086"/>
 <meta property="og:image:height" content="1448"/>
 <meta property="og:locale" content="en_US"/>
@@ -2025,7 +2033,7 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Sacred Deposits™ Book — Christian Marriage on Honor, Repair & Intimacy"/>
 <meta name="twitter:description" content="The Sacred Deposits™ book by Yvonne G. Hall — a Christian marriage framework on the disciplines that build emotional intimacy, communication, and repair. Launches May 25, 2026."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/sacred-deposits-hardcover.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/sacred-deposits-hardcover.jpg"/>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -2034,17 +2042,17 @@ body.dark-header .nav-dropdown a:hover {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com",
+      "url": "https://sacreddeposit.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
         "width": 512,
         "height": 512
       },
       "founder": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
       "knowsLanguage": [
@@ -2054,14 +2062,14 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Person",
-      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
       "name": "Yvonne G. Hall",
-      "image": "https://sacreddeposits.com/assets/images/yvonne/yvonne-portrait-1040.jpg",
+      "image": "https://sacreddeposit.com/assets/images/yvonne/yvonne-portrait-1040.jpg",
       "givenName": "Yvonne",
       "familyName": "Hall",
       "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
       "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
-      "url": "https://sacreddeposits.com/about.html",
+      "url": "https://sacreddeposit.com/about.html",
       "sameAs": [],
       "knowsAbout": [
         "Christian marriage",
@@ -2079,28 +2087,28 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Book",
-      "@id": "https://sacreddeposits.com/book.html#hardcover",
+      "@id": "https://sacreddeposit.com/book.html#hardcover",
       "name": "Sacred Deposits",
       "alternateName": "Sacred Deposits: A Covenant Marriage Framework",
       "author": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "publisher": {
-        "@id": "https://sacreddeposits.com/#organization"
+        "@id": "https://sacreddeposit.com/#organization"
       },
       "isbn": "979-8-9952505-4-8",
       "bookFormat": "https://schema.org/Hardcover",
       "datePublished": "2026-05-25",
       "inLanguage": "en",
       "description": "A Christian marriage framework on the disciplines that build emotional intimacy, communication, and repair. Five Deposits, the Repair Cycle, and the practice of covenant marriage by Yvonne G. Hall.",
-      "image": "https://sacreddeposits.com/assets/images/sacred-deposits-hardcover.jpg",
-      "url": "https://sacreddeposits.com/book.html",
+      "image": "https://sacreddeposit.com/assets/images/sacred-deposits-hardcover.jpg",
+      "url": "https://sacreddeposit.com/book.html",
       "offers": {
         "@type": "Offer",
         "price": "36.99",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://sacreddeposits.com/book.html"
+        "url": "https://sacreddeposit.com/book.html"
       },
       "workExample": [
         {
@@ -2114,7 +2122,7 @@ body.dark-header .nav-dropdown a:hover {
         },
         {
           "@type": "Book",
-          "isbn": "979-8-9952505-1-7",
+          "isbn": "979-8-9952505-3-1",
           "bookFormat": "https://schema.org/EBook",
           "name": "Sacred Deposits (eBook)",
           "potentialAction": {
@@ -2543,9 +2551,9 @@ body { padding-top: 38px; }
       </div>
 
       <div class="toc-part toc-part--three">
-        <div class="toc-part__label">
+        <div class="toc-part__label" style="opacity:1 !important;">
           <span class="toc-part__label-num">III.</span>
-          <span>Part Three</span>
+          <span style="color:#8A6A28 !important;font-weight:700;opacity:1 !important;">Part Three</span>
         </div>
         <h3 class="toc-part__title">The <em>System</em> Beneath</h3>
         <p class="toc-part__desc">The operating principles — and the three protocols that turn theory into Tuesday morning.</p>
@@ -2566,9 +2574,8 @@ body { padding-top: 38px; }
       <span class="inside__excerpt-eyebrow">Read the Opening</span>
       <h3 class="inside__excerpt-headline">The first chapter, <em>delivered to your inbox.</em></h3>
       <p class="inside__excerpt-sub">Eleven pages. No purchase required.</p>
-      <form name="send-me-excerpt" method="POST" data-netlify="true" netlify-honeypot="bot-field"
-            class="inside__excerpt-form"
-            onsubmit="return sdNetlifySubmit(this, function(form){ form.querySelector('input[type=email]').value=''; var b=form.querySelector('button'); if(b){ b.textContent='Sent. Check your inbox.'; b.disabled=true; } });">
+      <form name="send-me-excerpt" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field"
+            class="inside__excerpt-form">
         <input type="hidden" name="form-name" value="send-me-excerpt"/>
         <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
         <input type="email" name="email" required placeholder="Your email" class="inside__excerpt-input" aria-label="Your email"/>
@@ -2654,7 +2661,7 @@ body { padding-top: 38px; }
 
     <header class="section-header">
       <span class="section-eyebrow">Advance Praise</span>
-      <h2 class="section-title">What Readers <em>Are Saying.</em></h2>
+      <h2 class="section-title" style="color:#fff !important;opacity:1 !important;">What Readers <em>Are Saying.</em></h2>
       <p class="section-sub">
         <em>Early notes from pastors, counselors, and the marriages that read the manuscript first.</em>
       </p>
@@ -2928,7 +2935,7 @@ body { padding-top: 38px; }
       </div>
       <div class="bib__cell">
         <span class="bib__cell-label">eBook ISBN</span>
-        <span class="bib__cell-value-mono">979-8-9952505-1-7</span>
+        <span class="bib__cell-value-mono">979-8-9952505-3-1</span>
       </div>
       <div class="bib__cell">
         <span class="bib__cell-label">LCCN</span>
@@ -2946,10 +2953,10 @@ body { padding-top: 38px; }
     <p class="waitlist__body">
       Notes on practice, the next companions, and quiet word when something new is ready — in your inbox. Never more than once a fortnight.
     </p>
-    <form method="POST" class="waitlist__form" name="waitlist-book" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sdNetlifySubmit(this, function(form){ this.querySelector('.waitlist__input').value=''; var b=this.querySelector('button'); if(b){b.textContent='You are on the list.';b.disabled=true;} })">
+    <form method="POST" class="waitlist__form" name="waitlist-book" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="waitlist-book"/>
     <p style="display:none"><label>Skip: <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
-      <input type="email" class="waitlist__input" placeholder="your email address" required>
+      <input type="email" name="email" class="waitlist__input" placeholder="your email address" required>
       <button type="submit" class="waitlist__submit">Stay Close</button>
     </form>
     <p class="waitlist__fine">No noise. Only what protects covenant.</p>
@@ -3078,5 +3085,16 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style>
+/* Book page contrast/layout fixes (load last, win cascade) */
+html body, html body * { -webkit-hyphens: none !important; -ms-hyphens: none !important; hyphens: none !important; }
+html body .praise .section-header .section-title,
+html body .praise .section-title { color: #fff !important; }
+body .praise .section-title em { color: var(--gold-s, #D1AD66) !important; }
+body .praise .section-eyebrow { color: var(--gold-s, #D1AD66) !important; }
+body .praise .section-sub, body .praise .section-sub em { color: rgba(251,244,230,.85) !important; }
+/* Hide the decorative ring visual on ALL screens (gold-on-cream washes out, composes badly); the navy counter box in this same section carries the live count */
+body .sacred-100__visual { display: none !important; }
+</style>
 </body>
 </html>

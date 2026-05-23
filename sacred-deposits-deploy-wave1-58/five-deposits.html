@@ -29,7 +29,7 @@ img,svg{display:block;max-width:100%}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");mix-blend-mode:multiply}
 
 /* HEADER */
-.header{position:absolute;top:0;left:0;right:0;z-index:200;background:transparent;height:92px;display:flex;align-items:center;padding:0 72px}
+.header{position:absolute;top:0;left:0;right:0;z-index:200;background:var(--ivory);border-bottom:1px solid rgba(184,144,69,.22);height:92px;display:flex;align-items:center;padding:0 72px}
 .brand{display:flex;align-items:center;gap:16px;flex-shrink:0}
 .brand__ring{width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .brand__ring img{width:52px;height:52px}
@@ -81,7 +81,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
 .hero__inner{max-width:980px;margin:0 auto;position:relative;z-index:2}
 .hero__cap{font-family:var(--caps);font-size:.58rem;font-weight:500;letter-spacing:.56em;text-transform:uppercase;color:var(--gold);margin-bottom:30px;display:inline-flex;align-items:center;gap:18px}
 .hero__cap::before,.hero__cap::after{content:"";width:42px;height:1px;background:var(--gold);opacity:.6}
-.hero__script{font-family:var(--script);font-size:2.4rem;color:var(--gold);margin-bottom:14px;display:block}
+.hero__script{font-family:'Allura','Pinyon Script',var(--script),cursive !important;font-size:3.6rem;color:var(--gold);margin-bottom:14px;display:block}
 .hero__title{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,7vw,6.4rem);line-height:.98;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
 .hero__title em{font-style:italic;color:var(--gold)}
 .hero__title sup{font-size:.3em;vertical-align:super;color:var(--gold)}
@@ -150,7 +150,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
 /* RESPONSIVE BASELINE */
 @media (max-width:1200px){.header{padding:0 36px}.nav{gap:36px}.hero{padding:70px 40px 68px}.site-footer{padding:68px 40px 70px}}
 @media (max-width:980px){.site-footer__main{grid-template-columns:1fr 1fr;gap:44px 28px}}
-@media (max-width:720px){.header{padding:0 20px;height:78px}.nav{display:none}.nav__cta{padding:13px 22px;font-size:.66rem}.hero{padding:68px 24px 80px}.hero__title{font-size:2.6rem}.hero__sub{font-size:1.05rem}.hero__ctas{flex-direction:column;align-items:stretch;width:100%}.btn{padding:16px 24px}.section-title{font-size:2.1rem}.site-footer{padding:80px 24px 50px}.site-footer__main{grid-template-columns:1fr;gap:36px;padding-bottom:40px}.site-footer__legal{flex-direction:column}}
+@media (max-width:720px){.header{padding:0 20px;height:78px}.nav{display:none}.nav__cta{padding:13px 22px;font-size:.66rem}.hero{padding:68px 24px 80px}.hero__title{font-size:3rem}.hero__sub{font-size:2rem}.hero__ctas{flex-direction:column;align-items:stretch;width:100%}.btn{padding:16px 24px}.section-title{font-size:2.1rem}.site-footer{padding:80px 24px 50px}.site-footer__main{grid-template-columns:1fr;gap:36px;padding-bottom:40px}.site-footer__legal{flex-direction:column}}
 @media (prefers-reduced-motion:reduce){.reveal,.reveal--scale,.stagger > *{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}}
 
 .deposits{background:var(--ivory);padding:55px 60px 82px}
@@ -194,13 +194,13 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
   }
   .hero__inner { max-width: 580px; }
   .hero__title {
-    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    font-size: clamp(3rem, 10vw, 4.8rem) !important;
     line-height: 1 !important;
     letter-spacing: -.022em !important;
     margin-bottom:28px;
   }
   .hero__sub {
-    font-size: 1.18rem !important;
+    font-size: 2.2rem !important;
     line-height: 1.6 !important;
     max-width: 44ch !important;
     margin-bottom:40px;
@@ -211,7 +211,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
     margin-bottom:24px;
   }
   .hero__cap::before, .hero__cap::after { width: 32px; }
-  .hero__script { font-size: 2rem !important; }
+  .hero__script { font-size: 2.9rem !important; font-family:'Allura','Pinyon Script',cursive !important; }
   .hero__ctas {
     flex-direction: column;
     align-items: stretch;
@@ -232,7 +232,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
     font-size: clamp(2.4rem, 10vw, 3.6rem) !important;
   }
   .hero__sub {
-    font-size: 1.12rem !important;
+    font-size: 2.1rem !important;
     line-height: 1.62 !important;
     max-width: 38ch !important;
   }
@@ -248,9 +248,9 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
     line-height: 1.02 !important;
   }
   .hero__sub {
-    font-size: 1.08rem !important;
+    font-size: 2rem !important;
   }
-  .hero__script { font-size: 1.8rem !important; }
+  .hero__script { font-size: 2.1rem !important; }
 }
 
 /* 390px and below — smallest phones */
@@ -262,7 +262,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
     font-size: clamp(2rem, 10vw, 2.8rem) !important;
   }
   .hero__sub {
-    font-size: 1.02rem !important;
+    font-size: 1.9rem !important;
     line-height: 1.65 !important;
   }
 }
@@ -275,7 +275,7 @@ body.dark-header .nav__cta:hover{background:var(--ivory)}
   }
   .about-hero__title, .book-hero__title, .vault-hero__title,
   .intro__title, .legal-hero__title {
-    font-size: clamp(2.6rem, 9vw, 4.2rem) !important;
+    font-size: clamp(3rem, 10vw, 4.8rem) !important;
     line-height: 1 !important;
   }
   .about-hero__sub, .book-hero__sub, .vault-hero__sub,
@@ -456,22 +456,22 @@ body.dark-header .nav-dropdown a:hover {
 .hero__sub, .hero__subtitle, .hero p, .hero__lede { color: rgba(251,244,230,.86) !important; }
 .hero__sub em, .hero__lede em { color: var(--gold-s, #D1AD66) !important; }
 /* Nav text legible over navy hero */
-.header .brand__name { color: var(--ivory) !important; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
-.header .nav-link { color: var(--ivory) !important; }
+.header .brand__name { color: var(--ink) !important; text-shadow: none !important; }
+.header .nav-link { color: var(--ink) !important; }
 .header .nav-caret { border-top-color: var(--gold-s) !important; }
 .header .nav-link:hover { color: var(--gold-s) !important; }
-.header .nav-toggle__label { color: var(--ivory) !important; }
-.header .nav-toggle__lines span { background: var(--ivory) !important; }
+.header .nav-toggle__label { color: var(--ink) !important; }
+.header .nav-toggle__lines span { background: var(--ink) !important; }
 
 </style>
 <title>The Five Deposits™ — Honor, Gentleness, Attunement, Repair, Tenderness</title>
 <meta name="description" content="The Five Deposits™ — the foundational disciplines of covenant marriage. Honor, Gentleness, Attunement, Repair, and Compound Tenderness. From the Sacred Deposits™ framework."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/five-deposits.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/five-deposits.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -482,8 +482,8 @@ body.dark-header .nav-dropdown a:hover {
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="The Five Deposits™ — Honor, Gentleness, Attunement, Repair, Tenderness"/>
 <meta property="og:description" content="The Five Deposits™ — the foundational disciplines of covenant marriage. Honor, Gentleness, Attunement, Repair, and Compound Tenderness. From the Sacred Deposits™ framework."/>
-<meta property="og:url" content="https://sacreddeposits.com/five-deposits.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/five-deposits.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:locale" content="en_US"/>
@@ -492,7 +492,7 @@ body.dark-header .nav-dropdown a:hover {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Five Deposits™ — Honor, Gentleness, Attunement, Repair, Tenderness"/>
 <meta name="twitter:description" content="The Five Deposits™ — the foundational disciplines of covenant marriage. Honor, Gentleness, Attunement, Repair, and Compound Tenderness. From the Sacred Deposits™ framework."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/og-share.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/og-share.jpg"/>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -501,17 +501,17 @@ body.dark-header .nav-dropdown a:hover {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sacreddeposits.com/#organization",
+      "@id": "https://sacreddeposit.com/#organization",
       "name": "EQGenix Inc.",
-      "url": "https://sacreddeposits.com",
+      "url": "https://sacreddeposit.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://sacreddeposits.com/assets/images/logo.png",
+        "url": "https://sacreddeposit.com/assets/images/logo.png",
         "width": 512,
         "height": 512
       },
       "founder": {
-        "@id": "https://sacreddeposits.com/#yvonne-g-hall"
+        "@id": "https://sacreddeposit.com/#yvonne-g-hall"
       },
       "description": "EQGenix Inc. is a Christ-centered Emotional Wealth Advisory firm. Publisher of Sacred Deposits\u2122 \u2014 a covenant marriage framework.",
       "knowsLanguage": [
@@ -521,13 +521,13 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "Person",
-      "@id": "https://sacreddeposits.com/#yvonne-g-hall",
+      "@id": "https://sacreddeposit.com/#yvonne-g-hall",
       "name": "Yvonne G. Hall",
       "givenName": "Yvonne",
       "familyName": "Hall",
       "jobTitle": "Author, Applied Behavioral Scientist, Founder & CEO of EQGenix Inc.",
       "description": "Christian marriage author, applied behavioral scientist, and founder of EQGenix Inc. Author of Sacred Deposits\u2122.",
-      "url": "https://sacreddeposits.com/about.html",
+      "url": "https://sacreddeposit.com/about.html",
       "sameAs": [],
       "knowsAbout": [
         "Christian marriage",
@@ -545,14 +545,14 @@ body.dark-header .nav-dropdown a:hover {
     },
     {
       "@type": "WebPage",
-      "@id": "https://sacreddeposits.com/five-deposits.html#page",
-      "url": "https://sacreddeposits.com/five-deposits.html",
+      "@id": "https://sacreddeposit.com/five-deposits.html#page",
+      "url": "https://sacreddeposit.com/five-deposits.html",
       "name": "The Five Deposits\u2122 \u2014 Honor, Gentleness, Attunement, Repair, Tenderness",
       "isPartOf": {
-        "@id": "https://sacreddeposits.com/#website"
+        "@id": "https://sacreddeposit.com/#website"
       },
       "about": {
-        "@id": "https://sacreddeposits.com/#organization"
+        "@id": "https://sacreddeposit.com/#organization"
       }
     }
   ]
@@ -853,11 +853,11 @@ body { padding-top: 38px; }
     </div>
   </div>
 </div>
-<section class="hero">
+<section class="hero hero--dark">
   <div class="hero__inner">
     <span class="hero__cap">Part One of the Book</span>
     <span class="hero__script">The foundation.</span>
-    <h1 class="hero__title">The <em>Five Deposits</em><sup>&trade;</sup>.</h1>
+    <h1 class="hero__title">The <em>Five Deposits</em><sup>&trade;</sup></h1>
     <p class="hero__sub">Five disciplines that compound into a marriage <em>no quick fix can replicate</em>. The foundation of the Sacred Deposits<sup>&trade;</sup> framework.</p>
   </div>
 </section>
@@ -956,7 +956,7 @@ body { padding-top: 38px; }
 <section class="deposits-cta">
   <div class="deposits-cta__inner">
     <h2 class="deposits-cta__title">Five deposits. <em>One framework.</em></h2>
-    <p class="deposits-cta__body">The full architecture — including the anti-patterns, the operating system, and the three protocols — lives in the book.</p>
+    <p class="deposits-cta__body">The full architecture, including the anti-patterns, the operating system, and the three protocols, lives in the book.</p>
     <div class="deposits-cta__ctas">
       <a href="sacred-deposits-hardcover.html" class="btn btn--primary">Order the Book<span class="btn__arrow"></span></a>
       <a href="vault.html" class="btn btn--secondary">Enter the Vault<span class="btn__arrow"></span></a>
@@ -1032,5 +1032,9 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style>
+/* Lock the navy hero independent of hero--dark so the bigger mobile subtitle still wins */
+html body section.hero { background: linear-gradient(170deg,#0b1e40 0%,#071432 55%,#02060f 100%) !important; }
+</style>
 </body>
 </html>

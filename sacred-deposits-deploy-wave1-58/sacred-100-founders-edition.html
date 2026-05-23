@@ -7,10 +7,10 @@
 <meta name="description" content="The Sacred 100 Founders Edition — one hundred numbered, signed copies of Sacred Deposits™ with slipcase, gold 5:1 pen, 5:1 mug, signed bookplate, and Founders Circle access. The collector's edition of the framework that protects covenant marriage."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta name="author" content="Yvonne G. Hall"/>
-<link rel="canonical" href="https://sacreddeposits.com/sacred-100-founders-edition.html"/>
-<link rel="alternate" hreflang="en" href="https://sacreddeposits.com/index.html"/>
-<link rel="alternate" hreflang="es" href="https://sacreddeposits.com/depositos-sagrados.html"/>
-<link rel="alternate" hreflang="x-default" href="https://sacreddeposits.com/index.html"/>
+<link rel="canonical" href="https://sacreddeposit.com/sacred-100-founders-edition.html"/>
+<link rel="alternate" hreflang="en" href="https://sacreddeposit.com/index.html"/>
+<link rel="alternate" hreflang="es" href="https://sacreddeposit.com/depositos-sagrados.html"/>
+<link rel="alternate" hreflang="x-default" href="https://sacreddeposit.com/index.html"/>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" href="assets/images/logo.webp"/>
@@ -20,13 +20,13 @@
 <meta property="og:site_name" content="Sacred Deposits"/>
 <meta property="og:title" content="The Sacred 100 Founders Edition — Numbered, Signed, Reserved · Sacred Deposits™"/>
 <meta property="og:description" content="The Sacred 100 Founders Edition — one hundred numbered, signed copies of Sacred Deposits™ with slipcase, gold 5:1 pen, 5:1 mug, signed bookplate, and Founders Circle access. The collector's edition of the framework that protects covenant marriage."/>
-<meta property="og:url" content="https://sacreddeposits.com/sacred-100-founders-edition.html"/>
-<meta property="og:image" content="https://sacreddeposits.com/assets/images/sacred-100-founders.jpg"/>
+<meta property="og:url" content="https://sacreddeposit.com/sacred-100-founders-edition.html"/>
+<meta property="og:image" content="https://sacreddeposit.com/assets/images/sacred-100-founders.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Sacred 100 Founders Edition — Numbered, Signed, Reserved · Sacred Deposits™"/>
 <meta name="twitter:description" content="The Sacred 100 Founders Edition — one hundred numbered, signed copies of Sacred Deposits™ with slipcase, gold 5:1 pen, 5:1 mug, signed bookplate, and Founders Circle access. The collector's edition of the framework that protects covenant marriage."/>
-<meta name="twitter:image" content="https://sacreddeposits.com/assets/images/sacred-100-founders.jpg"/>
+<meta name="twitter:image" content="https://sacreddeposit.com/assets/images/sacred-100-founders.jpg"/>
 
 
 
@@ -430,22 +430,22 @@ body.dark-header .nav-dropdown a:hover {
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://sacreddeposits.com/#organization", "name": "EQGenix Inc.", "url": "https://sacreddeposits.com" },
+    { "@type": "Organization", "@id": "https://sacreddeposit.com/#organization", "name": "EQGenix Inc.", "url": "https://sacreddeposit.com" },
     {
       "@type": "Product",
-      "@id": "https://sacreddeposits.com/sacred-100-founders-edition.html#product",
+      "@id": "https://sacreddeposit.com/sacred-100-founders-edition.html#product",
       "name": "The Sacred 100 Founders Edition",
       "description": "A numbered, signed limited edition of Sacred Deposits™ — one hundred copies only. Includes slipcased hardcover, signed bookplate (your number of 100), gold 5:1 pen, 5:1 mug, private Founders Circle access, and a closed Q&A with the author.",
       "category": "Books",
       "brand": { "@type": "Brand", "name": "Sacred Deposits" },
-      "image": "https://sacreddeposits.com/assets/images/sacred-100-founders.jpg",
-      "url": "https://sacreddeposits.com/sacred-100-founders-edition.html",
+      "image": "https://sacreddeposit.com/assets/images/sacred-100-founders.jpg",
+      "url": "https://sacreddeposit.com/sacred-100-founders-edition.html",
       "offers": {
         "@type": "Offer",
         "price": "249.00",
         "priceCurrency": "USD",
         "availability": "https://schema.org/LimitedAvailability",
-        "url": "https://sacreddeposits.com/sacred-100-founders-edition.html",
+        "url": "https://sacreddeposit.com/sacred-100-founders-edition.html",
         "seller": { "@type": "Organization", "name": "EQGenix Inc." }
       }
     }
@@ -831,16 +831,12 @@ body { padding-top: 38px; }
 
     <div class="pairs__grid stagger">
       <article class="pair-card">
-        <a href="sacred-union-set.html" class="pair-card__thumb pair-card__thumb--placeholder" aria-label="The Sacred Union Set">
+        <a href="sacred-union-set.html" class="pair-card__thumb pair-card__thumb--image" aria-label="The Sacred Union Set">
           <span class="pair-card__corner pair-card__corner--tl"></span>
           <span class="pair-card__corner pair-card__corner--tr"></span>
           <span class="pair-card__corner pair-card__corner--bl"></span>
           <span class="pair-card__corner pair-card__corner--br"></span>
-          <span class="pair-card__placeholder-name">
-            <span class="pair-card__placeholder-name__l1">Sacred Union</span>
-            <span class="pair-card__placeholder-name__l2">Set</span>
-          </span>
-          <span class="pair-card__placeholder-mark">5:1</span>
+          <img src="assets/images/sacred-union-set.jpg" alt="The Sacred Union Set" class="pair-card__thumb-image" loading="lazy">
         </a>
         <p class="pair-card__meta">Bundle · Gift-Boxed</p>
         <h3 class="pair-card__name">The Sacred Union Set<sup>&trade;</sup></h3>
@@ -1017,5 +1013,17 @@ body { padding-top: 38px; }
 
 
 <script src="js/snipcart-init.js" defer></script>
+<style id="sacred100-mobile-fix">
+/* MOBILE FIX: shared Sacred-Union override sets aspect-ratio:auto on .prod-hero__visual,
+   collapsing this image hero to 0 height. Restore 3/4 + fill. Page-scoped. */
+@media (max-width: 720px) {
+  html body .prod-hero__visual--image { aspect-ratio: 4 / 5 !important; overflow: hidden !important; }
+  html body .prod-hero__visual-image {
+    position: absolute !important; inset: 0 !important;
+    width: 100% !important; height: 100% !important;
+    object-fit: cover !important; display: block !important;
+  }
+}
+</style>
 </body>
 </html>

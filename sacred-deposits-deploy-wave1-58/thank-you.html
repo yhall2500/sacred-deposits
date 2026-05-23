@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thank You &mdash; Sacred Deposits&trade;</title>
+<meta name="robots" content="noindex,follow"/>
+<meta name="description" content="Thank you for your submission to Sacred Deposits."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&family=Allura&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#071432; --navy-2:#0b1e40; --navy-4:#02060f;
+    --gold:#B89045; --gold-d:#8A6A28; --gold-s:#D1AD66;
+    --ivory:#FBF4E6;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --script:'Allura',cursive;
+    --sans:'Manrope',system-ui,sans-serif;
+    --caps:'Cinzel',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{min-height:100%;}
+  body{
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 25%, rgba(184,144,69,.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 75% 80%, rgba(184,144,69,.06) 0%, transparent 60%),
+      linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 55%, var(--navy-4) 100%);
+    color:var(--ivory);
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif);
+    text-align:center;
+    padding:10vw 7vw;
+    -webkit-font-smoothing:antialiased;
+  }
+  .ty{ max-width:660px; width:100%; }
+  .ty__mark{ display:block; width:54px; height:54px; margin:0 auto 30px; opacity:.9; }
+  .ty__eyebrow{
+    font-family:var(--caps); font-size:.6rem; font-weight:600;
+    letter-spacing:.42em; text-transform:uppercase; color:var(--gold-s);
+    display:block; margin-bottom:26px;
+  }
+  .ty__script{
+    font-family:var(--script); font-size:clamp(2.6rem, 8vw, 4rem);
+    color:var(--gold-s); line-height:1; margin-bottom:18px;
+  }
+  .ty__title{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(2rem, 5vw, 3rem); line-height:1.12;
+    letter-spacing:-.01em; margin-bottom:24px;
+  }
+  .ty__title em{ font-style:italic; color:var(--gold-s); }
+  .ty__rule{ width:58px; height:1px; background:rgba(209,173,102,.5); margin:0 auto 26px; }
+  .ty__body{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    font-size:clamp(1.1rem, 2.6vw, 1.4rem); line-height:1.6;
+    color:rgba(251,244,230,.88); margin-bottom:14px;
+  }
+  .ty__body--soft{ color:rgba(251,244,230,.72); margin-bottom:42px; }
+  .ty__btn{
+    display:inline-block;
+    font-family:var(--sans); font-size:.7rem; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase;
+    padding:16px 38px; border-radius:2px; text-decoration:none;
+    background:var(--gold); color:var(--navy); border:1px solid var(--gold);
+    transition:background .3s ease, border-color .3s ease;
+  }
+  .ty__btn:hover{ background:var(--gold-s); border-color:var(--gold-s); }
+  .ty__sig{
+    margin-top:46px; font-family:var(--serif); font-style:italic;
+    font-size:1.02rem; color:rgba(251,244,230,.5);
+  }
+</style>
+</head>
+<body>
+  <main class="ty">
+    <svg class="ty__mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+      <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+      <circle cx="24" cy="24" r="1.4" fill="#D1AD66"/>
+    </svg>
+    <span class="ty__eyebrow">Sacred Deposits&trade;</span>
+    <p class="ty__script">Thank you</p>
+    <h1 class="ty__title">Thank you for your <em>submission</em>.</h1>
+    <div class="ty__rule"></div>
+    <p class="ty__body">Your response has been received with care.</p>
+    <p class="ty__body ty__body--soft">We&rsquo;re grateful you took the time to connect with Sacred Deposits.</p>
+    <a href="/" class="ty__btn">Return to Sacred Deposits</a>
+    <p class="ty__sig">&mdash; Yvonne G. Hall</p>
+  </main>
+</body>
+</html>

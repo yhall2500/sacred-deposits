@@ -5,3 +5,9 @@
 
 /*
   X-Content-Type-Options: nosniff
+
+# Revalidate CSS/JS every load (prevents stale styles after redeploy; no query-string needed)
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate

@@ -15,7 +15,7 @@
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: data.toString()
     })
-      .then(function (r) { if (!r.ok) throw r; if (typeof onSuccess === 'function') onSuccess(form); })
+      .then(function (r) { if (!r.ok) throw r; window.location.assign('/thank-you.html'); })
       .catch(function () {
         var btn = form.querySelector('button, [type=submit]');
         if (btn) { btn.textContent = 'Issue — please email us.'; btn.disabled = true; }

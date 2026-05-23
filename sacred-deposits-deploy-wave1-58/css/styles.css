@@ -852,7 +852,7 @@ img, video, iframe, picture, svg:not([width]), embed, object {
   h1, h2, h3, h4, h5, h6, p, a, li, blockquote, figcaption {
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
-    hyphens: auto;
+    hyphens: none;
   }
   
   /* Hyphenation OFF for headings/caps (they look weird hyphenated) */
@@ -3685,7 +3685,7 @@ body[class*="snipcart-modal-open"] .header {
   .page-home .hero__cap {
     font-family: var(--serif) !important;
     font-style: italic !important;
-    font-size: 15px !important;
+    font-size: 20px !important;
     color: var(--gold) !important;
     margin: 0 0 14px !important;
     display: block;
@@ -3727,11 +3727,15 @@ body[class*="snipcart-modal-open"] .header {
   .page-home .hero .subcopy,
   .page-home .hero__sub {
     font-family: var(--serif) !important;
-    font-size: 21px !important;
+    font-size: 22px !important;
     line-height: 1.5 !important;
     color: var(--ink) !important;
     margin: 0 0 36px !important;
     font-style: normal !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
   }
   .page-home .hero .subcopy br { display: none; }
 
@@ -3943,10 +3947,14 @@ body[class*="snipcart-modal-open"] .header {
 @media (max-width: 720px) {
 
   /* ─── Remove the eyebrow on homepage hero (per user) ─── */
-  .page-home .hero .eyebrow-script,
   .page-home .hero__cap,
   .page-home .hero .tiny-rule {
     display: none !important;
+  }
+  /* 'For the ones who stayed.' restored above the headline on mobile */
+  .page-home .hero .eyebrow-script {
+    display: block !important;
+    color: var(--gold) !important;
   }
 
   /* ─── Force header to always sit above the hero photo ─── */
@@ -4622,7 +4630,7 @@ body[class*="snipcart-modal-open"] .header {
   .book-hero__byline-label {
     display: block !important;
     font-family: var(--sans) !important;
-    font-size: 10px !important;
+    font-size: 12px !important;
     letter-spacing: 0.22em !important;
     text-transform: uppercase !important;
     color: var(--gold) !important;
@@ -4633,7 +4641,7 @@ body[class*="snipcart-modal-open"] .header {
     display: block !important;
     font-family: var(--serif) !important;
     font-style: italic !important;
-    font-size: 14px !important;
+    font-size: 18px !important;
     color: var(--ink) !important;
     margin: 3px 0 0 !important;
     line-height: 1.2;
@@ -4700,7 +4708,7 @@ body[class*="snipcart-modal-open"] .header {
 
   /* ─── INEVITABLE section ─── */
   .inevitable__hook {
-    font-size: 1.75rem !important;
+    font-size: 2.9rem !important;
     line-height: 1.25 !important;
     text-align: center !important;
     color: var(--ink) !important;
@@ -5032,11 +5040,11 @@ body[class*="snipcart-modal-open"] .header {
     color: var(--ink) !important;
     border: 0 !important;
     border-radius: 999px !important;
-    padding: 17px 24px !important;
+    padding: 14px 24px !important;
     font-family: var(--sans) !important;
-    font-size: 12px !important;
-    letter-spacing: 0.24em !important;
-    font-weight: 500 !important;
+    font-size: 8px !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 600 !important;
     text-transform: uppercase !important;
     justify-content: center;
   }
@@ -16640,8 +16648,8 @@ body[class*="snipcart-modal-open"] .header {
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     max-width: 100% !important;
-    hyphens: auto !important;
-    -webkit-hyphens: auto !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
   }
 
   /* ════════════════════════════════════════════════════════════════════
@@ -16651,8 +16659,8 @@ body[class*="snipcart-modal-open"] .header {
     max-width: 100% !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    hyphens: auto !important;
-    -webkit-hyphens: auto !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
   }
 
   /* ════════════════════════════════════════════════════════════════════
