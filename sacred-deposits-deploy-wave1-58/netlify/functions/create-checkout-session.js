@@ -29,19 +29,38 @@ exports.handler = async function (event) {
 
     if (!items.length) return json(400, { error: 'Your cart is empty.' });
 
-    // Validate every price ID server-side too (clear, specific errors).
+
+    // Build line items. Accept price_ ids directly; for prod_ ids, resolve the
+    // product's default (or first active) price via the Stripe API.
+    const line_items = [];
     for (const item of items) {
-      const price = item && item.price;
-      if (!price || typeof price !== 'string' || price.indexOf('price_') !== 0) {
-        return json(400, { error: 'Invalid Stripe price ID received: "' + price + '". Each item must use a price_… ID (not prod_, a name, a URL, or a dollar amount).' });
+      const id = item && item.price;
+      const qty = Math.max(1, Math.min(99, parseInt(item.quantity, 10) || 1));
+      if (!id || typeof id !== 'string') {
+        return json(400, { error: 'Invalid Stripe id received: "' + id + '".' });
+      }
+      if (id.indexOf('price_') === 0) {
+        line_items.push({ price: id, quantity: qty });
+      } else if (id.indexOf('prod_') === 0) {
+        let priceId = null;
+        try {
+          const product = await stripe.products.retrieve(id);
+          priceId = (product && product.default_price) || null;
+          if (!priceId) {
+            const prices = await stripe.prices.list({ product: id, active: true, limit: 1 });
+            priceId = prices.data[0] && prices.data[0].id;
+          }
+        } catch (e) {
+          return json(400, { error: 'Could not look up a price for product ' + id + ': ' + (e && e.message) });
+        }
+        if (!priceId) {
+          return json(400, { error: 'No active price found for product ' + id + '. Add a price to this product in Stripe.' });
+        }
+        line_items.push({ price: priceId, quantity: qty });
+      } else {
+        return json(400, { error: 'Invalid Stripe id: "' + id + '". Must be a price_… or prod_… id.' });
       }
     }
-
-    // Requirement #6 — map straight to Stripe line_items.
-    const line_items = items.map(function (item) {
-      const qty = Math.max(1, Math.min(99, parseInt(item.quantity, 10) || 1));
-      return { price: item.price, quantity: qty };
-    });
 
     const host = (event.headers && (event.headers['x-forwarded-host'] || event.headers.host)) || '';
     const baseUrl = process.env.URL || (host ? 'https://' + host : '');

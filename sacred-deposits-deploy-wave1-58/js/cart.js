@@ -15,24 +15,35 @@
   var STORAGE_KEY = 'sd_cart_v1';
   var ENDPOINT = '/.netlify/functions/create-checkout-session';
 
-  /* ───────────────────────────────────────────────────────────────
-   * STRIPE PRICE IDs — paste your real price_… IDs from the Stripe
-   * Dashboard (Products → each product → its Price → copy the ID).
-   * Keys MUST match the data-id on your "Add to Cart" buttons.
-   * A value that is not a real price_… ID will block checkout with a
-   * clear error naming the product.
-   * ─────────────────────────────────────────────────────────────── */
+  /* PRIMARY — STRIPE IDs for the multi-item Checkout Session. These may be
+     PRICE ids (price_…) OR PRODUCT ids (prod_…). For prod_ ids the serverless
+     function automatically looks up each product's default price.
+     Keys MUST match the data-id on the Add to Cart buttons. */
   var PRICE_IDS = {
-    'sacred-deposits-hardcover': 'price_REPLACE_HARDCOVER',   // $36.99
-    'sacred-deposits-paperback': 'price_REPLACE_PAPERBACK',   // $24.99
-    'sacred-deposits-ebook':     'price_REPLACE_EBOOK',       // $9.99
-    'couples-workbook':          'price_REPLACE_WORKBOOK',    // $16.99
-    'her-covenant-journal':      'price_REPLACE_HER_JOURNAL', // $29.99
-    'his-covenant-journal':      'price_REPLACE_HIS_JOURNAL', // $29.99
-    'sacred-union-set':          'price_REPLACE_UNION_SET',   // $150
-    'sacred-100-founders':       'price_REPLACE_FOUNDERS'     // $249
+    'sacred-deposits-hardcover': 'price_1TYhqyAaJAJhQwzSAHR9SDik',   // $36.99
+    'sacred-deposits-paperback': 'price_1TYhsDAaJAJhQwzSvAoVQWC2',   // $24.99
+    'sacred-deposits-ebook':     'price_1TYicoAaJAJhQwzSlKad6RNp',   // $9.99
+    'couples-workbook':          'price_1TYhxeAaJAJhQwzSgy446Txa',   // $16.99
+    'her-covenant-journal':      'price_1TYhuMAaJAJhQwzSCz1Gvryl',   // $29.99
+    'his-covenant-journal':      'price_1TYhwbAaJAJhQwzS4bs5WYy1',   // $29.99
+    'sacred-union-set':          'price_1TYhytAaJAJhQwzSMiEqJSBw',   // $150
+    'sacred-100-founders':       'price_1TYhzvAaJAJhQwzSBkasdCV5'    // $249
   };
   function priceIdFor(id) { return PRICE_IDS[id] || ''; }
+
+  /* EMERGENCY FALLBACK ONLY — single-product Payment Links, used only if the
+     Checkout Session function is unreachable. Not the primary checkout path. */
+  var PAYMENT_LINKS = {
+    'sacred-deposits-ebook':     'https://buy.stripe.com/9B68wOcbZ9fjdNl7Fp8ww07',
+    'sacred-deposits-hardcover': 'https://buy.stripe.com/5kQ4gy4Jxcrv24DgbV8ww06',
+    'sacred-deposits-paperback': 'https://buy.stripe.com/cNi4gyb7VezD38H6Bl8ww05',
+    'her-covenant-journal':      'https://buy.stripe.com/4gMaEWek7ezD9x51h18ww04',
+    'his-covenant-journal':      'https://buy.stripe.com/6oU3cugsfdvz10z8Jt8ww03',
+    'couples-workbook':          'https://buy.stripe.com/3cI00igsf6378t1f7R8ww02',
+    'sacred-union-set':          'https://buy.stripe.com/cNi00i1xlcrv6kTaRB8ww01',
+    'sacred-100-founders':       'https://buy.stripe.com/fZu28qcbZ8bfdNl9Nx8ww00'
+  };
+  function linkFor(id) { return PAYMENT_LINKS[id] || ''; }
   var C = { navy: '#071432', navy2: '#0b1e40', gold: '#B89045', goldS: '#D1AD66', ivory: '#FBF4E6' };
 
   /* ---------------- storage ---------------- */
@@ -46,8 +57,8 @@
   function add(item) {
     var items = read();
     var found = items.filter(function (i) { return i.id === item.id; })[0];
-    if (found) { found.qty += (item.qty || 1); if (!found.priceId) found.priceId = priceIdFor(found.id); }
-    else { items.push({ id: item.id, name: item.name, price: item.price, image: item.image, qty: item.qty || 1, priceId: priceIdFor(item.id) }); }
+    if (found) { found.qty += (item.qty || 1); }
+    else { items.push({ id: item.id, name: item.name, price: item.price, image: item.image, qty: item.qty || 1 }); }
     write(items); openDrawer();
   }
   function setQty(id, qty) {
@@ -96,6 +107,7 @@
       '.sd-cart__rm{width:auto !important;border:none !important;font-size:.62rem !important;letter-spacing:.14em;' +
         'text-transform:uppercase;color:rgba(251,244,230,.45) !important;margin-left:6px;padding:0 4px !important;}' +
       '.sd-cart__rm:hover{color:' + C.goldS + ' !important;background:none !important;}' +
+      '.sd-cart__buy{display:inline-block;margin-top:10px;font-family:"Manrope",sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:' + C.navy + ';background:' + C.gold + ';padding:8px 16px;border-radius:2px;text-decoration:none;} a.sd-cart__buy:hover{background:' + C.goldS + ';}' +
       '.sd-cart__foot{padding:20px 26px 26px;border-top:1px solid rgba(209,173,102,.2);}' +
       '.sd-cart__subtotal{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;' +
         'font-family:"Cormorant Garamond",serif;}' +
@@ -218,24 +230,23 @@
     var btn = document.getElementById('sd-cart-checkout') || (pageEl && pageEl.querySelector('#sd-page-checkout'));
     var label = btn ? btn.textContent : '';
 
-    // Backfill price IDs for items saved before they existed, then log.
-    var cartItems = items.map(function (i) {
-      if (!i.priceId) i.priceId = priceIdFor(i.id);
-      return i;
-    });
+    var cartItems = items.map(function (i) { i.priceId = priceIdFor(i.id); return i; });
     console.log('Checkout cart items:', cartItems);
 
-    // Validate every product has a real Stripe price_… ID — name the culprit.
+    // Validate every product has a real price_ ID — name the culprit.
     for (var k = 0; k < cartItems.length; k++) {
       var it = cartItems[k];
-      if (!it.priceId || String(it.priceId).indexOf('price_') !== 0) {
-        alert('Sorry \u2014 checkout could not start.\n\nInvalid Stripe price ID for "' + (it.name || it.id) + '".\n' +
-              'Open js/cart.js and set its real price_\u2026 ID in PRICE_IDS (currently "' + (it.priceId || 'empty') + '").');
+      var pid = String(it.priceId);
+      if (!it.priceId || (pid.indexOf('price_') !== 0 && pid.indexOf('prod_') !== 0)) {
+        alert('Checkout is missing a Stripe price/product ID for "' + (it.name || it.id) + '".\n' +
+              'Add its price_\u2026 or prod_\u2026 ID in js/cart.js (PRICE_IDS).');
         return;
       }
     }
 
     if (btn) { btn.disabled = true; btn.textContent = 'Redirecting\u2026'; }
+
+    // PRIMARY: one combined Stripe Checkout Session (multi-item, Apple Pay, etc.)
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -243,27 +254,25 @@
     })
       .then(function (r) {
         return r.text().then(function (t) {
-          var d = null;
-          try { d = JSON.parse(t); } catch (e) { /* not JSON */ }
-          return { ok: r.ok, status: r.status, d: d, raw: t };
+          var d = null; try { d = JSON.parse(t); } catch (e) {}
+          return { ok: r.ok, status: r.status, d: d };
         });
       })
       .then(function (res) {
         if (res.ok && res.d && res.d.url) { window.location.href = res.d.url; return; }
-        var msg;
-        if (res.d && res.d.error) {
-          msg = res.d.error;                       // real error JSON from the function
-        } else if (res.status === 404) {
-          msg = 'The checkout function was not found (404). It only runs on the live Netlify site \u2014 not a local file or static preview \u2014 and must be deployed with its dependencies.';
-        } else if (!res.d) {
-          msg = 'The checkout function did not return valid data (status ' + res.status + '). Usually means it crashed \u2014 check that STRIPE_SECRET_KEY is set in Netlify and the function deployed with the Stripe package.';
-        } else {
-          msg = 'Checkout could not start (status ' + res.status + ').';
-        }
-        throw new Error(msg);
+        throw new Error((res.d && res.d.error) || ('Checkout function unreachable (status ' + res.status + ').'));
       })
       .catch(function (err) {
         if (btn) { btn.disabled = false; btn.textContent = label; }
+        // EMERGENCY FALLBACK: if the function is down and the cart is a single
+        // product, offer its Payment Link so a sale is never lost.
+        var seen = {}; items.forEach(function (i) { seen[i.id] = true; });
+        var distinct = Object.keys(seen);
+        if (distinct.length === 1 && linkFor(distinct[0])) {
+          if (confirm('Our main checkout is briefly unavailable.\nContinue to a secure Stripe page for this item?')) {
+            window.location.href = linkFor(distinct[0]); return;
+          }
+        }
         alert('Sorry \u2014 checkout could not start.\n\n' + (err.message || err));
       });
   }
