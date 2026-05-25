@@ -65,17 +65,35 @@ exports.handler = async function (event) {
     const host = (event.headers && (event.headers['x-forwarded-host'] || event.headers.host)) || '';
     const baseUrl = process.env.URL || (host ? 'https://' + host : '');
 
-    const session = await stripe.checkout.sessions.create({
+    // Digital-only products get no shipping. The eBook is the only digital item.
+    // (Listed by both its price_ and prod_ id so it matches whatever the cart sends.)
+    const DIGITAL_IDS = ['price_1TYicoAaJAJhQwzSlKad6RNp', 'prod_UXoFwZ6lFFDRA8'];
+    const hasPhysical = items.some(function (item) {
+      return DIGITAL_IDS.indexOf(item && item.price) === -1;
+    });
+
+    const sessionParams = {
       mode: 'payment',
       line_items: line_items,
       // Omitting payment_method_types lets Stripe show every enabled method
       // (Apple Pay, Google Pay, Link, cards) automatically.
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
-      shipping_address_collection: { allowed_countries: ['US'] },
-      success_url: baseUrl + '/thank-you?session_id={CHECKOUT_SESSION_ID}',
+      success_url: baseUrl + '/thank-you?session_id={CHECKOUT_SESSION_ID}&purchase=1',
       cancel_url: baseUrl + '/cart'
-    });
+    };
+
+    // Only collect a shipping address + show shipping rates when something
+    // physical is in the cart. An eBook-only order skips shipping entirely.
+    if (hasPhysical) {
+      sessionParams.shipping_address_collection = { allowed_countries: ['US'] };
+      sessionParams.shipping_options = [
+        { shipping_rate: 'shr_1TYiFwAaJAJhQwzSXjU7aFPc' }, // Standard Shipping
+        { shipping_rate: 'shr_1TYiGqAaJAJhQwzSsZmBqUpt' }  // Premium Shipping
+      ];
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     // Requirement #7 — return the Checkout URL.
     return json(200, { url: session.url });
