@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Cart &mdash; Sacred Deposits&trade;</title>
+<meta name="robots" content="noindex,follow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&family=Allura&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#071432; --navy-2:#0b1e40; --navy-4:#02060f; --gold:#B89045; --gold-s:#D1AD66; --ivory:#FBF4E6;
+    --serif:'Cormorant Garamond',Georgia,serif; --script:'Allura',cursive; --sans:'Manrope',system-ui,sans-serif; --caps:'Cinzel',serif; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ min-height:100vh; background:
+      radial-gradient(ellipse 60% 50% at 30% 20%, rgba(184,144,69,.10) 0%, transparent 60%),
+      linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 55%, var(--navy-4) 100%);
+    color:var(--ivory); font-family:var(--serif); padding:9vh 6vw; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:640px; margin:0 auto; }
+  .top{ text-align:center; margin-bottom:38px; }
+  .mark{ width:46px; height:46px; margin:0 auto 18px; display:block; opacity:.9; }
+  .eyebrow{ font-family:var(--caps); font-size:.58rem; font-weight:600; letter-spacing:.4em; text-transform:uppercase; color:var(--gold-s); display:block; margin-bottom:14px; }
+  .title{ font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5vw,2.8rem); line-height:1.1; }
+  .back{ display:inline-block; margin-top:34px; font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-s); text-decoration:none; border-bottom:1px solid rgba(209,173,102,.4); padding-bottom:3px; transition:color .2s,border-color .2s; }
+  .back:hover{ color:var(--ivory); border-color:var(--gold-s); }
+  .center{ text-align:center; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <svg class="mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="19" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+        <circle cx="29" cy="24" r="11" fill="none" stroke="#D1AD66" stroke-width="1"/>
+        <circle cx="24" cy="24" r="1.4" fill="#D1AD66"/>
+      </svg>
+      <span class="eyebrow">Sacred Deposits&trade;</span>
+      <h1 class="title">Your Cart</h1>
+    </div>
+
+    <!-- cart.js renders the cart + checkout button into this element -->
+    <div id="sd-cart-mount"></div>
+
+    <p class="center"><a class="back" href="/shop.html">&larr; Continue Shopping</a></p>
+  </div>
+  <script src="js/cart.js" defer></script>
+</body>
+</html>

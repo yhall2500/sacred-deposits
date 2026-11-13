@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/ygh-technology-consultants.html"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/sacred-deposits-deploy-98/ygh-technology-consultants.html"
+  to = "/about.html"
+  status = 301
