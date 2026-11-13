@@ -1,8 +1,12 @@
 [build]
+  # The static site lives at the GitHub repository root.
+  base = "."
   publish = "."
+  command = "test -f index.html && test -f css/styles.css"
 
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/ygh-technology-consultants.html"
